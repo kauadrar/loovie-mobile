@@ -3,13 +3,22 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    'Urbanist-Thin': require('../assets/fonts/Urbanist-Thin.ttf'),
+    'Urbanist-ExtraLight': require('../assets/fonts/Urbanist-ExtraLight.ttf'),
+    'Urbanist-Light': require('../assets/fonts/Urbanist-Light.ttf'),
+    'Urbanist-Regular': require('../assets/fonts/Urbanist-Regular.ttf'),
+    'Urbanist-Medium': require('../assets/fonts/Urbanist-Medium.ttf'),
+    'Urbanist-SemiBold': require('../assets/fonts/Urbanist-SemiBold.ttf'),
+    'Urbanist-Bold': require('../assets/fonts/Urbanist-Bold.ttf'),
+    'Urbanist-ExtraBold': require('../assets/fonts/Urbanist-ExtraBold.ttf'),
+    'Urbanist-Black': require('../assets/fonts/Urbanist-Black.ttf'),
   });
 
   useEffect(() => {
@@ -23,8 +32,10 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-    </Stack>
+    <SafeAreaProvider>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+      </Stack>
+    </SafeAreaProvider>
   );
 }
