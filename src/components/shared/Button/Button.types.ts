@@ -1,5 +1,6 @@
-import { TouchableOpacityProps } from "react-native-gesture-handler"
+import { TouchableOpacityProps } from "react-native"
 
 export type ButtonProps = {
   label: string
+  href?: string
 } & TouchableOpacityProps

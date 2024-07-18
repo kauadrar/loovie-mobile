@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  buttonPair: {
+  pair: {
     width: '100%',
     gap: 12,
     flexDirection: 'row',
