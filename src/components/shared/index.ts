@@ -1,3 +1,4 @@
 export * from './Button/Button'
-export * from './ButtonPair/ButtonPair'
+export * from './Input/Input'
+export * from './Pair/Pair'
 export * from './Text/Text'
