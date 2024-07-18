@@ -1,8 +1,8 @@
-import { colors } from "@/src/styles";
+import { colors } from "@/styles";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  button: {
+  buttonArea: {
     width: '100%',
     borderWidth: 1,
     backgroundColor: colors.background,
@@ -11,6 +11,11 @@ export const styles = StyleSheet.create({
     borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  button: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   buttonText: {
     color: colors.gray1,
