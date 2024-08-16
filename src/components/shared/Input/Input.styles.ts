@@ -1,6 +1,6 @@
-import { colors } from "@/styles";
-import { FontVariant } from "@/types";
-import { StyleSheet } from "react-native";
+import { colors } from '@/styles';
+import { FontVariant } from '@/types';
+import { StyleSheet } from 'react-native';
 
 const fontFamily: FontVariant = 'Urbanist-Regular';
 
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     color: colors.white,
     flex: 1,
     fontSize: 16,
-    fontFamily
+    fontFamily,
   },
   iconArea: {
     width: 24,
@@ -55,6 +55,6 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: 1,
     top: -22,
-    left: 0
-  }
-})
+    left: 0,
+  },
+});

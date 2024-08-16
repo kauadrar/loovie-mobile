@@ -1,12 +1,15 @@
 export type LoginParams = {
   password: string;
-} & ({
-  email: string;
-  username: never;
-} | {
-  username: string;
-  email: never;
-});
+} & (
+  | {
+      email: string;
+      username: never;
+    }
+  | {
+      username: string;
+      email: never;
+    }
+);
 
 export type SignUpParams = {
   username: string;
