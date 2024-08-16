@@ -1,15 +1,9 @@
-import * as React from "react"
-import Svg, { Path, SvgProps } from "react-native-svg"
+import * as React from 'react';
+import Svg, { Path, SvgProps } from 'react-native-svg';
 
 export function LoovieLogo(props: SvgProps) {
   return (
-    <Svg
-      width={219}
-      height={221}
-      viewBox="0 0 219 221"
-      fill="none"
-      {...props}
-    >
+    <Svg width={219} height={221} viewBox="0 0 219 221" fill="none" {...props}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -17,5 +11,5 @@ export function LoovieLogo(props: SvgProps) {
         fill="#9D0208"
       />
     </Svg>
-  )
+  );
 }

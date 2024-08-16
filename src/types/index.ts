@@ -1,3 +1,3 @@
-export * from './auth'
-export * from './typography'
-export * from './user'
+export * from './auth';
+export * from './typography';
+export * from './user';

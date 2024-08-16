@@ -1,7 +1,7 @@
-import { StyleSheet, View } from "react-native";
-import { colors } from "@/styles";
-import { Pair, Text } from "@/components/shared";
-import { LoovieLogo } from "@/components/svgs";
+import { StyleSheet, View } from 'react-native';
+import { colors } from '@/styles';
+import { Pair, Text } from '@/components/shared';
+import { LoovieLogo } from '@/components/svgs';
 
 export default function Lobby() {
   return (
@@ -28,6 +28,6 @@ const styles = StyleSheet.create({
   title: {
     color: colors.white,
     fontSize: 24,
-    textAlign: 'center'
-  }
-})
+    textAlign: 'center',
+  },
+});

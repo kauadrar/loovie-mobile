@@ -1,1 +1,1 @@
-export * from './Loovie'
+export * from './Loovie';

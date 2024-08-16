@@ -40,7 +40,7 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <GestureHandlerRootView style={{ flex: 1 }}>
           <Stack screenOptions={{ headerShown: false }} />
-        </GestureHandlerRootView> 
+        </GestureHandlerRootView>
       </SafeAreaProvider>
     </QueryClientProvider>
   );

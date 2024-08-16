@@ -1,5 +1,5 @@
-import { colors } from "@/styles";
-import { StyleSheet } from "react-native";
+import { colors } from '@/styles';
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   buttonArea: {
@@ -10,15 +10,15 @@ export const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 14,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   button: {
     width: '100%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   buttonText: {
     color: colors.gray1,
-    fontSize: 16
-  }
-})
+    fontSize: 16,
+  },
+});
