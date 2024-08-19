@@ -1,3 +1,5 @@
+import { AxiosResponse, AxiosResponseHeaders } from 'axios';
+
 export type LoginParams = {
   password: string;
 } & (
@@ -17,4 +19,10 @@ export type SignUpParams = {
   first_name: string;
   last_name: string;
   password: string;
+};
+
+export type AuthResponse = AxiosResponse & {
+  headers: {
+    'access-token': string;
+  } & AxiosResponseHeaders;
 };
