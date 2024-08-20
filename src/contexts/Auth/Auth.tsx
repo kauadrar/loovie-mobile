@@ -9,13 +9,13 @@ const AuthContext = createContext({} as AuthContextData);
 SplashScreen.preventAutoHideAsync();
 
 export function AuthProvider({ children }: PropsWithChildren) {
-  const { data: user, isFetched: isUserFetched } = useQuery({
+  const { data: user, isLoading: isLoadingUser } = useQuery({
     queryKey: ['users', 'me'],
     queryFn: meRequest,
   });
 
   return (
-    <AuthContext.Provider value={{ user, isUserFetched }}>
+    <AuthContext.Provider value={{ user, isLoadingUser }}>
       {children}
     </AuthContext.Provider>
   );
