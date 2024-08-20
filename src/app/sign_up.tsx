@@ -12,18 +12,35 @@ import {
 import { colors } from '@/styles';
 import { LoovieLogo } from '@/components/svgs';
 import { Feather, FontAwesome6, Ionicons } from '@expo/vector-icons';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { signUpRequest } from '@/requests';
 import { SignUpParams } from '@/types';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { resetToRoute } from '@/utils';
 
 export default function SignUp() {
   const { control, handleSubmit } = useForm({
     resolver: yupResolver(signUpSchema),
+    values: {
+      username: 'drar',
+      email: 'kauadrar@gmail.com',
+      first_name: 'Kauã',
+      last_name: 'Drar',
+      password: 'password',
+      confirmation_password: 'password',
+    },
   });
+  const queryClient = useQueryClient();
   const { mutateAsync: signUp } = useMutation({
     mutationKey: ['login'],
     mutationFn: (params: SignUpParams) => signUpRequest(params),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['users', 'me'],
+      });
+
+      resetToRoute('/(main)/home');
+    },
   });
 
   const onSubmit = async (params: typeof signUpSchema.__outputType) => {
@@ -151,7 +168,7 @@ export default function SignUp() {
               name="confirmation_password"
             />
           </View>
-          <Button label="Entrar" onPress={handleSubmit(onSubmit)} />
+          <Button label="Cadastrar" onPress={handleSubmit(onSubmit)} />
         </SafeAreaView>
       </ScrollView>
     </TouchableWithoutFeedback>

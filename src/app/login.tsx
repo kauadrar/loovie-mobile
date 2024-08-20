@@ -11,17 +11,26 @@ import {
 import { colors } from '@/styles';
 import { LoovieLogo } from '@/components/svgs';
 import { Feather, FontAwesome6 } from '@expo/vector-icons';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { loginRequest } from '@/requests';
 import { LoginParams } from '@/types';
+import { resetToRoute } from '@/utils';
 
 export default function Login() {
   const { control, handleSubmit } = useForm({
     resolver: yupResolver(loginSchema),
   });
+  const queryClient = useQueryClient();
   const { mutateAsync: login } = useMutation({
     mutationKey: ['login'],
     mutationFn: (params: LoginParams) => loginRequest(params),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['users', 'me'],
+      });
+
+      resetToRoute('/(main)/home');
+    },
   });
 
   const onSubmit = async ({
