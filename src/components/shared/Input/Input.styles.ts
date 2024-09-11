@@ -6,9 +6,7 @@ const fontFamily: FontVariant = 'Urbanist-Regular';
 
 export const styles = StyleSheet.create({
   inputContainer: {
-    gap: 2,
     width: '100%',
-    height: 62,
   },
   inputArea: {
     width: '100%',
@@ -32,15 +30,13 @@ export const styles = StyleSheet.create({
   },
   errorMessage: {
     fontSize: 14,
-    color: '#660708',
-    position: 'absolute',
-    bottom: -18,
+    color: '#9D0208',
   },
   placeholderArea: {
     pointerEvents: 'none',
     position: 'absolute',
     zIndex: 1,
-    top: 20,
+    top: 22,
     left: 50,
   },
   placeholder: {
@@ -52,9 +48,6 @@ export const styles = StyleSheet.create({
     color: colors.gray1,
     fontSize: 16,
     fontFamily,
-    position: 'absolute',
-    zIndex: 1,
-    top: -22,
-    left: 0,
+    height: 20,
   },
 });
