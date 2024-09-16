@@ -16,13 +16,15 @@
       "supportsTablet": true,
       "config": {
         "usesNonExemptEncryption": false
-      }
+      },
+      "bundleIdentifier": "com.drar.Loovie"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.drar.Loovie"
     },
     "web": {
       "bundler": "metro",
@@ -35,15 +37,15 @@
         "expo-font",
         {
           "fonts": [
-            "./src/assets/fonts/Urbanist-Thin",
-            "./src/assets/fonts/Urbanist-ExtraLight",
-            "./src/assets/fonts/Urbanist-Light",
-            "./src/assets/fonts/Urbanist-Regular",
-            "./src/assets/fonts/Urbanist-Medium",
-            "./src/assets/fonts/Urbanist-SemiBold",
-            "./src/assets/fonts/Urbanist-Bold",
-            "./src/assets/fonts/Urbanist-ExtraBold",
-            "./src/assets/fonts/Urbanist-Black"
+            "./src/assets/fonts/Urbanist-Thin.ttf",
+            "./src/assets/fonts/Urbanist-ExtraLight.ttf",
+            "./src/assets/fonts/Urbanist-Light.ttf",
+            "./src/assets/fonts/Urbanist-Regular.ttf",
+            "./src/assets/fonts/Urbanist-Medium.ttf",
+            "./src/assets/fonts/Urbanist-SemiBold.ttf",
+            "./src/assets/fonts/Urbanist-Bold.ttf",
+            "./src/assets/fonts/Urbanist-ExtraBold.ttf",
+            "./src/assets/fonts/Urbanist-Black.ttf"
           ]
         }
       ],
@@ -51,6 +53,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "204d4d99-04e1-4bae-95c7-dc4b55581ee5"
+      }
     }
   }
 }
