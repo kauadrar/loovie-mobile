@@ -1,28 +1,18 @@
-import React, { Children } from 'react';
+import React, { Children, PropsWithChildren } from 'react';
 import { View } from 'react-native';
-import { Button } from '../Button/Button';
-import { ButtonProps } from '../Button/Button.types';
 import { styles } from './Pair.styles';
-import { PairComponent } from './Pair.types';
+import { PairProps } from './Pair.types';
 
-function PairButton(props: ButtonProps) {
+function Item({ children }: PropsWithChildren) {
+  return <View style={styles.item}>{children}</View>;
+}
+
+export function Pair({ style, children }: PairProps) {
   return (
-    <View style={styles.button}>
-      <Button {...props} />
+    <View style={[styles.pair, style]}>
+      {Children.map(children, (child) => {
+        return <Item>{child}</Item>;
+      })}
     </View>
   );
 }
-
-export const Pair: PairComponent = ({ style, children }) => {
-  const childrenArray = Children.toArray(children);
-  const firstChild = childrenArray[0];
-  const secondChild = childrenArray[1];
-  return (
-    <View style={[styles.pair, style]}>
-      {firstChild}
-      {secondChild}
-    </View>
-  );
-};
-
-Pair.Button = PairButton;

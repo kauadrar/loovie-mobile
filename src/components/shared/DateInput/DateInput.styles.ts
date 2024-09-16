@@ -16,9 +16,18 @@ export const styles = StyleSheet.create({
     gap: 10,
     backgroundColor: colors.gray2,
   },
-  input: {
-    color: colors.white,
+  full: {
     flex: 1,
+  },
+  input: {
+    flex: 1,
+    color: colors.white,
+    fontSize: 16,
+    fontFamily,
+    letterSpacing: 0.5,
+  },
+  date: {
+    color: colors.white,
     fontSize: 16,
     fontFamily,
   },

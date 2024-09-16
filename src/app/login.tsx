@@ -10,11 +10,11 @@ import {
 } from 'react-native';
 import { colors } from '@/styles';
 import { LoovieLogo } from '@/components/svgs';
-import { Feather, FontAwesome6 } from '@expo/vector-icons';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { loginRequest } from '@/requests';
 import { LoginParams } from '@/types';
 import { resetToRoute } from '@/utils';
+import { Lock, Mail } from 'lucide-react-native';
 
 export default function Login() {
   const { control, handleSubmit } = useForm({
@@ -62,9 +62,7 @@ export default function Login() {
             control={control}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <Input
-                preffix={
-                  <FontAwesome6 name="user" size={20} color={colors.gray1} />
-                }
+                prefix={<Mail size={22} color={colors.gray1} />}
                 placeholder="E-mail ou Usuário"
                 value={value}
                 onChangeText={onChange}
@@ -77,7 +75,7 @@ export default function Login() {
             control={control}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <Input
-                preffix={<Feather name="lock" size={20} color={colors.gray1} />}
+                prefix={<Lock size={20} color={colors.gray1} />}
                 placeholder="Senha"
                 value={value}
                 onChangeText={onChange}
@@ -88,7 +86,7 @@ export default function Login() {
             name="password"
           />
         </View>
-        <Button label="Entrar" onPress={handleSubmit(onSubmit)} />
+        <Button onPress={handleSubmit(onSubmit)}>Entrar</Button>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -105,10 +103,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 48,
+    paddingHorizontal: 24,
     gap: 60,
   },
   formArea: {
-    gap: 24,
+    width: '100%',
+    gap: 10,
   },
 });

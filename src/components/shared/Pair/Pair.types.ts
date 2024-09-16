@@ -1,9 +1,10 @@
 import { FunctionComponent } from 'react';
-import { StyleProp, ViewStyle } from 'react-native';
-import { ButtonProps } from '../Button/Button.types';
+import { StyleProp, TouchableOpacityProps, ViewStyle } from 'react-native';
+import { InputProps } from '../Input/Input.types';
 
 export type PairComponent = FunctionComponent<PairProps> & {
-  Button: FunctionComponent<ButtonProps>;
+  Input: FunctionComponent<InputProps>;
+  Button: FunctionComponent<TouchableOpacityProps>;
 };
 
 export type PairProps = {

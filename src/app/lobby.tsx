@@ -1,7 +1,8 @@
 import { StyleSheet, View } from 'react-native';
-import { colors } from '@/styles';
 import { Pair, Text } from '@/components/shared';
 import { LoovieLogo } from '@/components/svgs';
+import { LinkButton } from '@/components/shared/LinkButton/LinkButton';
+import { colors } from '@/styles';
 
 export default function Lobby() {
   return (
@@ -9,8 +10,8 @@ export default function Lobby() {
       <LoovieLogo />
       <Text style={styles.title}>Seja bem vindo(a) ao Loovie</Text>
       <Pair>
-        <Pair.Button label="Entrar" href="/login" />
-        <Pair.Button label="Cadastrar" href="/sign_up" />
+        <LinkButton href="/login">Entrar</LinkButton>
+        <LinkButton href="/sign_up">Cadastrar</LinkButton>
       </Pair>
     </View>
   );

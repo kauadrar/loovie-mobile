@@ -1,18 +1,20 @@
-import { Link } from 'expo-router';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { Text } from '../Text/Text';
 import { styles } from './Button.styles';
-import { ButtonProps } from './Button.types';
+import { forwardRef } from 'react';
 
-export function Button({ label, style, href = '', ...props }: ButtonProps) {
-  const ButtonContainer = href ? Link : View;
-  return (
-    <ButtonContainer href={href} asChild style={styles.buttonArea}>
-      <TouchableOpacity style={[styles.button, style]} {...props}>
-        <Text style={styles.buttonText} weight="Medium">
-          {label}
-        </Text>
+export const Button = forwardRef<TouchableOpacity, TouchableOpacityProps>(
+  function Button({ children, style, ...props }, ref) {
+    return (
+      <TouchableOpacity ref={ref} style={[styles.button, style]} {...props}>
+        {typeof children === 'string' ? (
+          <Text style={styles.buttonText} weight="Medium">
+            {children}
+          </Text>
+        ) : (
+          children
+        )}
       </TouchableOpacity>
-    </ButtonContainer>
-  );
-}
+    );
+  },
+);
