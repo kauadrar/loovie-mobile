@@ -8,14 +8,19 @@ import { SignUpFormStep } from './SignUpForm.types';
 import { memo } from 'react';
 
 export const SignUpThirdStep = memo(function SignUpThirdStep({
-  control,
+  form,
+  handleSubmit,
 }: SignUpFormStep<typeof signUpThirdStepSchema.__outputType>) {
   return (
     <StepContainer>
       <Controller
-        control={control}
-        render={({ field: { value, onChange }, fieldState: { error } }) => (
+        control={form.control}
+        render={({
+          field: { value, onChange, ref },
+          fieldState: { error },
+        }) => (
           <Input
+            ref={ref}
             prefix={<LockOpen size={20} color={colors.gray1} />}
             label="Senha"
             placeholder="Senha"
@@ -23,14 +28,20 @@ export const SignUpThirdStep = memo(function SignUpThirdStep({
             onChangeText={onChange}
             type="password"
             errorMessage={error?.message}
+            returnKeyType="next"
+            onSubmitEditing={() => form.setFocus('confirmation_password')}
           />
         )}
         name="password"
       />
       <Controller
-        control={control}
-        render={({ field: { value, onChange }, fieldState: { error } }) => (
+        control={form.control}
+        render={({
+          field: { value, onChange, ref },
+          fieldState: { error },
+        }) => (
           <Input
+            ref={ref}
             prefix={<Lock size={20} color={colors.gray1} />}
             label="Confirmar senha"
             placeholder="Confirmar senha"
@@ -38,6 +49,7 @@ export const SignUpThirdStep = memo(function SignUpThirdStep({
             onChangeText={onChange}
             type="password"
             errorMessage={error?.message}
+            onSubmitEditing={handleSubmit}
           />
         )}
         name="confirmation_password"

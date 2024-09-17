@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { TextInput, View } from 'react-native';
+import { useEffect } from 'react';
+import { View } from 'react-native';
 import Animated, {
   FadeInUp,
   FadeOutUp,

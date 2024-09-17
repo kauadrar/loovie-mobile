@@ -2,12 +2,7 @@ import { Button, Input } from '@/components/shared';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from '@/validators';
-import {
-  Keyboard,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { colors } from '@/styles';
 import { LoovieLogo } from '@/components/svgs';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -15,11 +10,15 @@ import { loginRequest } from '@/requests';
 import { LoginParams } from '@/types';
 import { resetToRoute } from '@/utils';
 import { Lock, Mail } from 'lucide-react-native';
+import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
+import { useRef } from 'react';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function Login() {
   const { control, handleSubmit } = useForm({
     resolver: yupResolver(loginSchema),
   });
+  const passwordInputRef = useRef<TextInput>(null);
   const queryClient = useQueryClient();
   const { mutateAsync: login } = useMutation({
     mutationKey: ['login'],
@@ -51,50 +50,67 @@ export default function Login() {
   };
 
   return (
-    <TouchableWithoutFeedback
-      style={styles.container}
-      onPress={Keyboard.dismiss}
+    <ScrollView
+      contentContainerStyle={styles.container}
+      keyboardShouldPersistTaps="handled"
     >
       <View style={styles.content}>
         <LoovieLogo />
-        <View style={styles.formArea}>
-          <Controller
-            control={control}
-            render={({ field: { value, onChange }, fieldState: { error } }) => (
-              <Input
-                prefix={<Mail size={22} color={colors.gray1} />}
-                placeholder="E-mail ou Usuário"
-                value={value}
-                onChangeText={onChange}
-                errorMessage={error?.message}
-              />
-            )}
-            name="email_or_username"
-          />
-          <Controller
-            control={control}
-            render={({ field: { value, onChange }, fieldState: { error } }) => (
-              <Input
-                prefix={<Lock size={20} color={colors.gray1} />}
-                placeholder="Senha"
-                value={value}
-                onChangeText={onChange}
-                type="password"
-                errorMessage={error?.message}
-              />
-            )}
-            name="password"
-          />
-        </View>
-        <Button onPress={handleSubmit(onSubmit)}>Entrar</Button>
+        <KeyboardAvoidingView style={styles.formArea} behavior="padding">
+          <View style={styles.form}>
+            <Controller
+              control={control}
+              render={({
+                field: { value, onChange },
+                fieldState: { error },
+              }) => (
+                <Input
+                  autoFocus
+                  prefix={<Mail size={22} color={colors.gray1} />}
+                  label="E-mail ou Usuário"
+                  placeholder="E-mail ou Usuário"
+                  value={value}
+                  onChangeText={onChange}
+                  errorMessage={error?.message}
+                  returnKeyType="next"
+                  onSubmitEditing={() => passwordInputRef.current?.focus()}
+                />
+              )}
+              name="email_or_username"
+            />
+            <Controller
+              control={control}
+              render={({
+                field: { value, onChange },
+                fieldState: { error },
+              }) => (
+                <Input
+                  ref={passwordInputRef}
+                  prefix={<Lock size={20} color={colors.gray1} />}
+                  label="Senha"
+                  placeholder="Senha"
+                  value={value}
+                  onChangeText={onChange}
+                  type="password"
+                  errorMessage={error?.message}
+                  onSubmitEditing={handleSubmit(onSubmit)}
+                />
+              )}
+              name="password"
+            />
+          </View>
+          <Button style={styles.submitButton} onPress={handleSubmit(onSubmit)}>
+            Entrar
+          </Button>
+        </KeyboardAvoidingView>
       </View>
-    </TouchableWithoutFeedback>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     width: '100%',
   },
   content: {
@@ -108,6 +124,13 @@ const styles = StyleSheet.create({
   },
   formArea: {
     width: '100%',
-    gap: 10,
+    alignItems: 'center',
+  },
+  form: {
+    width: '100%',
+    gap: 6,
+  },
+  submitButton: {
+    marginTop: 60,
   },
 });

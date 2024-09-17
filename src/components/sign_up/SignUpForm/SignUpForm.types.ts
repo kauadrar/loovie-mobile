@@ -1,22 +1,11 @@
-import {
-  signUpFirstStepSchema,
-  signUpSecondStepSchema,
-  signUpThirdStepSchema,
-} from '@/validators';
-import { Control, FieldValues, UseFormReturn } from 'react-hook-form';
+import { SignUpValues } from '@/types';
+import { FieldValues, UseFormReturn } from 'react-hook-form';
 
-export type SignUpFormStep<TFieldValues extends FieldValues = FieldValues> = {
-  control: Control<TFieldValues>;
+export type SignUpFormProps = {
+  onSubmit: (values: SignUpValues) => void;
 };
 
-export type SignUpFormFirstStep = UseFormReturn<
-  typeof signUpFirstStepSchema.__outputType
->;
-
-export type SignUpFormSecondStep = UseFormReturn<
-  typeof signUpSecondStepSchema.__outputType
->;
-
-export type SignUpFormThirdStep = UseFormReturn<
-  typeof signUpThirdStepSchema.__outputType
->;
+export type SignUpFormStep<TFieldValues extends FieldValues = FieldValues> = {
+  form: UseFormReturn<TFieldValues>;
+  handleSubmit: () => void;
+};

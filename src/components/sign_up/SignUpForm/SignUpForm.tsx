@@ -17,7 +17,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import { useForm } from 'react-hook-form';
+import { useForm, UseFormReturn } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   signUpFirstStepSchema,
@@ -25,8 +25,10 @@ import {
   signUpThirdStepSchema,
 } from '@/validators';
 import { useBackHandler } from '@react-native-community/hooks';
+import { SignUpFormProps } from './SignUpForm.types';
+import { SignUpValues } from '@/types';
 
-export function SignUpForm() {
+export function SignUpForm({ onSubmit }: SignUpFormProps) {
   const { width } = useWindowDimensions();
   const listRef = useAnimatedRef<FlatList>();
   const [numberOfSteps, setNumberOfSteps] = useState(1);
@@ -41,17 +43,79 @@ export function SignUpForm() {
   const thirdStepForm = useForm({
     resolver: yupResolver(signUpThirdStepSchema),
   });
+
+  const handleButtonPress = () => {
+    const step = allSteps[currentStepIndex];
+
+    step.form.handleSubmit(() => {
+      if (step.form.formState.isSubmitted) {
+        const nextStepIndex = currentStepIndex + 1;
+
+        listRef.current?.scrollToIndex({
+          index: nextStepIndex,
+          animated: true,
+        });
+
+        const step = steps[nextStepIndex];
+
+        if (nextStepIndex === 1) {
+          (
+            step.form as UseFormReturn<
+              typeof signUpSecondStepSchema.__outputType
+            >
+          ).setFocus('first_name');
+        } else if (nextStepIndex === 2) {
+          (
+            step.form as UseFormReturn<
+              typeof signUpThirdStepSchema.__outputType
+            >
+          ).setFocus('password');
+        }
+
+        return;
+      }
+
+      if (currentStepIndex < 2) {
+        setNumberOfSteps((prev) => prev + 1);
+        setIsSubmitting(true);
+
+        return;
+      }
+
+      const values = allSteps
+        .map(({ form }) => form.getValues())
+        .reduce((acc, value) => ({ ...acc, ...value }), {});
+
+      onSubmit(values as SignUpValues);
+    })();
+  };
+
   const allSteps = [
     {
-      component: <SignUpFirstStep control={firstStepForm.control} />,
+      component: (
+        <SignUpFirstStep
+          form={firstStepForm}
+          handleSubmit={handleButtonPress}
+        />
+      ),
       form: firstStepForm,
     },
     {
-      component: <SignUpSecondStep control={secondStepForm.control} />,
+      component: (
+        <SignUpSecondStep
+          form={secondStepForm}
+          handleSubmit={handleButtonPress}
+        />
+      ),
       form: secondStepForm,
     },
     {
-      component: <SignUpThirdStep control={thirdStepForm.control} />,
+      component: (
+        <SignUpThirdStep
+          form={thirdStepForm}
+          handleSubmit={handleButtonPress}
+        />
+      ),
       form: thirdStepForm,
     },
   ];
@@ -109,34 +173,6 @@ export function SignUpForm() {
     return false;
   });
 
-  const handleButtonPress = () => {
-    const step = allSteps[currentStepIndex];
-
-    step.form.handleSubmit(() => {
-      console.log('teste', step.form.formState.isSubmitted);
-      if (step.form.formState.isSubmitted) {
-        listRef.current?.scrollToIndex({
-          index: currentStepIndex + 1,
-          animated: true,
-        });
-
-        return;
-      }
-
-      if (currentStepIndex < 2) {
-        setNumberOfSteps((prev) => prev + 1);
-        setIsSubmitting(true);
-
-        return;
-      }
-
-      console.log('Submit');
-      allSteps.forEach(({ form }) => {
-        console.log(form.getValues());
-      });
-    })();
-  };
-
   const onScroll = useAnimatedScrollHandler(
     {
       onScroll: ({ contentOffset: { x } }) => {
@@ -175,22 +211,43 @@ export function SignUpForm() {
   const onViewableItemsChanged = useCallback(
     ({ viewableItems }: { viewableItems: ViewToken[] }) => {
       if (viewableItems.length === 1 && viewableItems[0].index !== null) {
-        setCurrentStepIndex(viewableItems[0].index);
+        const stepIndex = viewableItems[0].index;
+        setCurrentStepIndex(stepIndex);
+
+        console.log('testando isso aq');
+
+        if (isSubmitting) {
+          console.log('esta submetendo');
+          const step = allSteps[stepIndex];
+
+          if (stepIndex === 1) {
+            (
+              step.form as UseFormReturn<
+                typeof signUpSecondStepSchema.__outputType
+              >
+            ).setFocus('first_name');
+          } else if (stepIndex === 2) {
+            (
+              step.form as UseFormReturn<
+                typeof signUpThirdStepSchema.__outputType
+              >
+            ).setFocus('password');
+          }
+          setIsSubmitting(false);
+        }
       }
     },
-    [],
+    [allSteps],
   );
 
   const onContentSizeChange = useCallback(
     (w: number) => {
       if (isSubmitting) {
-        listRef.current?.scrollToOffset({ offset: w - width });
-        setIsSubmitting(false);
+        listRef.current?.scrollToOffset({ offset: w - width, animated: true });
       }
     },
     [isSubmitting],
   );
-
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
       <Animated.FlatList
@@ -198,6 +255,7 @@ export function SignUpForm() {
         ref={listRef}
         data={steps}
         renderItem={({ item: { component } }) => component}
+        keyboardShouldPersistTaps="handled"
         horizontal
         style={styles.list}
         contentContainerStyle={styles.listContainer}

@@ -4,7 +4,6 @@ import { TextInputProps } from 'react-native';
 export type DateInputProps = {
   prefix?: ReactNode;
   suffix?: ReactNode;
-  type?: 'text' | 'password' | 'area';
   errorMessage?: string;
   label?: string;
   value?: Date;
