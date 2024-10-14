@@ -16,7 +16,7 @@ export default function SignUp() {
       await queryClient.invalidateQueries({
         queryKey: ['users', 'me'],
       });
-      resetToRoute('/(main)/home');
+      resetToRoute('/(drawer)/(tabs)/home');
     },
   });
 

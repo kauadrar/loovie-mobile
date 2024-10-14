@@ -28,7 +28,7 @@ export default function Login() {
         queryKey: ['users', 'me'],
       });
 
-      resetToRoute('/(main)/home');
+      resetToRoute('/(drawer)/(tabs)/home');
     },
   });
 

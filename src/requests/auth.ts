@@ -14,7 +14,6 @@ export const loginRequest = async (params: LoginParams) => {
 };
 
 export const signUpRequest = async (params: SignUpParams) => {
-  console.log('TESTEE SIGNUP', params);
   const {
     data,
     headers: { 'access-token': token },

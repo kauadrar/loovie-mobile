@@ -1,14 +1,19 @@
 /* eslint react-hooks/exhaustive-deps: off */
 
-import { useWindowDimensions, View, ViewToken } from 'react-native';
-import { SignUpFirstStep } from './SignUpFirstStep';
-import { SignUpSecondStep } from './SignUpSecondStep';
-import { SignUpThirdStep } from './SignUpThirdStep';
-import { FlatList } from 'react-native-gesture-handler';
-import { styles } from './SignUpForm.styles';
 import { Button, Text } from '@/components/shared';
-import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
+import { SignUpValues } from '@/types';
+import {
+  signUpFirstStepSchema,
+  signUpSecondStepSchema,
+  signUpThirdStepSchema,
+} from '@/validators';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useBackHandler } from '@react-native-community/hooks';
 import { useCallback, useEffect, useState } from 'react';
+import { useForm, UseFormReturn } from 'react-hook-form';
+import { useWindowDimensions, View, ViewToken } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
+import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -17,16 +22,11 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import { useForm, UseFormReturn } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  signUpFirstStepSchema,
-  signUpSecondStepSchema,
-  signUpThirdStepSchema,
-} from '@/validators';
-import { useBackHandler } from '@react-native-community/hooks';
+import { SignUpFirstStep } from './SignUpFirstStep';
+import { styles } from './SignUpForm.styles';
 import { SignUpFormProps } from './SignUpForm.types';
-import { SignUpValues } from '@/types';
+import { SignUpSecondStep } from './SignUpSecondStep';
+import { SignUpThirdStep } from './SignUpThirdStep';
 
 export function SignUpForm({ onSubmit }: SignUpFormProps) {
   const { width } = useWindowDimensions();
@@ -214,10 +214,7 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
         const stepIndex = viewableItems[0].index;
         setCurrentStepIndex(stepIndex);
 
-        console.log('testando isso aq');
-
         if (isSubmitting) {
-          console.log('esta submetendo');
           const step = allSteps[stepIndex];
 
           if (stepIndex === 1) {

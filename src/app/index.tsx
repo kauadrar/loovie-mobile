@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
+
 export default function Root() {
   const { user, isLoadingUser } = useAuth();
   const [loaded] = useFonts({
@@ -30,7 +31,7 @@ export default function Root() {
   }
 
   if (user) {
-    return <Redirect href="/(main)/home" />;
+    return <Redirect href="/(drawer)/(tabs)/home" />;
   }
 
   return <Redirect href="/lobby" />;
