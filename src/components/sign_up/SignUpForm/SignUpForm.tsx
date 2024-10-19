@@ -1,6 +1,6 @@
 /* eslint react-hooks/exhaustive-deps: off */
 
-import { Button, Text } from '@/components/shared';
+import { BackButton, Button, Text } from '@/components/shared';
 import { SignUpValues } from '@/types';
 import {
   signUpFirstStepSchema,
@@ -9,6 +9,7 @@ import {
 } from '@/validators';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useBackHandler } from '@react-native-community/hooks';
+import { router } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { useForm, UseFormReturn } from 'react-hook-form';
 import { useWindowDimensions, View, ViewToken } from 'react-native';
@@ -22,6 +23,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SignUpFirstStep } from './SignUpFirstStep';
 import { styles } from './SignUpForm.styles';
 import { SignUpFormProps } from './SignUpForm.types';
@@ -29,6 +31,7 @@ import { SignUpSecondStep } from './SignUpSecondStep';
 import { SignUpThirdStep } from './SignUpThirdStep';
 
 export function SignUpForm({ onSubmit }: SignUpFormProps) {
+  const { top: topInset } = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const listRef = useAnimatedRef<FlatList>();
   const [numberOfSteps, setNumberOfSteps] = useState(1);
@@ -63,7 +66,7 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
             step.form as UseFormReturn<
               typeof signUpSecondStepSchema.__outputType
             >
-          ).setFocus('first_name');
+          ).setFocus('firstName');
         } else if (nextStepIndex === 2) {
           (
             step.form as UseFormReturn<
@@ -125,9 +128,9 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
   const username = firstStepForm.watch('username');
   const email = firstStepForm.watch('email');
 
-  const firstName = secondStepForm.watch('first_name');
-  const lastName = secondStepForm.watch('last_name');
-  const birthDate = secondStepForm.watch('birth_date');
+  const firstName = secondStepForm.watch('firstName');
+  const lastName = secondStepForm.watch('lastName');
+  const birthday = secondStepForm.watch('birthday');
 
   useEffect(() => {
     if (currentStepIndex === 0) {
@@ -154,13 +157,13 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
   }, [
     firstName,
     lastName,
-    birthDate,
+    birthday,
     numberOfSteps,
     currentStepIndex,
     allSteps,
   ]);
 
-  useBackHandler(() => {
+  const onPressBack = () => {
     if (currentStepIndex > 0) {
       listRef.current?.scrollToIndex({
         index: currentStepIndex - 1,
@@ -170,8 +173,11 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
       return true;
     }
 
-    return false;
-  });
+    router.back();
+    return true;
+  };
+
+  useBackHandler(onPressBack);
 
   const onScroll = useAnimatedScrollHandler(
     {
@@ -222,7 +228,7 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
               step.form as UseFormReturn<
                 typeof signUpSecondStepSchema.__outputType
               >
-            ).setFocus('first_name');
+            ).setFocus('firstName');
           } else if (stepIndex === 2) {
             (
               step.form as UseFormReturn<
@@ -246,37 +252,43 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
     [isSubmitting],
   );
   return (
-    <KeyboardAvoidingView behavior="padding" style={styles.container}>
-      <Animated.FlatList
-        onScroll={onScroll}
-        ref={listRef}
-        data={steps}
-        renderItem={({ item: { component } }) => component}
-        keyboardShouldPersistTaps="handled"
-        horizontal
-        style={styles.list}
-        contentContainerStyle={styles.listContainer}
-        onViewableItemsChanged={onViewableItemsChanged}
-        showsHorizontalScrollIndicator={false}
-        pagingEnabled
-        onContentSizeChange={onContentSizeChange}
+    <>
+      <BackButton
+        style={[styles.backButton, { top: topInset }]}
+        onPress={onPressBack}
       />
-      <View style={styles.footer}>
-        <Button onPress={handleButtonPress}>
-          <AnimatedText style={[styles.buttonText, nextButtonAnimatedStyles]}>
-            Próximo
-          </AnimatedText>
-          <AnimatedText
-            style={[
-              styles.buttonText,
-              styles.submitText,
-              submitButtonAnimatedStyles,
-            ]}
-          >
-            Cadastrar
-          </AnimatedText>
-        </Button>
-      </View>
-    </KeyboardAvoidingView>
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+        <Animated.FlatList
+          onScroll={onScroll}
+          ref={listRef}
+          data={steps}
+          renderItem={({ item: { component } }) => component}
+          keyboardShouldPersistTaps="handled"
+          horizontal
+          style={styles.list}
+          contentContainerStyle={styles.listContainer}
+          onViewableItemsChanged={onViewableItemsChanged}
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled
+          onContentSizeChange={onContentSizeChange}
+        />
+        <View style={styles.footer}>
+          <Button onPress={handleButtonPress}>
+            <AnimatedText style={[styles.buttonText, nextButtonAnimatedStyles]}>
+              Próximo
+            </AnimatedText>
+            <AnimatedText
+              style={[
+                styles.buttonText,
+                styles.submitText,
+                submitButtonAnimatedStyles,
+              ]}
+            >
+              Cadastrar
+            </AnimatedText>
+          </Button>
+        </View>
+      </KeyboardAvoidingView>
+    </>
   );
 }

@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 export const loginSchema = yup.object().shape({
-  email_or_username: yup
+  emailOrUsername: yup
     .string()
     .required('O e-mail ou nome de usuário é obrigatório.'),
   password: yup
@@ -19,9 +19,9 @@ export const signUpFirstStepSchema = yup.object().shape({
 });
 
 export const signUpSecondStepSchema = yup.object().shape({
-  first_name: yup.string().required('O nome é obrigatório.'),
-  last_name: yup.string().required('O sobrenome é obrigatório.'),
-  birth_date: yup.date().required('A data de nascimento é obrigatória.'),
+  firstName: yup.string().required('O nome é obrigatório.'),
+  lastName: yup.string().required('O sobrenome é obrigatório.'),
+  birthday: yup.date().required('A data de nascimento é obrigatória.'),
 });
 
 export const signUpThirdStepSchema = yup.object().shape({

@@ -1,20 +1,22 @@
-import { Button, Input } from '@/components/shared';
-import { Controller, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { loginSchema } from '@/validators';
-import { StyleSheet, TextInput, View } from 'react-native';
-import { colors } from '@/styles';
+import { BackButton, Button, Input } from '@/components/shared';
 import { LoovieLogo } from '@/components/svgs';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { loginRequest } from '@/requests';
+import { colors } from '@/styles';
 import { LoginParams } from '@/types';
 import { resetToRoute } from '@/utils';
+import { loginSchema } from '@/validators';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Lock, Mail } from 'lucide-react-native';
-import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import { useRef } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function Login() {
+  const { top: topInset } = useSafeAreaInsets();
   const { control, handleSubmit } = useForm({
     resolver: yupResolver(loginSchema),
   });
@@ -33,17 +35,17 @@ export default function Login() {
   });
 
   const onSubmit = async ({
-    email_or_username,
+    emailOrUsername,
     password,
   }: typeof loginSchema.__outputType) => {
     const params = {
       password,
     } as LoginParams;
 
-    if (email_or_username.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
-      params.email = email_or_username;
+    if (emailOrUsername.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
+      params.email = emailOrUsername;
     } else {
-      params.username = email_or_username;
+      params.username = emailOrUsername;
     }
 
     await login(params);
@@ -55,6 +57,7 @@ export default function Login() {
       keyboardShouldPersistTaps="handled"
     >
       <View style={styles.content}>
+        <BackButton style={[styles.backButton, { top: topInset }]} />
         <LoovieLogo />
         <KeyboardAvoidingView style={styles.formArea} behavior="padding">
           <View style={styles.form}>
@@ -76,7 +79,7 @@ export default function Login() {
                   onSubmitEditing={() => passwordInputRef.current?.focus()}
                 />
               )}
-              name="email_or_username"
+              name="emailOrUsername"
             />
             <Controller
               control={control}
@@ -132,5 +135,9 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     marginTop: 60,
+  },
+  backButton: {
+    alignSelf: 'flex-start',
+    position: 'absolute',
   },
 });

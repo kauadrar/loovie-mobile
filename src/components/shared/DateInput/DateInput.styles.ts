@@ -11,10 +11,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 14,
     borderWidth: 1,
-    borderColor: colors.black,
+    borderColor: colors.gray2,
     padding: 16,
     gap: 10,
-    backgroundColor: colors.gray2,
+    backgroundColor: colors.background,
   },
   full: {
     flex: 1,

@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <Container>
-      <Text style={{ color: '#FFF' }}>home {user?.first_name}</Text>
+      <Text style={{ color: '#FFF' }}>home {user?.firstName}</Text>
     </Container>
   );
 }

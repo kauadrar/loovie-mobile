@@ -1,11 +1,11 @@
-import { StyleSheet } from 'react-native';
-import { colors } from '@/styles';
+import { SignUpForm } from '@/components/sign_up/SignUpForm/SignUpForm';
 import { LoovieLogo } from '@/components/svgs';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { signUpRequest } from '@/requests';
+import { colors } from '@/styles';
 import { SignUpParams, SignUpValues } from '@/types';
 import { resetToRoute } from '@/utils';
-import { SignUpForm } from '@/components/sign_up/SignUpForm/SignUpForm';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 export default function SignUp() {
@@ -23,12 +23,12 @@ export default function SignUp() {
   const onSubmit = ({
     username,
     email,
-    first_name,
-    last_name,
-    birth_date,
+    firstName,
+    lastName,
+    birthday,
     password,
   }: SignUpValues) => {
-    signUp({ username, email, first_name, last_name, birth_date, password });
+    signUp({ username, email, firstName, lastName, birthday, password });
   };
 
   return (
@@ -49,5 +49,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  content: {
+    flex: 1,
+    width: '100%',
   },
 });

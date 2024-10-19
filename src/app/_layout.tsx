@@ -11,12 +11,6 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 import 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-if (Platform.OS === 'android') {
-  NavigationBar.setPositionAsync('absolute');
-  NavigationBar.setBackgroundColorAsync('#ffffff00');
-  NavigationBar.setButtonStyleAsync('light');
-}
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -29,6 +23,12 @@ const queryClient = new QueryClient({
 });
 
 export default function RootLayout() {
+  if (Platform.OS === 'android') {
+    NavigationBar.setPositionAsync('absolute');
+    NavigationBar.setBackgroundColorAsync('#ffffff00');
+    NavigationBar.setButtonStyleAsync('light');
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>

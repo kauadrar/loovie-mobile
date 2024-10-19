@@ -1,13 +1,13 @@
-import React, { memo } from 'react';
-import { Input, Pair } from '../../shared';
-import { Controller } from 'react-hook-form';
-import { Ionicons } from '@expo/vector-icons';
 import { colors } from '@/styles';
-import { DateInput } from '../../shared/DateInput/DateInput';
-import { Calendar } from 'lucide-react-native';
-import { StepContainer } from './StepContainer';
 import { signUpSecondStepSchema } from '@/validators';
+import { Ionicons } from '@expo/vector-icons';
+import { Calendar } from 'lucide-react-native';
+import React, { memo } from 'react';
+import { Controller } from 'react-hook-form';
+import { Input, Pair } from '../../shared';
+import { DateInput } from '../../shared/DateInput/DateInput';
 import { SignUpFormStep } from './SignUpForm.types';
+import { StepContainer } from './StepContainer';
 
 export const SignUpSecondStep = memo(function SignUpSecondStep({
   form,
@@ -31,10 +31,10 @@ export const SignUpSecondStep = memo(function SignUpSecondStep({
               onChangeText={onChange}
               errorMessage={error?.message}
               returnKeyType="next"
-              onSubmitEditing={() => form.setFocus('last_name')}
+              onSubmitEditing={() => form.setFocus('lastName')}
             />
           )}
-          name="first_name"
+          name="firstName"
         />
         <Controller
           control={form.control}
@@ -51,10 +51,10 @@ export const SignUpSecondStep = memo(function SignUpSecondStep({
               onChangeText={onChange}
               errorMessage={error?.message}
               returnKeyType="next"
-              onSubmitEditing={() => form.setFocus('birth_date')}
+              onSubmitEditing={() => form.setFocus('birthday')}
             />
           )}
-          name="last_name"
+          name="lastName"
         />
       </Pair>
       <Controller
@@ -75,7 +75,7 @@ export const SignUpSecondStep = memo(function SignUpSecondStep({
             onSubmitEditing={handleSubmit}
           />
         )}
-        name="birth_date"
+        name="birthday"
       />
     </StepContainer>
   );

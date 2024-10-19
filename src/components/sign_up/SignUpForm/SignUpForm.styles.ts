@@ -26,4 +26,8 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     justifyContent: 'center',
   },
+  backButton: {
+    alignSelf: 'flex-start',
+    position: 'absolute',
+  },
 });

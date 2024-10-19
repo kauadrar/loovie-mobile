@@ -19,8 +19,6 @@ export default function MainLayout() {
           state.index ===
           state.routes.findIndex((r: Route<string>) => r.name === route.name);
 
-        console.log('isRouteFocused', isRouteFocused);
-
         return {
           headerStyle: {
             backgroundColor: colors.background,

@@ -25,9 +25,9 @@ export type SignUpValues = typeof signUpFirstStepSchema.__outputType &
 export type SignUpParams = {
   username: string;
   email: string;
-  first_name: string;
-  last_name: string;
-  birth_date: Date;
+  firstName: string;
+  lastName: string;
+  birthday: Date;
   password: string;
 };
 

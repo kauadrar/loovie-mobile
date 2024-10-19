@@ -1,11 +1,11 @@
-import { Input } from '../../shared';
-import { Controller } from 'react-hook-form';
 import { colors } from '@/styles';
-import { Mail, User } from 'lucide-react-native';
-import { StepContainer } from './StepContainer';
 import { signUpFirstStepSchema } from '@/validators';
-import { SignUpFormStep } from './SignUpForm.types';
+import { Mail, User } from 'lucide-react-native';
 import { memo } from 'react';
+import { Controller } from 'react-hook-form';
+import { Input } from '../../shared';
+import { SignUpFormStep } from './SignUpForm.types';
+import { StepContainer } from './StepContainer';
 
 export const SignUpFirstStep = memo(function SignUpFirstStep({
   form,
@@ -46,6 +46,7 @@ export const SignUpFirstStep = memo(function SignUpFirstStep({
             errorMessage={error?.message}
             returnKeyType="next"
             onSubmitEditing={handleSubmit}
+            keyboardType="email-address"
           />
         )}
         name="email"
