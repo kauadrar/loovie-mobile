@@ -1,11 +1,11 @@
 {
   "expo": {
     "name": "Loovie",
-    "slug": "Loovie",
+    "slug": "loovie",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "loovie",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./src/assets/images/splash.png",
@@ -17,14 +17,14 @@
       "config": {
         "usesNonExemptEncryption": false
       },
-      "bundleIdentifier": "com.drar.Loovie"
+      "bundleIdentifier": "com.drar.loovie"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.drar.Loovie"
+      "package": "com.drar.loovie"
     },
     "web": {
       "bundler": "metro",
