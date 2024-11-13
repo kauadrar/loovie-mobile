@@ -1,9 +1,9 @@
-import { HeaderRight } from '@/components/drawer';
+import { HeaderRight, Menu } from '@/components/drawer';
 import { colors } from '@/styles';
 import { FontVariant } from '@/types';
 import { Route } from '@react-navigation/native';
 import { Drawer } from 'expo-router/drawer';
-import { Menu } from 'lucide-react-native';
+import { MenuIcon } from 'lucide-react-native';
 import { BookmarkSimple, Gear, Question } from 'phosphor-react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -13,6 +13,7 @@ export default function MainLayout() {
 
   return (
     <Drawer
+      drawerContent={Menu}
       screenOptions={({ route, navigation }) => {
         const state = navigation.getState();
         const isRouteFocused =
@@ -34,7 +35,7 @@ export default function MainLayout() {
               onPress={navigation.toggleDrawer}
               style={{ marginLeft: 16 }}
             >
-              <Menu size={24} color={tintColor} />
+              <MenuIcon size={24} color={tintColor} />
             </TouchableOpacity>
           ),
           headerRight: HeaderRight,
