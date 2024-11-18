@@ -51,7 +51,7 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
     const step = allSteps[currentStepIndex];
 
     step.form.handleSubmit(() => {
-      if (step.form.formState.isSubmitted) {
+      if (step.form.formState.isSubmitted && step.form.formState.isValid) {
         const nextStepIndex = currentStepIndex + 1;
 
         listRef.current?.scrollToIndex({
