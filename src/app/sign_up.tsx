@@ -28,7 +28,14 @@ export default function SignUp() {
     birthday,
     password,
   }: SignUpValues) => {
-    signUp({ username, email, firstName, lastName, birthday, password });
+    signUp({
+      username,
+      email,
+      first_name: firstName,
+      last_name: lastName,
+      birthday,
+      password,
+    });
   };
 
   return (

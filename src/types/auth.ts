@@ -6,17 +6,9 @@ import {
 import { AxiosResponse, AxiosResponseHeaders } from 'axios';
 
 export type LoginParams = {
+  login: string;
   password: string;
-} & (
-  | {
-      email: string;
-      username: never;
-    }
-  | {
-      username: string;
-      email: never;
-    }
-);
+};
 
 export type SignUpValues = typeof signUpFirstStepSchema.__outputType &
   typeof signUpSecondStepSchema.__outputType &
@@ -25,8 +17,8 @@ export type SignUpValues = typeof signUpFirstStepSchema.__outputType &
 export type SignUpParams = {
   username: string;
   email: string;
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   birthday: Date;
   password: string;
 };

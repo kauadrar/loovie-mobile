@@ -34,20 +34,7 @@ export default function Login() {
     },
   });
 
-  const onSubmit = async ({
-    emailOrUsername,
-    password,
-  }: typeof loginSchema.__outputType) => {
-    const params = {
-      password,
-    } as LoginParams;
-
-    if (emailOrUsername.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
-      params.email = emailOrUsername;
-    } else {
-      params.username = emailOrUsername;
-    }
-
+  const onSubmit = async (params: typeof loginSchema.__outputType) => {
     await login(params);
   };
 
@@ -79,7 +66,7 @@ export default function Login() {
                   onSubmitEditing={() => passwordInputRef.current?.focus()}
                 />
               )}
-              name="emailOrUsername"
+              name="login"
             />
             <Controller
               control={control}
