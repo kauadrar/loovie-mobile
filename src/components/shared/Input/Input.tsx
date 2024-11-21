@@ -2,9 +2,9 @@ import { colors } from '@/styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { forwardRef, useState } from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
+import { InputContainer } from '../InputContainer/InputContainer';
 import { styles } from './Input.styles';
 import { InputProps } from './Input.types';
-import { InputContainer } from '../InputContainer/InputContainer';
 
 export const Input = forwardRef<TextInput, InputProps>(function Input(
   {
@@ -34,6 +34,7 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
         {prefix && <View style={styles.iconArea}>{prefix}</View>}
         <TextInput
           ref={ref}
+          autoCapitalize="none"
           placeholder={placeholder}
           placeholderTextColor={colors.gray1}
           style={styles.input}
