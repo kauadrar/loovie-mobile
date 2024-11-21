@@ -5,6 +5,7 @@ import 'expo-dev-client';
 import * as NavigationBar from 'expo-navigation-bar';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
@@ -23,11 +24,19 @@ const queryClient = new QueryClient({
 });
 
 export default function RootLayout() {
-  if (Platform.OS === 'android') {
-    NavigationBar.setPositionAsync('absolute');
-    NavigationBar.setBackgroundColorAsync('#ffffff00');
-    NavigationBar.setButtonStyleAsync('light');
-  }
+  const makeNavigationBarTransparent = async () => {
+    if (Platform.OS === 'android') {
+      if (Platform.OS === 'android') {
+        NavigationBar.setPositionAsync('absolute');
+        NavigationBar.setBackgroundColorAsync('#ffffff00');
+        NavigationBar.setButtonStyleAsync('light');
+      }
+    }
+  };
+
+  useEffect(() => {
+    makeNavigationBarTransparent();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
