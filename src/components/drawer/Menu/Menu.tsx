@@ -25,7 +25,7 @@ export function Menu({
       <DrawerItem
         label="Logout"
         labelStyle={{
-          marginHorizontal: -24,
+          marginHorizontal: -4,
           fontFamily,
           color: colors.primary,
         }}

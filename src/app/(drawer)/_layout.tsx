@@ -50,7 +50,7 @@ export default function MainLayout() {
           drawerInactiveTintColor: colors.gray1,
           drawerActiveBackgroundColor: colors.gray2,
           drawerLabelStyle: {
-            marginHorizontal: -24,
+            marginHorizontal: -4,
             fontFamily: isRouteFocused ? fontMedium : fontRegular,
           },
         };
