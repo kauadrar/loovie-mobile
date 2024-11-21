@@ -1,4 +1,4 @@
-package com.drar.Loovie
+package com.drar.loovie
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

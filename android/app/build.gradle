@@ -86,9 +86,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.drar.Loovie'
+    namespace 'com.drar.loovie'
     defaultConfig {
-        applicationId 'com.drar.Loovie'
+        applicationId 'com.drar.loovie'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

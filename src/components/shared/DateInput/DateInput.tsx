@@ -1,15 +1,14 @@
-import { TextInput, View } from 'react-native';
+import { colors } from '@/styles';
+import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import { SquarePen } from 'lucide-react-native';
+import moment from 'moment';
+import { forwardRef, useState } from 'react';
+import { Platform, TextInput, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import { InputContainer } from '../InputContainer/InputContainer';
 import { styles } from './DateInput.styles';
 import { DateInputProps } from './DateInput.types';
-import moment from 'moment';
-import { InputContainer } from '../InputContainer/InputContainer';
-import { forwardRef, useState } from 'react';
-import DateTimePicker, {
-  DateTimePickerEvent,
-} from '@react-native-community/datetimepicker';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { SquarePen } from 'lucide-react-native';
-import { colors } from '@/styles';
 
 const DATE_FORMAT = 'DD/MM/YYYY';
 
@@ -37,13 +36,26 @@ export const DateInput = forwardRef<TextInput, DateInputProps>(
     const inputValue =
       value && !isNaN(value?.getTime()) ? formattedDate : inputText;
 
-    const onSelectDate = (event: DateTimePickerEvent, date?: Date) => {
-      if (date && event.type === 'set') onChange(date);
+    const onSelectDate = (date: Date) => {
+      onChange(date);
       setIsDateTimePickerVisible(false);
     };
 
     const showDateTimePicker = () => {
-      setIsDateTimePickerVisible(true);
+      if (Platform.OS === 'android') {
+        DateTimePickerAndroid.open({
+          value: value || today,
+          onChange: (event, date) => {
+            if (event.type === 'set') {
+              onChange(date);
+            } else {
+              DateTimePickerAndroid.dismiss('date');
+            }
+          },
+        });
+      } else {
+        setIsDateTimePickerVisible(true);
+      }
     };
 
     const handleDateChange = (text: string) => {
@@ -104,16 +116,18 @@ export const DateInput = forwardRef<TextInput, DateInputProps>(
             </View>
           </TouchableOpacity>
         </InputContainer>
-        {isDateTimePickerVisible && (
-          <DateTimePicker
-            maximumDate={today}
-            value={value || today}
-            mode="date"
-            display="spinner"
-            onChange={onSelectDate}
-            disabled={!editable}
-          />
-        )}
+        <DateTimePickerModal
+          isVisible={isDateTimePickerVisible}
+          maximumDate={today}
+          date={value || today}
+          mode="date"
+          display="inline"
+          onConfirm={onSelectDate}
+          onCancel={() => setIsDateTimePickerVisible(false)}
+          themeVariant="dark"
+          isDarkModeEnabled
+          accentColor={colors.primary}
+        />
       </>
     );
   },

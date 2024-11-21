@@ -1,4 +1,4 @@
-package com.drar.Loovie
+package com.drar.loovie
 
 import android.app.Application
 import android.content.res.Configuration
