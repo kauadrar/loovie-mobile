@@ -27,8 +27,8 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>myapp</string>
-          <string>com.drar.Loovie</string>
+          <string>loovie</string>
+          <string>com.drar.loovie</string>
         </array>
       </dict>
       <dict>
