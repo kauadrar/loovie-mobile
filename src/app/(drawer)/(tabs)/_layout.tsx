@@ -2,7 +2,7 @@ import { LoovieLogo } from '@/components/svgs';
 import { colors } from '@/styles';
 import { Tabs } from 'expo-router/tabs';
 import { Bell, House, Popcorn, User } from 'phosphor-react-native';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, ViewStyle } from 'react-native';
 
 export default function MainLayout() {
   return (
@@ -10,7 +10,11 @@ export default function MainLayout() {
       screenOptions={{
         tabBarInactiveTintColor: colors.gray1,
         tabBarActiveTintColor: colors.primary,
-        tabBarButton: (props) => <TouchableOpacity {...props} />,
+        tabBarButton: ({ onPress, children, style }) => (
+          <TouchableOpacity onPress={onPress} style={style as ViewStyle}>
+            {children}
+          </TouchableOpacity>
+        ),
         tabBarShowLabel: false,
         headerShown: false,
         tabBarStyle: {

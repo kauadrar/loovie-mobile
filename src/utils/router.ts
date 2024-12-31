@@ -1,6 +1,6 @@
-import { router } from 'expo-router';
+import { Href, router } from 'expo-router';
 
-export function resetToRoute(route: string) {
+export function resetToRoute(route: Href) {
   router.dismissAll();
   router.replace(route);
 }
