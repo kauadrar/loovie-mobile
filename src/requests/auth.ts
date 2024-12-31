@@ -1,4 +1,4 @@
-import { getToken, saveToken } from '@/helpers';
+import { deleteToken, getToken, saveToken } from '@/helpers';
 import { api } from '@/services';
 import { AuthResponse, LoginParams, SignUpParams, User } from '@/types';
 
@@ -27,15 +27,24 @@ export const signUpRequest = async (params: SignUpParams) => {
 };
 
 export const meRequest = async () => {
-  const token = await getToken();
+  try {
+    const token = await getToken();
 
-  if (!token) {
-    return null;
+    if (!token) {
+      return null;
+    }
+
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+
+    const { data } = await api.get<User>('/me');
+
+    return data;
+  } catch {
+    deleteToken();
   }
+};
 
-  api.defaults.headers.Authorization = `Bearer ${token}`;
-
-  const { data } = await api.get<User>('/me');
-
-  return data;
+export const logoutRequest = async () => {
+  await api.delete('/logout');
+  await deleteToken();
 };
