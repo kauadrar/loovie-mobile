@@ -2,11 +2,9 @@ import { AuthProvider } from '@/contexts';
 import { colors } from '@/styles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import 'expo-dev-client';
-import * as NavigationBar from 'expo-navigation-bar';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import 'react-native-reanimated';
@@ -24,20 +22,6 @@ const queryClient = new QueryClient({
 });
 
 export default function RootLayout() {
-  const makeNavigationBarTransparent = async () => {
-    if (Platform.OS === 'android') {
-      if (Platform.OS === 'android') {
-        NavigationBar.setPositionAsync('absolute');
-        NavigationBar.setBackgroundColorAsync('#ffffff00');
-        NavigationBar.setButtonStyleAsync('light');
-      }
-    }
-  };
-
-  useEffect(() => {
-    makeNavigationBarTransparent();
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
@@ -45,7 +29,12 @@ export default function RootLayout() {
           <GestureHandlerRootView style={styles.container}>
             <KeyboardProvider statusBarTranslucent navigationBarTranslucent>
               <StatusBar style="light" />
-              <Stack screenOptions={{ headerShown: false }} />
+              <Stack
+                screenOptions={{
+                  headerShown: false,
+                  navigationBarColor: colors.background,
+                }}
+              />
             </KeyboardProvider>
           </GestureHandlerRootView>
         </SafeAreaProvider>
