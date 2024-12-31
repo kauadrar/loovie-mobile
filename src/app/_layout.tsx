@@ -1,5 +1,6 @@
 import { AuthProvider } from '@/contexts';
 import { colors } from '@/styles';
+import { DarkTheme, ThemeProvider } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import 'expo-dev-client';
 import { Stack } from 'expo-router';
@@ -31,13 +32,23 @@ export default function RootLayout() {
         <SafeAreaProvider>
           <GestureHandlerRootView style={styles.container}>
             <KeyboardProvider statusBarTranslucent navigationBarTranslucent>
-              <StatusBar style="light" />
-              <Stack
-                screenOptions={{
-                  headerShown: false,
-                  navigationBarColor: colors.background,
+              <ThemeProvider
+                value={{
+                  ...DarkTheme,
+                  colors: {
+                    ...DarkTheme.colors,
+                    background: colors.background,
+                  },
                 }}
-              />
+              >
+                <StatusBar style="light" />
+                <Stack
+                  screenOptions={{
+                    headerShown: false,
+                    navigationBarColor: colors.background,
+                  }}
+                />
+              </ThemeProvider>
             </KeyboardProvider>
           </GestureHandlerRootView>
         </SafeAreaProvider>
