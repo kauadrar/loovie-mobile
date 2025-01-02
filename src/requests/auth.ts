@@ -41,6 +41,8 @@ export const meRequest = async () => {
     return data;
   } catch {
     deleteToken();
+
+    throw new Error('Invalid token');
   }
 };
 
