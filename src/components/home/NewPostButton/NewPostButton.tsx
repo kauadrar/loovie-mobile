@@ -104,7 +104,7 @@ export function NewPostButton() {
 
   return (
     <View style={styles.buttonContainer}>
-      <Animated.View style={buttonStyle}>
+      <Animated.View style={[{ zIndex: 1 }, buttonStyle]}>
         <TouchableOpacity onPress={handlePress} style={mainButtonStyles.button}>
           <Animated.View style={plusIconStyle}>
             <Plus size={16} color={colors.white} weight="bold" />
@@ -142,7 +142,6 @@ export function NewPostButton() {
 
 const mainButtonStyles = StyleSheet.create({
   button: {
-    zIndex: 1,
     height: 56,
     width: '100%',
     borderRadius: 100,
