@@ -1,4 +1,5 @@
 import { AuthProvider } from '@/contexts';
+import { ExploreProvider } from '@/contexts/Explore/Explore';
 import { colors } from '@/styles';
 import { DarkTheme, ThemeProvider } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -29,29 +30,31 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <SafeAreaProvider>
-          <GestureHandlerRootView style={styles.container}>
-            <KeyboardProvider statusBarTranslucent navigationBarTranslucent>
-              <ThemeProvider
-                value={{
-                  ...DarkTheme,
-                  colors: {
-                    ...DarkTheme.colors,
-                    background: colors.background,
-                  },
-                }}
-              >
-                <StatusBar style="light" />
-                <Stack
-                  screenOptions={{
-                    headerShown: false,
-                    navigationBarColor: colors.background,
+        <ExploreProvider>
+          <SafeAreaProvider>
+            <GestureHandlerRootView style={styles.container}>
+              <KeyboardProvider statusBarTranslucent navigationBarTranslucent>
+                <ThemeProvider
+                  value={{
+                    ...DarkTheme,
+                    colors: {
+                      ...DarkTheme.colors,
+                      background: colors.background,
+                    },
                   }}
-                />
-              </ThemeProvider>
-            </KeyboardProvider>
-          </GestureHandlerRootView>
-        </SafeAreaProvider>
+                >
+                  <StatusBar style="light" />
+                  <Stack
+                    screenOptions={{
+                      headerShown: false,
+                      navigationBarColor: colors.background,
+                    }}
+                  />
+                </ThemeProvider>
+              </KeyboardProvider>
+            </GestureHandlerRootView>
+          </SafeAreaProvider>
+        </ExploreProvider>
       </AuthProvider>
     </QueryClientProvider>
   );

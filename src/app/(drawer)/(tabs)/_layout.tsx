@@ -1,10 +1,12 @@
 import { LoovieLogo } from '@/components/svgs';
+import { useExplore } from '@/contexts';
 import { colors } from '@/styles';
 import { Tabs } from 'expo-router/tabs';
 import { Bell, House, Popcorn, User } from 'phosphor-react-native';
 import { TouchableOpacity, ViewStyle } from 'react-native';
 
 export default function MainLayout() {
+  const { setIsExploring } = useExplore();
   return (
     <Tabs
       screenOptions={{
@@ -23,6 +25,13 @@ export default function MainLayout() {
           elevation: 1,
         },
       }}
+      screenListeners={({ navigation, route }) => ({
+        tabPress: () => {
+          if (route.name !== 'explore') {
+            setIsExploring(false);
+          }
+        },
+      })}
     >
       <Tabs.Screen
         name="home"
@@ -78,6 +87,14 @@ export default function MainLayout() {
               size={size}
             />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="explore"
+        options={{
+          tabBarItemStyle: {
+            display: 'none',
+          },
         }}
       />
     </Tabs>

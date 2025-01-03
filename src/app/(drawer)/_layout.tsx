@@ -38,7 +38,7 @@ export default function MainLayout() {
               <MenuIcon size={24} color={tintColor} />
             </TouchableOpacity>
           ),
-          headerRight: HeaderRight,
+          headerRight: (props) => <HeaderRight {...props} />,
           drawerStyle: {
             backgroundColor: colors.background,
             width: 200,
