@@ -5,6 +5,7 @@ import {
   useMemo,
   useState,
 } from 'react';
+import { useDebounce } from 'use-debounce';
 import { ExploreContextData } from './Explore.types';
 
 const ExploreContext = createContext<ExploreContextData>(
@@ -13,10 +14,12 @@ const ExploreContext = createContext<ExploreContextData>(
 
 export function ExploreProvider({ children }: PropsWithChildren) {
   const [isExploring, setIsExploring] = useState(false);
+  const [query, setQuery] = useState('');
+  const [debouncedQuery] = useDebounce(query, 500);
 
   const value = useMemo(
-    () => ({ isExploring, setIsExploring }),
-    [isExploring, setIsExploring],
+    () => ({ isExploring, setIsExploring, query, setQuery, debouncedQuery }),
+    [isExploring, setIsExploring, query, setQuery, debouncedQuery],
   );
 
   return (

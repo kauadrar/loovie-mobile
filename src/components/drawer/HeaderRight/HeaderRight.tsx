@@ -11,7 +11,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export const HeaderRight: NonUndefined<
   DrawerNavigationOptions['headerRight']
 > = ({ tintColor }) => {
-  const { isExploring, setIsExploring } = useExplore();
+  const { isExploring, setIsExploring, query, setQuery } = useExplore();
   const inputRef = useRef<TextInput>(null);
 
   const handlePress = () => {
@@ -35,6 +35,8 @@ export const HeaderRight: NonUndefined<
         style={[styles.searchInput, isExploring && { display: 'flex' }]}
         placeholder="Search"
         placeholderTextColor={colors.gray1}
+        value={query}
+        onChangeText={setQuery}
       />
       <TouchableOpacity style={styles.searchButton} onPress={handlePress}>
         <MagnifyingGlass size={24} weight="regular" color={tintColor} />
