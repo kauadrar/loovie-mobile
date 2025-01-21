@@ -59,6 +59,8 @@
     <array>
       <string>$(PRODUCT_BUNDLE_IDENTIFIER).expo.index_route</string>
     </array>
+    <key>RCTRootViewBackgroundColor</key>
+    <integer>4279176204</integer>
     <key>UIAppFonts</key>
     <array>
       <string>Urbanist-Thin.ttf</string>
