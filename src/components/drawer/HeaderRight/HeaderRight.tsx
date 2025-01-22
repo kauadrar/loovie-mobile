@@ -2,7 +2,7 @@ import { useExplore } from '@/contexts/Explore/Explore';
 import { colors } from '@/styles';
 import { DrawerNavigationOptions } from '@react-navigation/drawer';
 import { router } from 'expo-router';
-import { MagnifyingGlass } from 'phosphor-react-native';
+import { MagnifyingGlass, X } from 'phosphor-react-native';
 import React, { useRef } from 'react';
 import { NonUndefined } from 'react-hook-form';
 import { StyleSheet, TextInput, View } from 'react-native';
@@ -18,6 +18,10 @@ export const HeaderRight: NonUndefined<
     setIsExploring(true);
     setTimeout(() => inputRef?.current?.focus(), 0);
     router.push('/(drawer)/(tabs)/explore');
+  };
+
+  const clearQuery = () => {
+    setQuery('');
   };
 
   return (
@@ -38,9 +42,15 @@ export const HeaderRight: NonUndefined<
         value={query}
         onChangeText={setQuery}
       />
-      <TouchableOpacity style={styles.searchButton} onPress={handlePress}>
-        <MagnifyingGlass size={24} weight="regular" color={tintColor} />
-      </TouchableOpacity>
+      {query ? (
+        <TouchableOpacity onPress={clearQuery}>
+          <X size={24} weight="regular" color={tintColor} />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity onPress={handlePress}>
+          <MagnifyingGlass size={24} weight="regular" color={tintColor} />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -55,7 +65,6 @@ const styles = StyleSheet.create({
     paddingRight: 4,
     marginLeft: 6,
   },
-  searchButton: {},
   searchInput: {
     height: 40,
     display: 'none',
