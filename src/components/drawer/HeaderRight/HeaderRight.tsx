@@ -5,8 +5,10 @@ import { router } from 'expo-router';
 import { MagnifyingGlass, X } from 'phosphor-react-native';
 import React, { useRef } from 'react';
 import { NonUndefined } from 'react-hook-form';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { Dimensions, StyleSheet, TextInput, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+
+const { width: WIDTH } = Dimensions.get('window');
 
 export const HeaderRight: NonUndefined<
   DrawerNavigationOptions['headerRight']
@@ -59,11 +61,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     gap: 6,
     marginRight: 12,
     paddingRight: 4,
     marginLeft: 6,
+    width: WIDTH - 68,
   },
   searchInput: {
     height: 40,
