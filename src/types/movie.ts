@@ -4,12 +4,11 @@ export type Movie = {
   name: string;
   overview: string;
   poster_path: string;
-  backdrop_path: string;
   popularity: number;
   adult: boolean;
-  duration: null | number;
-  language_id: string;
+  vote_average: number;
+  vote_count: number;
+  language_code: string;
   created_at: string;
   updated_at: string;
-  url: string;
 };
