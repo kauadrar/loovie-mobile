@@ -1,3 +1,5 @@
+import { getTitlesRequest } from '@/requests/titles';
+import { useMutation } from '@tanstack/react-query';
 import {
   createContext,
   PropsWithChildren,
@@ -5,7 +7,6 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { useDebounce } from 'use-debounce';
 import { ExploreContextData } from './Explore.types';
 
 const ExploreContext = createContext<ExploreContextData>(
@@ -15,11 +16,34 @@ const ExploreContext = createContext<ExploreContextData>(
 export function ExploreProvider({ children }: PropsWithChildren) {
   const [isExploring, setIsExploring] = useState(false);
   const [query, setQuery] = useState('');
-  const [debouncedQuery] = useDebounce(query, 500);
+  const {
+    mutateAsync: getTitles,
+    data: titles,
+    isPending: isLoadingTitles,
+  } = useMutation({
+    mutationKey: ['titles'],
+    mutationFn: async (query: string) => await getTitlesRequest(query),
+  });
 
   const value = useMemo(
-    () => ({ isExploring, setIsExploring, query, setQuery, debouncedQuery }),
-    [isExploring, setIsExploring, query, setQuery, debouncedQuery],
+    () => ({
+      isExploring,
+      setIsExploring,
+      query,
+      setQuery,
+      getTitles,
+      titles,
+      isLoadingTitles,
+    }),
+    [
+      isExploring,
+      setIsExploring,
+      query,
+      setQuery,
+      getTitles,
+      titles,
+      isLoadingTitles,
+    ],
   );
 
   return (

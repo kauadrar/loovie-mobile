@@ -12,3 +12,13 @@ export const getTitlesRequest = async (query: string) => {
 
   return data;
 };
+
+export const getTitlesAutocompleteRequest = async (query: string) => {
+  const { data } = await api.get<string[]>('/titles/autocomplete', {
+    params: {
+      query,
+    },
+  });
+
+  return data;
+};

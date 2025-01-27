@@ -1,26 +1,45 @@
 import { TitleCard } from '@/components/titles';
 import { useExplore } from '@/contexts';
-import { getTitlesRequest } from '@/requests/titles';
+import { colors } from '@/styles';
 import { Title } from '@/types';
-import { useQuery } from '@tanstack/react-query';
-import React, { useCallback } from 'react';
-import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
+import { useNavigation } from 'expo-router';
+import React, { useCallback, useEffect } from 'react';
+import {
+  ActivityIndicator,
+  FlatList,
+  ListRenderItem,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 function ItemSeparatorComponent() {
   return <View style={styles.separator} />;
 }
 
+function ListEmpty() {
+  return (
+    <View>
+      <ActivityIndicator size="large" color={colors.gray1} />
+    </View>
+  );
+}
+
 export default function Explore() {
-  const { debouncedQuery } = useExplore();
-  const { data: titles } = useQuery({
-    queryKey: ['titles', debouncedQuery],
-    queryFn: async () => await getTitlesRequest(debouncedQuery),
-  });
+  const { titles, setIsExploring, isLoadingTitles } = useExplore();
+  const navigation = useNavigation();
 
   const renderItem: ListRenderItem<Title> = useCallback(
     ({ item }) => <TitleCard name={item.name} posterPath={item.poster_path} />,
     [],
   );
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', () => {
+      setIsExploring(true);
+    });
+
+    return unsubscribe;
+  }, [navigation, setIsExploring]);
 
   return (
     <View style={styles.container}>
@@ -30,6 +49,7 @@ export default function Explore() {
         keyExtractor={(item) => item?.id}
         numColumns={3}
         ItemSeparatorComponent={ItemSeparatorComponent}
+        ListEmptyComponent={isLoadingTitles ? ListEmpty : null}
       />
     </View>
   );
