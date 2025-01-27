@@ -12,6 +12,7 @@ import { NonUndefined } from 'react-hook-form';
 import {
   Dimensions,
   ListRenderItem,
+  Platform,
   StyleSheet,
   TextInput,
   View,
@@ -21,6 +22,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from 'react-native-gesture-handler';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDebounce } from 'use-debounce';
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get('window');
@@ -42,6 +44,7 @@ export const HeaderRight: NonUndefined<
   });
   const [isAutocompleteVisible, setIsAutocompleteVisible] = useState(false);
   const pathname = usePathname();
+  const { top: topInset } = useSafeAreaInsets();
 
   const handlePress = () => {
     setIsExploring(true);
@@ -145,7 +148,16 @@ export const HeaderRight: NonUndefined<
         )}
       </View>
       {isAutocompleteVisible && !!titlesAutocomplete?.length && (
-        <BlurView style={styles.autocompleteContainer} intensity={10}>
+        <BlurView
+          style={[
+            styles.autocompleteContainer,
+            Platform.OS === 'android' && { top: 32 + topInset },
+          ]}
+          intensity={30}
+          experimentalBlurMethod="dimezisBlurView"
+          blurReductionFactor={10}
+          tint="systemMaterialDark"
+        >
           <TouchableWithoutFeedback
             onPress={blur}
             style={{ height: HEIGHT - 42 }}
@@ -185,15 +197,15 @@ const styles = StyleSheet.create({
     paddingLeft: 6,
   },
   autocompleteContainer: {
-    height: HEIGHT - 42,
+    height: HEIGHT,
     position: 'absolute',
     width: WIDTH,
-    right: -5,
-    top: 41,
+    right: Platform.OS === 'ios' ? -5 : 0,
+    top: 40,
   },
   autocomplete: {
     backgroundColor: colors.background,
-    maxHeight: HEIGHT * 0.6,
+    maxHeight: HEIGHT * 0.55,
     paddingBottom: 14,
     paddingTop: 8,
     borderBottomRightRadius: 12,
