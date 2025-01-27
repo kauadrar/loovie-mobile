@@ -36,7 +36,11 @@ export const meRequest = async () => {
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
-    const { data } = await api.get<User>('/me');
+    const { data } = await api.get<User>('/me', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     return data;
   } catch {

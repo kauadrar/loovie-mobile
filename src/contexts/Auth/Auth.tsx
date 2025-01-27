@@ -1,7 +1,7 @@
 import { meRequest } from '@/requests';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { SplashScreen } from 'expo-router';
-import { createContext, PropsWithChildren, useContext } from 'react';
+import { createContext, PropsWithChildren, useContext, useMemo } from 'react';
 import { AuthContextData } from './Auth.types';
 
 const AuthContext = createContext({} as AuthContextData);
@@ -9,16 +9,25 @@ const AuthContext = createContext({} as AuthContextData);
 SplashScreen.preventAutoHideAsync();
 
 export function AuthProvider({ children }: PropsWithChildren) {
-  const { data: user, isLoading: isLoadingUser } = useQuery({
-    queryKey: ['users', 'me'],
-    queryFn: meRequest,
+  const {
+    mutateAsync: getMe,
+    data: user,
+    isPending: isLoadingUser,
+  } = useMutation({
+    mutationKey: ['users', 'me'],
+    mutationFn: meRequest,
   });
 
-  return (
-    <AuthContext.Provider value={{ user, isLoadingUser }}>
-      {children}
-    </AuthContext.Provider>
+  const value = useMemo(
+    () => ({
+      user,
+      isLoadingUser,
+      getMe,
+    }),
+    [user, isLoadingUser, getMe],
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
