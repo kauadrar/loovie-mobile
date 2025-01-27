@@ -47,7 +47,8 @@ export default function RootLayout() {
                   <Stack
                     screenOptions={{
                       headerShown: false,
-                      navigationBarColor: colors.background,
+                      navigationBarTranslucent: true,
+                      navigationBarColor: '#ffffff00',
                     }}
                   />
                 </ThemeProvider>

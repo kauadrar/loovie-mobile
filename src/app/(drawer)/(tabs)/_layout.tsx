@@ -4,22 +4,29 @@ import { colors } from '@/styles';
 import { Tabs } from 'expo-router/tabs';
 import { Bell, House, Popcorn, User } from 'phosphor-react-native';
 import { TouchableOpacity, ViewStyle } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function MainLayout() {
   const { setIsExploring } = useExplore();
+  const { bottom: bottomInset } = useSafeAreaInsets();
+
   return (
     <Tabs
       screenOptions={{
         tabBarInactiveTintColor: colors.gray1,
         tabBarActiveTintColor: colors.primary,
         tabBarButton: ({ onPress, children, style }) => (
-          <TouchableOpacity onPress={onPress} style={style as ViewStyle}>
+          <TouchableOpacity
+            onPress={onPress}
+            style={[style as ViewStyle, { justifyContent: 'center' }]}
+          >
             {children}
           </TouchableOpacity>
         ),
         tabBarShowLabel: false,
         headerShown: false,
         tabBarStyle: {
+          height: 56 + bottomInset,
           backgroundColor: colors.background,
           borderTopWidth: 0,
           elevation: 1,
