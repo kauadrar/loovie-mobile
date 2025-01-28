@@ -4,10 +4,10 @@ import { getTitlesAutocompleteRequest } from '@/requests/titles';
 import { colors } from '@/styles';
 import { DrawerNavigationOptions } from '@react-navigation/drawer';
 import { useQuery } from '@tanstack/react-query';
-import { BlurView } from 'expo-blur';
+import { BlurView, BlurViewProps } from 'expo-blur';
 import { router, usePathname } from 'expo-router';
 import { MagnifyingGlass, X } from 'phosphor-react-native';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { NonUndefined } from 'react-hook-form';
 import {
   Dimensions,
@@ -22,14 +22,25 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from 'react-native-gesture-handler';
+import Animated, {
+  interpolate,
+  runOnJS,
+  useAnimatedProps,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDebounce } from 'use-debounce';
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get('window');
+const AUTOCOMPLETE_MAX_HEIGHT = HEIGHT * 0.55;
 
 function ItemSeparator() {
   return <View style={styles.separator} />;
 }
+
+const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
 export const HeaderRight: NonUndefined<
   DrawerNavigationOptions['headerRight']
@@ -45,6 +56,8 @@ export const HeaderRight: NonUndefined<
   const [isAutocompleteVisible, setIsAutocompleteVisible] = useState(false);
   const pathname = usePathname();
   const { top: topInset } = useSafeAreaInsets();
+  const blurIntensity = useSharedValue(0);
+  const autocompleteHeight = useSharedValue(0);
 
   const handlePress = () => {
     setIsExploring(true);
@@ -57,8 +70,11 @@ export const HeaderRight: NonUndefined<
   };
 
   const closeAutocomplete = useCallback(() => {
-    setIsAutocompleteVisible(false);
-  }, []);
+    autocompleteHeight.value = withTiming(0, { duration: 300 });
+    blurIntensity.value = withTiming(0, { duration: 600 }, () => {
+      runOnJS(setIsAutocompleteVisible)(false);
+    });
+  }, [blurIntensity, autocompleteHeight]);
 
   const blur = useCallback(() => {
     inputRef.current?.blur();
@@ -115,6 +131,39 @@ export const HeaderRight: NonUndefined<
     }
   };
 
+  const blurViewAnimatedProps = useAnimatedProps<BlurViewProps>(() => {
+    return {
+      intensity: blurIntensity.value,
+    };
+  });
+
+  const autocompleteAnimatedStyles = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      autocompleteHeight.value,
+      [0, AUTOCOMPLETE_MAX_HEIGHT],
+      [0, 1],
+    );
+
+    return {
+      maxHeight: autocompleteHeight.value,
+      opacity,
+    };
+  });
+
+  useEffect(() => {
+    if (isAutocompleteVisible && !!titlesAutocomplete?.length) {
+      autocompleteHeight.value = withTiming(AUTOCOMPLETE_MAX_HEIGHT, {
+        duration: 300,
+      });
+      blurIntensity.value = withTiming(30, { duration: 600 });
+    }
+  }, [
+    isAutocompleteVisible,
+    titlesAutocomplete,
+    blurIntensity,
+    autocompleteHeight,
+  ]);
+
   return (
     <>
       <View
@@ -148,12 +197,12 @@ export const HeaderRight: NonUndefined<
         )}
       </View>
       {isAutocompleteVisible && !!titlesAutocomplete?.length && (
-        <BlurView
+        <AnimatedBlurView
+          animatedProps={blurViewAnimatedProps}
           style={[
             styles.autocompleteContainer,
             Platform.OS === 'android' && { top: 32 + topInset },
           ]}
-          intensity={30}
           experimentalBlurMethod="dimezisBlurView"
           blurReductionFactor={10}
           tint="systemMaterialDark"
@@ -162,15 +211,17 @@ export const HeaderRight: NonUndefined<
             onPress={blur}
             style={{ height: HEIGHT - 42 }}
           >
-            <View style={styles.autocomplete}>
+            <Animated.View
+              style={[styles.autocomplete, autocompleteAnimatedStyles]}
+            >
               <FlatList
                 data={titlesAutocomplete}
                 renderItem={renderItem}
                 ItemSeparatorComponent={ItemSeparator}
               />
-            </View>
+            </Animated.View>
           </TouchableWithoutFeedback>
-        </BlurView>
+        </AnimatedBlurView>
       )}
     </>
   );
@@ -205,7 +256,6 @@ const styles = StyleSheet.create({
   },
   autocomplete: {
     backgroundColor: colors.background,
-    maxHeight: HEIGHT * 0.55,
     paddingBottom: 14,
     paddingTop: 8,
     borderBottomRightRadius: 12,
