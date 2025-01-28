@@ -30,17 +30,23 @@ export const meRequest = async () => {
   try {
     const token = await getToken();
 
+    console.log('token', token);
+
     if (!token) {
       return null;
     }
 
-    api.defaults.headers.Authorization = `Bearer ${token}`;
+    const authorization = `Bearer ${token}`;
+
+    api.defaults.headers.Authorization = authorization;
 
     const { data } = await api.get<User>('/me', {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: authorization,
       },
     });
+
+    console.log('data', data);
 
     return data;
   } catch {
