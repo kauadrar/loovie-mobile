@@ -1,5 +1,6 @@
 import { Text } from '@/components/shared';
 import { Dimensions, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { TmdbImageUrl } from '@/constants';
 import { TitleCardProps } from './TitleCard.types';
 
 const { width: WIDTH } = Dimensions.get('window');
@@ -10,7 +11,7 @@ export function TitleCard({ name, posterPath }: TitleCardProps) {
   return (
     <TouchableOpacity style={styles.container}>
       <Image
-        source={{ uri: `https://image.tmdb.org/t/p/original${posterPath}` }}
+        source={{ uri: `${TmdbImageUrl.W342}${posterPath}` }}
         style={styles.image}
         resizeMode="cover"
       />
