@@ -30,8 +30,6 @@ export const meRequest = async () => {
   try {
     const token = await getToken();
 
-    console.log('token', token);
-
     if (!token) {
       return null;
     }
@@ -45,8 +43,6 @@ export const meRequest = async () => {
         Authorization: authorization,
       },
     });
-
-    console.log('data', data);
 
     return data;
   } catch {

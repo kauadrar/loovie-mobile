@@ -1,16 +1,10 @@
+import { Loading } from '@/components/shared';
 import { TitleCard } from '@/components/titles';
 import { useExplore } from '@/contexts';
-import { colors } from '@/styles';
 import { Title } from '@/types';
 import { useNavigation } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
-import {
-  ActivityIndicator,
-  FlatList,
-  ListRenderItem,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
 
 function ItemSeparatorComponent() {
   return <View style={styles.separator} />;
@@ -18,8 +12,8 @@ function ItemSeparatorComponent() {
 
 function ListEmpty() {
   return (
-    <View>
-      <ActivityIndicator size="large" color={colors.gray1} />
+    <View style={styles.listEmpty}>
+      <Loading />
     </View>
   );
 }
@@ -63,5 +57,9 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 16,
+  },
+  listEmpty: {
+    alignItems: 'center',
+    marginTop: 16,
   },
 });
