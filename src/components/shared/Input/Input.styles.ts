@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     borderColor: colors.gray2,
     padding: 16,
     gap: 10,
-    // backgroundColor: colors.black,
+    backgroundColor: colors.background,
   },
   input: {
     color: colors.white,
