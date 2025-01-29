@@ -10,7 +10,7 @@ import {
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useBackHandler } from '@react-native-community/hooks';
 import { router } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useForm, UseFormReturn } from 'react-hook-form';
 import { useWindowDimensions, View, ViewToken } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
@@ -39,12 +39,15 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const firstStepForm = useForm({
     resolver: yupResolver(signUpFirstStepSchema),
+    mode: 'onChange',
   });
   const secondStepForm = useForm({
     resolver: yupResolver(signUpSecondStepSchema),
+    mode: 'onChange',
   });
   const thirdStepForm = useForm({
     resolver: yupResolver(signUpThirdStepSchema),
+    mode: 'onChange',
   });
 
   const handleButtonPress = () => {
@@ -251,6 +254,7 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
     },
     [isSubmitting],
   );
+
   return (
     <>
       <BackButton

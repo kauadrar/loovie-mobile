@@ -56,3 +56,14 @@ export const logoutRequest = async () => {
   await api.delete('/logout');
   await deleteToken();
 };
+
+export const checkUserExistsRequest = async ({
+  email,
+  username,
+}: Partial<Pick<User, 'email' | 'username'>>) => {
+  const { data } = await api.get<{ exists: boolean }>('/users/exists', {
+    params: { email, username },
+  });
+
+  return data;
+};

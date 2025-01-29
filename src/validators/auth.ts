@@ -1,3 +1,4 @@
+import { checkUserExistsRequest } from '@/requests';
 import * as yup from 'yup';
 
 export const loginSchema = yup.object().shape({
@@ -12,8 +13,48 @@ export const signUpFirstStepSchema = yup.object().shape({
   email: yup
     .string()
     .email('O e-mail está invalido.')
-    .required('O e-mail é obrigatório.'),
-  username: yup.string().required('O nome de usuário é obrigatório.'),
+    .required('O e-mail é obrigatório.')
+    .test('uniqueness', 'Esse e-mail já está em uso.', async (value) => {
+      if (!value) {
+        return true;
+      }
+
+      try {
+        const data = await checkUserExistsRequest({ email: value });
+
+        return !data.exists;
+      } catch {
+        return new yup.ValidationError(
+          'Ocorreu um erro ao verificar o uso do e-mail.',
+          null,
+          'email',
+        );
+      }
+    }),
+  username: yup
+    .string()
+    .required('O nome de usuário é obrigatório.')
+    .test(
+      'uniqueness',
+      'Esse nome de usuário já está em uso.',
+      async (value) => {
+        if (!value) {
+          return true;
+        }
+
+        try {
+          const data = await checkUserExistsRequest({ username: value });
+
+          return !data.exists;
+        } catch {
+          return new yup.ValidationError(
+            'Ocorreu um erro ao verificar o uso do nome de usuário.',
+            null,
+            'username',
+          );
+        }
+      },
+    ),
 });
 
 export const signUpSecondStepSchema = yup.object().shape({
