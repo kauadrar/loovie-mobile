@@ -29,5 +29,6 @@ export const signUpThirdStepSchema = yup.object().shape({
     .required('A senha é obrigatória.'),
   confirmation_password: yup
     .string()
-    .oneOf([yup.ref('password')], 'As senhas devem ser iguais.'),
+    .oneOf([yup.ref('password')], 'As senhas não coincidem.')
+    .required('A confirmação de senha é obrigatória.'),
 });
