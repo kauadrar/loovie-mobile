@@ -7,6 +7,7 @@ const fontFamily: FontVariant = 'Urbanist-Regular';
 export const styles = StyleSheet.create({
   inputContainer: {
     width: '100%',
+    gap: 2,
   },
   inputArea: {
     zIndex: 1,
