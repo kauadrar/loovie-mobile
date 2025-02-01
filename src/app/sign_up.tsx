@@ -12,11 +12,9 @@ export default function SignUp() {
   const queryClient = useQueryClient();
   const { mutateAsync: signUp } = useMutation({
     mutationFn: (params: SignUpParams) => signUpRequest(params),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['users', 'me'],
-      });
-      resetToRoute('/(drawer)/(tabs)/home');
+    onSuccess: async (data) => {
+      queryClient.setQueryData(['users', 'me'], data);
+      resetToRoute('/(drawer)/(tabs)');
     },
   });
 

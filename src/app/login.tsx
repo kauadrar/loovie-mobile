@@ -25,12 +25,10 @@ export default function Login() {
   const { mutateAsync: login } = useMutation({
     mutationKey: ['login'],
     mutationFn: (params: LoginParams) => loginRequest(params),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['users', 'me'],
-      });
+    onSuccess: async (data) => {
+      queryClient.setQueryData(['users', 'me'], data);
 
-      resetToRoute('/(drawer)/(tabs)/home');
+      resetToRoute('/(drawer)/(tabs)');
     },
   });
 

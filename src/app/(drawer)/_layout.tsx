@@ -1,15 +1,22 @@
 import { HeaderRight, Menu } from '@/components/drawer';
+import { useAuth } from '@/contexts';
 import { colors } from '@/styles';
 import { FontVariant } from '@/types';
 import { Route } from '@react-navigation/native';
+import { Redirect } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { MenuIcon } from 'lucide-react-native';
 import { BookmarkSimple, Gear, Question } from 'phosphor-react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function MainLayout() {
+  const { user } = useAuth();
   const fontRegular: FontVariant = 'Urbanist-Regular';
   const fontMedium: FontVariant = 'Urbanist-Medium';
+
+  if (!user) {
+    return <Redirect href="/lobby" />;
+  }
 
   return (
     <Drawer

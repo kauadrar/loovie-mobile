@@ -29,7 +29,6 @@ export const signUpRequest = async (params: SignUpParams) => {
 export const meRequest = async () => {
   try {
     const token = await getToken();
-
     if (!token) {
       return null;
     }
