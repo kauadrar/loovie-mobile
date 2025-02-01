@@ -8,10 +8,10 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { useDebounce } from 'use-debounce';
 import { Text } from '../Text/Text';
 import { styles } from './InputContainer.styles';
 import { InputContainerProps } from './InputContainer.types';
-import { useDebounce } from 'use-debounce';
 
 export function InputContainer({
   label,
@@ -54,8 +54,8 @@ export function InputContainer({
             !(errorMessage || debouncedErrorMessage) &&
             styles.occultedErrorMessage
           }
-          entering={FadeInUp}
-          exiting={FadeOutUp}
+          entering={FadeInUp.duration(400)}
+          exiting={FadeOutUp.duration(400)}
         >
           <Text numberOfLines={2} style={[styles.errorMessage]}>
             {errorMessage || debouncedErrorMessage}

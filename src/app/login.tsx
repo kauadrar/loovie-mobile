@@ -7,10 +7,12 @@ import { resetToRoute } from '@/utils';
 import { loginSchema } from '@/validators';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import { Lock, Mail } from 'lucide-react-native';
 import { useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, TextInput, View } from 'react-native';
+import { showMessage } from 'react-native-flash-message';
 import { ScrollView } from 'react-native-gesture-handler';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -29,6 +31,15 @@ export default function Login() {
       queryClient.setQueryData(['users', 'me'], data);
 
       resetToRoute('/(drawer)/(tabs)');
+    },
+    onError: (error) => {
+      if (error instanceof AxiosError && error.response?.status === 401) {
+        showMessage({
+          message: error.response.data.error,
+          type: 'danger',
+          backgroundColor: colors.danger,
+        });
+      }
     },
   });
 

@@ -5,4 +5,5 @@ export const colors = {
   gray1: '#8F8F8F',
   gray2: '#1F1F1F',
   primary: '#9D0208',
+  danger: '#DC3545',
 };
