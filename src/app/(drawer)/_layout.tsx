@@ -1,13 +1,11 @@
-import { HeaderRight, Menu } from '@/components/drawer';
+import { HeaderLeft, HeaderRight, Menu } from '@/components/drawer';
 import { useAuth } from '@/contexts';
 import { colors } from '@/styles';
 import { FontVariant } from '@/types';
 import { Route } from '@react-navigation/native';
 import { Redirect } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
-import { MenuIcon } from 'lucide-react-native';
 import { BookmarkSimple, Gear, Question } from 'phosphor-react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function MainLayout() {
   const { user } = useAuth();
@@ -21,6 +19,7 @@ export default function MainLayout() {
   return (
     <Drawer
       drawerContent={Menu}
+      backBehavior="history"
       screenOptions={({ route, navigation }) => {
         const state = navigation.getState();
         const isRouteFocused =
@@ -37,14 +36,7 @@ export default function MainLayout() {
           headerTitleStyle: {
             display: 'none',
           },
-          headerLeft: ({ tintColor }) => (
-            <TouchableOpacity
-              onPress={navigation.toggleDrawer}
-              style={{ marginLeft: 16 }}
-            >
-              <MenuIcon size={24} color={tintColor} />
-            </TouchableOpacity>
-          ),
+          headerLeft: (props) => <HeaderLeft {...props} />,
           headerRight: (props) => <HeaderRight {...props} />,
           drawerStyle: {
             backgroundColor: colors.background,

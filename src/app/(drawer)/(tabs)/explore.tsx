@@ -5,6 +5,7 @@ import { Title } from '@/types';
 import { useNavigation } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
 import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 function ItemSeparatorComponent() {
   return <View style={styles.separator} />;
@@ -19,6 +20,7 @@ function ListEmpty() {
 }
 
 export default function Explore() {
+  const { bottom: bottomInset } = useSafeAreaInsets();
   const { titles, setIsExploring, isLoadingTitles } = useExplore();
   const navigation = useNavigation();
 
@@ -44,6 +46,7 @@ export default function Explore() {
         numColumns={3}
         ItemSeparatorComponent={ItemSeparatorComponent}
         ListEmptyComponent={isLoadingTitles ? ListEmpty : null}
+        contentContainerStyle={{ paddingBottom: 16 + bottomInset }}
       />
     </View>
   );
