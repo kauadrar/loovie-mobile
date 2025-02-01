@@ -8,9 +8,16 @@ import {
   Star,
 } from 'phosphor-react-native';
 import React, { ReactNode } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  ViewProps,
+} from 'react-native';
 import Animated, {
   SharedValue,
+  useAnimatedProps,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
@@ -20,6 +27,8 @@ import Animated, {
 
 const AnimatedTouchableOpacity =
   Animated.createAnimatedComponent(TouchableOpacity);
+
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 const AnimatedText = Animated.createAnimatedComponent(Text);
 
@@ -102,41 +111,59 @@ export function NewPostButton() {
     };
   });
 
+  const pressableAnimatedProps = useAnimatedProps(() => {
+    return {
+      pointerEvents: (isExpanded.value
+        ? 'auto'
+        : 'none') as ViewProps['pointerEvents'],
+    };
+  });
+
   return (
-    <View style={styles.buttonContainer}>
-      <Animated.View style={[{ zIndex: 1 }, buttonStyle]}>
-        <TouchableOpacity onPress={handlePress} style={mainButtonStyles.button}>
-          <Animated.View style={plusIconStyle}>
-            <Plus size={16} color={colors.white} weight="bold" />
-          </Animated.View>
-          <AnimatedText style={[buttonText, styles.label]}>New</AnimatedText>
-        </TouchableOpacity>
-      </Animated.View>
-      <FloatingActionButton
-        isExpanded={isExpanded}
-        index={1}
-        label="Post"
-        icon={<NotePencil color={colors.white} />}
+    <>
+      <AnimatedPressable
+        animatedProps={pressableAnimatedProps}
+        style={styles.backdrop}
+        onPress={handlePress}
       />
-      <FloatingActionButton
-        isExpanded={isExpanded}
-        index={2}
-        label="Review"
-        icon={<Star color={colors.white} />}
-      />
-      <FloatingActionButton
-        isExpanded={isExpanded}
-        index={3}
-        label="Analysis"
-        icon={<Article color={colors.white} />}
-      />
-      <FloatingActionButton
-        isExpanded={isExpanded}
-        index={4}
-        label="News"
-        icon={<NewspaperClipping color={colors.white} />}
-      />
-    </View>
+      <View style={styles.buttonContainer}>
+        <Animated.View style={[{ zIndex: 1 }, buttonStyle]}>
+          <TouchableOpacity
+            onPress={handlePress}
+            style={mainButtonStyles.button}
+          >
+            <Animated.View style={plusIconStyle}>
+              <Plus size={16} color={colors.white} weight="bold" />
+            </Animated.View>
+            <AnimatedText style={[buttonText, styles.label]}>New</AnimatedText>
+          </TouchableOpacity>
+        </Animated.View>
+        <FloatingActionButton
+          isExpanded={isExpanded}
+          index={1}
+          label="Post"
+          icon={<NotePencil color={colors.white} />}
+        />
+        <FloatingActionButton
+          isExpanded={isExpanded}
+          index={2}
+          label="Review"
+          icon={<Star color={colors.white} />}
+        />
+        <FloatingActionButton
+          isExpanded={isExpanded}
+          index={3}
+          label="Analysis"
+          icon={<Article color={colors.white} />}
+        />
+        <FloatingActionButton
+          isExpanded={isExpanded}
+          index={4}
+          label="News"
+          icon={<NewspaperClipping color={colors.white} />}
+        />
+      </View>
+    </>
   );
 }
 
@@ -155,6 +182,12 @@ const mainButtonStyles = StyleSheet.create({
 });
 
 const styles = StyleSheet.create({
+  backdrop: {
+    position: 'absolute',
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
   container: {
     position: 'absolute',
     right: 0,
@@ -187,6 +220,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     bottom: 20,
     right: 20,
+    zIndex: 2,
   },
   label: {
     color: '#f8f9ff',
