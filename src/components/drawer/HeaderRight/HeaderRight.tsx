@@ -58,6 +58,7 @@ export const HeaderRight: NonUndefined<
   const { top: topInset } = useSafeAreaInsets();
   const blurIntensity = useSharedValue(0);
   const autocompleteHeight = useSharedValue(0);
+  const isOnExplore = pathname.includes('explore');
 
   const handlePress = () => {
     setIsExploring(true);
@@ -66,7 +67,9 @@ export const HeaderRight: NonUndefined<
 
   const clearQuery = () => {
     setQuery('');
-    onSubmit('');
+    if (isOnExplore) {
+      onSubmit('');
+    }
   };
 
   const closeAutocomplete = useCallback(() => {
@@ -79,11 +82,11 @@ export const HeaderRight: NonUndefined<
   const blur = useCallback(() => {
     inputRef.current?.blur();
     closeAutocomplete();
-    if (!pathname.includes('explore')) {
+    if (!isOnExplore) {
       setQuery('');
       setIsExploring(false);
     }
-  }, [closeAutocomplete, pathname, setQuery, setIsExploring]);
+  }, [closeAutocomplete, setQuery, setIsExploring, isOnExplore]);
 
   const onSubmit = useCallback(
     async (value?: string) => {
