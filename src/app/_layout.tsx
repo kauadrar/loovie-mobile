@@ -13,6 +13,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as SystemUI from 'expo-system-ui';
 import { useCallback, useEffect, useState } from 'react';
 import { Platform, StyleSheet } from 'react-native';
+import FlashMessage from 'react-native-flash-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import 'react-native-reanimated';
@@ -102,6 +103,10 @@ export default function RootLayout() {
                   }}
                 >
                   <StatusBar style="light" />
+                  <FlashMessage
+                    position="top"
+                    titleStyle={{ fontFamily: 'Urbanist-Medium' }}
+                  />
                   <Stack
                     screenOptions={{
                       headerShown: false,
