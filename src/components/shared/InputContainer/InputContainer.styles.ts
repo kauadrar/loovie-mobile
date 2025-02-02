@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   errorMessage: {
     fontSize: 14,
-    color: '#9D0208',
+    color: colors.danger,
   },
   occultedErrorMessage: {
     position: 'absolute',

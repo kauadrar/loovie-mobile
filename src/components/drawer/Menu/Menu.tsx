@@ -41,7 +41,7 @@ export function Menu({
           fontFamily,
           color: colors.primary,
         }}
-        icon={({ size }) => <SignOut size={size} color={colors.primary} />}
+        icon={({ size }) => <SignOut size={size} color={colors.danger} />}
         onPress={logoutMutation}
       />
     </DrawerContentScrollView>
