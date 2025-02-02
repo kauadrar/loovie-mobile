@@ -26,11 +26,11 @@ export default function Login() {
   const queryClient = useQueryClient();
   const { mutateAsync: login } = useMutation({
     mutationKey: ['login'],
-    mutationFn: (params: LoginParams) => loginRequest(params),
-    onSuccess: async (data) => {
+    mutationFn: async (params: LoginParams) => await loginRequest(params),
+    onSuccess: (data) => {
       queryClient.setQueryData(['users', 'me'], data);
 
-      resetToRoute('/(drawer)/(tabs)');
+      resetToRoute('/');
     },
     onError: (error) => {
       if (error instanceof AxiosError && error.response?.status === 401) {

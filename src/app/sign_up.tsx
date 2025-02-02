@@ -11,10 +11,11 @@ import { ScrollView } from 'react-native-gesture-handler';
 export default function SignUp() {
   const queryClient = useQueryClient();
   const { mutateAsync: signUp } = useMutation({
-    mutationFn: (params: SignUpParams) => signUpRequest(params),
-    onSuccess: async (data) => {
+    mutationFn: async (params: SignUpParams) => await signUpRequest(params),
+    onSuccess: (data) => {
       queryClient.setQueryData(['users', 'me'], data);
-      resetToRoute('/(drawer)/(tabs)');
+
+      resetToRoute('/');
     },
   });
 

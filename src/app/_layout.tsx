@@ -66,10 +66,10 @@ export default function RootLayout() {
           'Urbanist-Black': require('../assets/fonts/Urbanist-Black.ttf'),
         });
 
-        await queryClient.fetchQuery({
-          queryKey: ['users', 'me'],
+        queryClient.setQueryDefaults(['users', 'me'], {
           queryFn: meRequest,
         });
+        await queryClient.fetchQuery({ queryKey: ['users', 'me'] });
       } catch (e) {
         console.warn(e);
       } finally {
