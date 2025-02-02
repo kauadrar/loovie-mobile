@@ -17,7 +17,10 @@ import FlashMessage from 'react-native-flash-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import 'react-native-reanimated';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,6 +44,7 @@ SplashScreen.setOptions({
 
 export default function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false);
+  const { top: topInset } = useSafeAreaInsets();
 
   useEffect(() => {
     async function prepare() {
@@ -106,6 +110,7 @@ export default function RootLayout() {
                   <FlashMessage
                     position="top"
                     titleStyle={{ fontFamily: 'Urbanist-Medium' }}
+                    statusBarHeight={topInset}
                   />
                   <Stack
                     screenOptions={{
