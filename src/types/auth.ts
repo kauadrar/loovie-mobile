@@ -4,6 +4,7 @@ import {
   signUpThirdStepSchema,
 } from '@/validators';
 import { AxiosResponse, AxiosResponseHeaders } from 'axios';
+import { User } from './user';
 
 export type LoginParams = {
   login: string;
@@ -23,8 +24,8 @@ export type SignUpParams = {
   password: string;
 };
 
-export type AuthResponse = AxiosResponse & {
+export type AuthResponse = AxiosResponse<User> & {
   headers: {
-    'access-token': string;
+    authorization: string;
   } & AxiosResponseHeaders;
 };
