@@ -6,7 +6,7 @@ import { DrawerNavigationOptions } from '@react-navigation/drawer';
 import { useQuery } from '@tanstack/react-query';
 import { BlurView, BlurViewProps } from 'expo-blur';
 import { router, usePathname } from 'expo-router';
-import { MagnifyingGlass, X } from 'phosphor-react-native';
+import { Faders, MagnifyingGlass, X } from 'phosphor-react-native';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { NonUndefined } from 'react-hook-form';
 import {
@@ -169,35 +169,40 @@ export const HeaderRight: NonUndefined<
 
   return (
     <>
-      <View
-        style={[
-          styles.container,
-          isExploring && {
-            borderBottomColor: colors.gray1,
-            borderBottomWidth: 1,
-          },
-        ]}
-      >
-        <TextInput
-          ref={inputRef}
-          style={[styles.searchInput, isExploring && { display: 'flex' }]}
-          placeholder="Search"
-          placeholderTextColor={colors.gray1}
-          value={query}
-          onFocus={onFocus}
-          onChangeText={onChangeText}
-          onSubmitEditing={async () => await onSubmit()}
-          returnKeyType="search"
-        />
-        {query ? (
-          <TouchableOpacity onPress={clearQuery}>
-            <X size={24} weight="regular" color={tintColor} />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={handlePress}>
-            <MagnifyingGlass size={24} weight="regular" color={tintColor} />
-          </TouchableOpacity>
-        )}
+      <View style={styles.container}>
+        <View
+          style={[
+            styles.searchBar,
+            isExploring && {
+              borderBottomColor: colors.gray1,
+              borderBottomWidth: 1,
+            },
+          ]}
+        >
+          <TextInput
+            ref={inputRef}
+            style={[styles.searchInput, isExploring && { display: 'flex' }]}
+            placeholder="Search"
+            placeholderTextColor={colors.gray1}
+            value={query}
+            onFocus={onFocus}
+            onChangeText={onChangeText}
+            onSubmitEditing={async () => await onSubmit()}
+            returnKeyType="search"
+          />
+          {query ? (
+            <TouchableOpacity onPress={clearQuery}>
+              <X size={24} weight="regular" color={tintColor} />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={handlePress}>
+              <MagnifyingGlass size={24} weight="regular" color={tintColor} />
+            </TouchableOpacity>
+          )}
+        </View>
+        <TouchableOpacity>
+          <Faders size={24} weight="regular" color={tintColor} />
+        </TouchableOpacity>
       </View>
       {isAutocompleteVisible && !!titlesAutocomplete?.length && (
         <AnimatedBlurView
@@ -238,9 +243,16 @@ const styles = StyleSheet.create({
     gap: 6,
     marginRight: 12,
     paddingRight: 4,
-    marginLeft: 6,
     width: WIDTH - 68,
+  },
+  searchBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    gap: 6,
+    marginLeft: 6,
     height: 42,
+    flex: 1,
     backgroundColor: colors.background,
   },
   searchInput: {
