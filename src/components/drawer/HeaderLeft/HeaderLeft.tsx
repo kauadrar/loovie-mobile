@@ -13,10 +13,9 @@ export const HeaderLeft: NonUndefined<
   const pathname = usePathname();
   const navigation = useNavigation();
 
-  const isOnTab =
-    /^\/(cinema|explore|notifications|recommendations|my_profile)?$/.test(
-      pathname,
-    );
+  const isOnTab = /^\/(cinema|notifications|recommendations|my_profile)?$/.test(
+    pathname,
+  );
 
   return (
     <TouchableOpacity
