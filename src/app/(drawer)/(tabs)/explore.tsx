@@ -21,7 +21,7 @@ function ListEmpty() {
 
 export default function Explore() {
   const { bottom: bottomInset } = useSafeAreaInsets();
-  const { titles, setIsExploring, isLoadingTitles } = useExplore();
+  const { titles, setQuery, isLoadingTitles, setIsExploring } = useExplore();
   const navigation = useNavigation();
 
   const renderItem: ListRenderItem<Title> = useCallback(
@@ -30,12 +30,13 @@ export default function Explore() {
   );
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('beforeRemove', () => {
-      setIsExploring(true);
+    const unsubscribe = navigation.addListener('blur', () => {
+      setIsExploring(false);
+      setQuery('');
     });
 
     return unsubscribe;
-  }, [navigation, setIsExploring]);
+  }, [navigation, setQuery, setIsExploring]);
 
   return (
     <View style={styles.container}>
