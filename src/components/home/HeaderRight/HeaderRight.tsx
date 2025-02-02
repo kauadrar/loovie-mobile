@@ -2,17 +2,15 @@ import { Text } from '@/components/shared';
 import { useExplore } from '@/contexts/Explore/Explore';
 import { getTitlesAutocompleteRequest } from '@/requests/titles';
 import { colors } from '@/styles';
-import { DrawerNavigationOptions } from '@react-navigation/drawer';
+import { Portal } from '@gorhom/portal';
 import { useQuery } from '@tanstack/react-query';
 import { BlurView, BlurViewProps } from 'expo-blur';
 import { router, usePathname } from 'expo-router';
 import { Faders, MagnifyingGlass, X } from 'phosphor-react-native';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { NonUndefined } from 'react-hook-form';
 import {
   Dimensions,
   ListRenderItem,
-  Platform,
   StyleSheet,
   TextInput,
   View,
@@ -42,9 +40,7 @@ function ItemSeparator() {
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
-export const HeaderRight: NonUndefined<
-  DrawerNavigationOptions['headerRight']
-> = ({ tintColor }) => {
+export function HeaderRight() {
   const { isExploring, setIsExploring, query, setQuery, getTitles } =
     useExplore();
   const inputRef = useRef<TextInput>(null);
@@ -90,7 +86,7 @@ export const HeaderRight: NonUndefined<
 
   const onSubmit = useCallback(
     async (value?: string) => {
-      router.push('/(drawer)/(tabs)/explore');
+      router.push('/explore');
       inputRef.current?.blur();
       closeAutocomplete();
       await getTitles(value === undefined ? query : value);
@@ -192,48 +188,51 @@ export const HeaderRight: NonUndefined<
           />
           {query ? (
             <TouchableOpacity onPress={clearQuery}>
-              <X size={24} weight="regular" color={tintColor} />
+              <X size={24} weight="regular" color={colors.gray1} />
             </TouchableOpacity>
           ) : (
             <TouchableOpacity onPress={handlePress}>
-              <MagnifyingGlass size={24} weight="regular" color={tintColor} />
+              <MagnifyingGlass
+                size={24}
+                weight="regular"
+                color={colors.gray1}
+              />
             </TouchableOpacity>
           )}
         </View>
         <TouchableOpacity>
-          <Faders size={24} weight="regular" color={tintColor} />
+          <Faders size={24} weight="regular" color={colors.gray1} />
         </TouchableOpacity>
       </View>
       {isAutocompleteVisible && !!titlesAutocomplete?.length && (
-        <AnimatedBlurView
-          animatedProps={blurViewAnimatedProps}
-          style={[
-            styles.autocompleteContainer,
-            Platform.OS === 'android' && { top: 32 + topInset },
-          ]}
-          experimentalBlurMethod="dimezisBlurView"
-          blurReductionFactor={10}
-          tint="systemMaterialDark"
-        >
-          <TouchableWithoutFeedback
-            onPress={blur}
-            style={{ height: HEIGHT - 42 }}
+        <Portal>
+          <AnimatedBlurView
+            animatedProps={blurViewAnimatedProps}
+            style={[styles.autocompleteContainer, { top: 74 + topInset }]}
+            experimentalBlurMethod="dimezisBlurView"
+            blurReductionFactor={10}
+            tint="systemMaterialDark"
           >
-            <Animated.View
-              style={[styles.autocomplete, autocompleteAnimatedStyles]}
+            <TouchableWithoutFeedback
+              onPress={blur}
+              style={{ height: HEIGHT - 42 }}
             >
-              <FlatList
-                data={titlesAutocomplete}
-                renderItem={renderItem}
-                ItemSeparatorComponent={ItemSeparator}
-              />
-            </Animated.View>
-          </TouchableWithoutFeedback>
-        </AnimatedBlurView>
+              <Animated.View
+                style={[styles.autocomplete, autocompleteAnimatedStyles]}
+              >
+                <FlatList
+                  data={titlesAutocomplete}
+                  renderItem={renderItem}
+                  ItemSeparatorComponent={ItemSeparator}
+                />
+              </Animated.View>
+            </TouchableWithoutFeedback>
+          </AnimatedBlurView>
+        </Portal>
       )}
     </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -266,8 +265,6 @@ const styles = StyleSheet.create({
     height: HEIGHT,
     position: 'absolute',
     width: WIDTH,
-    right: Platform.OS === 'ios' ? -5 : 0,
-    top: 40,
   },
   autocomplete: {
     backgroundColor: colors.background,

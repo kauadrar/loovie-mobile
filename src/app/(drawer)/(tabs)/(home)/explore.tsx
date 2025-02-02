@@ -30,12 +30,22 @@ export default function Explore() {
   );
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('blur', () => {
+    const unsubscribeBlur = navigation.addListener('blur', () => {
       setIsExploring(false);
       setQuery('');
     });
+    const unsubscribeBeforeRemove = navigation.addListener(
+      'beforeRemove',
+      () => {
+        setIsExploring(false);
+        setQuery('');
+      },
+    );
 
-    return unsubscribe;
+    return () => {
+      unsubscribeBlur();
+      unsubscribeBeforeRemove();
+    };
   }, [navigation, setQuery, setIsExploring]);
 
   return (

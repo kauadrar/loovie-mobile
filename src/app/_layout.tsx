@@ -2,6 +2,7 @@ import { AuthProvider } from '@/contexts';
 import { ExploreProvider } from '@/contexts/Explore/Explore';
 import { meRequest } from '@/requests';
 import { colors } from '@/styles';
+import { PortalProvider } from '@gorhom/portal';
 import { DarkTheme, ThemeProvider } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import 'expo-dev-client';
@@ -106,19 +107,21 @@ export default function RootLayout() {
                     },
                   }}
                 >
-                  <StatusBar style="light" />
-                  <FlashMessage
-                    position="top"
-                    titleStyle={{ fontFamily: 'Urbanist-Medium' }}
-                    statusBarHeight={topInset}
-                  />
-                  <Stack
-                    screenOptions={{
-                      headerShown: false,
-                      navigationBarTranslucent: true,
-                      navigationBarColor: '#ffffff00',
-                    }}
-                  />
+                  <PortalProvider>
+                    <StatusBar style="light" />
+                    <FlashMessage
+                      position="top"
+                      titleStyle={{ fontFamily: 'Urbanist-Medium' }}
+                      statusBarHeight={topInset}
+                    />
+                    <Stack
+                      screenOptions={{
+                        headerShown: false,
+                        navigationBarTranslucent: true,
+                        navigationBarColor: '#ffffff00',
+                      }}
+                    />
+                  </PortalProvider>
                 </ThemeProvider>
               </KeyboardProvider>
             </GestureHandlerRootView>

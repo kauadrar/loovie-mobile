@@ -1,4 +1,4 @@
-import { HeaderLeft, HeaderRight, Menu } from '@/components/drawer';
+import { Menu } from '@/components/drawer';
 import { useAuth } from '@/contexts';
 import { colors } from '@/styles';
 import { FontVariant } from '@/types';
@@ -7,7 +7,7 @@ import { Redirect } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { BookmarkSimple, Gear, Question } from 'phosphor-react-native';
 
-export default function MainLayout() {
+export default function DrawerLayout() {
   const { user } = useAuth();
   const fontRegular: FontVariant = 'Urbanist-Regular';
   const fontMedium: FontVariant = 'Urbanist-Medium';
@@ -27,17 +27,7 @@ export default function MainLayout() {
           state.routes.findIndex((r: Route<string>) => r.name === route.name);
 
         return {
-          headerStyle: {
-            backgroundColor: colors.background,
-            elevation: 1,
-            shadowOpacity: 0,
-          },
-          headerTintColor: colors.gray1,
-          headerTitleStyle: {
-            display: 'none',
-          },
-          headerLeft: (props) => <HeaderLeft {...props} />,
-          headerRight: (props) => <HeaderRight {...props} />,
+          headerShown: false,
           drawerStyle: {
             backgroundColor: colors.background,
             width: 200,

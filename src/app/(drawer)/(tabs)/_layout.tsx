@@ -1,109 +1,41 @@
-import { LoovieLogo } from '@/components/svgs';
-import { useExplore } from '@/contexts';
-import { colors } from '@/styles';
-import { Tabs } from 'expo-router/tabs';
+import { TabList, Tabs, TabSlot, TabTrigger } from 'expo-router/ui';
 import { Bell, House, Popcorn, User } from 'phosphor-react-native';
-import { TouchableOpacity, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { LoovieLogo } from '@/components/svgs';
+import { TabButton } from '@/components/tabs';
+import { StyleSheet } from 'react-native';
+
 export default function MainLayout() {
-  const { setIsExploring } = useExplore();
   const { bottom: bottomInset } = useSafeAreaInsets();
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarInactiveTintColor: colors.gray1,
-        tabBarActiveTintColor: colors.primary,
-        tabBarButton: ({ onPress, children, style }) => (
-          <TouchableOpacity
-            onPress={onPress}
-            style={[style as ViewStyle, { justifyContent: 'center' }]}
-          >
-            {children}
-          </TouchableOpacity>
-        ),
-        tabBarShowLabel: false,
-        headerShown: false,
-        tabBarStyle: {
-          height: 56 + bottomInset,
-          backgroundColor: colors.background,
-          borderTopWidth: 0,
-          elevation: 1,
-        },
-      }}
-      screenListeners={({ navigation, route }) => ({
-        tabPress: () => {
-          if (route.name !== 'explore') {
-            setIsExploring(false);
-          }
-        },
-      })}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          tabBarIcon: ({ focused, color, size }) => (
-            <House
-              weight={focused ? 'fill' : 'regular'}
-              color={color}
-              size={size}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="cinema"
-        options={{
-          tabBarIcon: ({ focused, color, size }) => (
-            <Popcorn
-              weight={focused ? 'fill' : 'regular'}
-              color={color}
-              size={size}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="recommendations"
-        options={{
-          tabBarIcon: ({ size, color }) => (
-            <LoovieLogo size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="notifications"
-        options={{
-          tabBarIcon: ({ focused, color, size }) => (
-            <Bell
-              weight={focused ? 'fill' : 'regular'}
-              color={color}
-              size={size}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="my_profile"
-        options={{
-          tabBarIcon: ({ focused, color, size }) => (
-            <User
-              weight={focused ? 'fill' : 'regular'}
-              color={color}
-              size={size}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          tabBarItemStyle: {
-            display: 'none',
-          },
-        }}
-      />
+    <Tabs>
+      <TabSlot />
+      <TabList style={[styles.tabBar, { paddingBottom: bottomInset + 4 }]}>
+        <TabTrigger name="home" href="/" asChild>
+          <TabButton Icon={House} />
+        </TabTrigger>
+        <TabTrigger name="cinema" href="/cinema" asChild>
+          <TabButton Icon={Popcorn} />
+        </TabTrigger>
+        <TabTrigger name="recommendations" href="/recommendations" asChild>
+          <TabButton Icon={LoovieLogo} rounded />
+        </TabTrigger>
+        <TabTrigger name="notifications" href="/notifications" asChild>
+          <TabButton Icon={Bell} />
+        </TabTrigger>
+        <TabTrigger name="my_profile" href="/my_profile" asChild>
+          <TabButton Icon={User} />
+        </TabTrigger>
+      </TabList>
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  tabBar: {
+    justifyContent: 'space-around',
+    alignItems: 'flex-end',
+  },
+});
