@@ -1,16 +1,20 @@
 import { Menu } from '@/components/drawer';
-import { useAuth } from '@/contexts';
 import { colors } from '@/styles';
 import { FontVariant } from '@/types';
 import { Route } from '@react-navigation/native';
+import { useQuery } from '@tanstack/react-query';
+import { BlurView } from 'expo-blur';
 import { Redirect } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { BookmarkSimple, Gear, Question } from 'phosphor-react-native';
+import { StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function DrawerLayout() {
-  const { user } = useAuth();
+  const { data: user } = useQuery({ queryKey: ['me'] });
   const fontRegular: FontVariant = 'Urbanist-Regular';
   const fontMedium: FontVariant = 'Urbanist-Medium';
+  const { top: topInset } = useSafeAreaInsets();
 
   if (!user) {
     return <Redirect href="/lobby" />;
@@ -18,7 +22,7 @@ export default function DrawerLayout() {
 
   return (
     <Drawer
-      drawerContent={Menu}
+      drawerContent={(props) => <Menu {...props} />}
       backBehavior="history"
       screenOptions={({ route, navigation }) => {
         const state = navigation.getState();
@@ -27,13 +31,9 @@ export default function DrawerLayout() {
           state.routes.findIndex((r: Route<string>) => r.name === route.name);
 
         return {
-          headerShown: false,
           drawerStyle: {
             backgroundColor: colors.background,
             width: 200,
-          },
-          drawerItemStyle: {
-            display: route.name === '(tabs)' ? 'none' : 'flex',
           },
           drawerActiveTintColor: colors.white,
           drawerInactiveTintColor: colors.gray1,
@@ -42,9 +42,32 @@ export default function DrawerLayout() {
             marginHorizontal: -4,
             fontFamily: isRouteFocused ? fontMedium : fontRegular,
           },
+          headerTitle: '',
+          headerTransparent: true,
+          headerStyle: {
+            height: topInset + 50,
+          },
+          headerBackground: () => (
+            <BlurView
+              experimentalBlurMethod="dimezisBlurView"
+              blurReductionFactor={10}
+              tint="dark"
+              intensity={30}
+              style={[
+                StyleSheet.absoluteFill,
+                { backgroundColor: `${colors.background}DD` },
+              ]}
+            />
+          ),
         };
       }}
     >
+      <Drawer.Screen
+        name="(tabs)"
+        options={{
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
       <Drawer.Screen
         name="saved"
         options={{

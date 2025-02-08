@@ -7,7 +7,13 @@ import { useQuery } from '@tanstack/react-query';
 import { BlurView, BlurViewProps } from 'expo-blur';
 import { router, usePathname } from 'expo-router';
 import { Faders, MagnifyingGlass, X } from 'phosphor-react-native';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import {
   Dimensions,
   ListRenderItem,
@@ -40,7 +46,7 @@ function ItemSeparator() {
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
-export function HeaderRight() {
+export function SearchBar() {
   const { isExploring, setIsExploring, query, setQuery, getTitles } =
     useExplore();
   const inputRef = useRef<TextInput>(null);
@@ -55,6 +61,16 @@ export function HeaderRight() {
   const blurIntensity = useSharedValue(0);
   const autocompleteHeight = useSharedValue(0);
   const isOnExplore = pathname.includes('explore');
+  const autocompleteHeightValue = useMemo(() => {
+    const titlesAutocompleteLength = titlesAutocomplete?.length || 0;
+    const entireAutocompleteHeight =
+      titlesAutocompleteLength * 25 +
+      (titlesAutocompleteLength - 1) * 17 +
+      8 +
+      16;
+
+    return Math.min(entireAutocompleteHeight, AUTOCOMPLETE_MAX_HEIGHT);
+  }, [titlesAutocomplete]);
 
   const handlePress = () => {
     setIsExploring(true);
@@ -86,7 +102,7 @@ export function HeaderRight() {
 
   const onSubmit = useCallback(
     async (value?: string) => {
-      router.push('/explore');
+      router.navigate('/explore');
       inputRef.current?.blur();
       closeAutocomplete();
       await getTitles(value === undefined ? query : value);
@@ -139,28 +155,29 @@ export function HeaderRight() {
   const autocompleteAnimatedStyles = useAnimatedStyle(() => {
     const opacity = interpolate(
       autocompleteHeight.value,
-      [0, AUTOCOMPLETE_MAX_HEIGHT],
+      [0, autocompleteHeightValue],
       [0, 1],
     );
 
     return {
-      maxHeight: autocompleteHeight.value,
+      height: autocompleteHeight.value,
       opacity,
     };
   });
 
   useEffect(() => {
     if (isAutocompleteVisible && !!titlesAutocomplete?.length) {
-      autocompleteHeight.value = withTiming(AUTOCOMPLETE_MAX_HEIGHT, {
+      autocompleteHeight.value = withTiming(autocompleteHeightValue, {
         duration: 300,
       });
-      blurIntensity.value = withTiming(30, { duration: 600 });
+      blurIntensity.value = withTiming(15, { duration: 600 });
     }
   }, [
     isAutocompleteVisible,
     titlesAutocomplete,
     blurIntensity,
     autocompleteHeight,
+    autocompleteHeightValue,
   ]);
 
   return (
@@ -208,10 +225,10 @@ export function HeaderRight() {
         <Portal>
           <AnimatedBlurView
             animatedProps={blurViewAnimatedProps}
-            style={[styles.autocompleteContainer, { top: 74 + topInset }]}
+            style={[styles.autocompleteContainer, { top: 50 + topInset }]}
             experimentalBlurMethod="dimezisBlurView"
             blurReductionFactor={10}
-            tint="systemMaterialDark"
+            tint="dark"
           >
             <TouchableWithoutFeedback
               onPress={blur}
@@ -220,11 +237,22 @@ export function HeaderRight() {
               <Animated.View
                 style={[styles.autocomplete, autocompleteAnimatedStyles]}
               >
-                <FlatList
-                  data={titlesAutocomplete}
-                  renderItem={renderItem}
-                  ItemSeparatorComponent={ItemSeparator}
-                />
+                <AnimatedBlurView
+                  style={[
+                    styles.autocompleteBlur,
+                    { height: autocompleteHeightValue },
+                  ]}
+                  experimentalBlurMethod="dimezisBlurView"
+                  blurReductionFactor={10}
+                  tint="dark"
+                  intensity={40}
+                >
+                  <FlatList
+                    data={titlesAutocomplete}
+                    renderItem={renderItem}
+                    ItemSeparatorComponent={ItemSeparator}
+                  />
+                </AnimatedBlurView>
               </Animated.View>
             </TouchableWithoutFeedback>
           </AnimatedBlurView>
@@ -252,7 +280,6 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     height: 42,
     flex: 1,
-    backgroundColor: colors.background,
   },
   searchInput: {
     height: 40,
@@ -265,11 +292,9 @@ const styles = StyleSheet.create({
     height: HEIGHT,
     position: 'absolute',
     width: WIDTH,
+    backgroundColor: `${colors.background}44`,
   },
   autocomplete: {
-    backgroundColor: colors.background,
-    paddingBottom: 14,
-    paddingTop: 8,
     borderBottomRightRadius: 12,
     borderBottomLeftRadius: 12,
     shadowColor: colors.black,
@@ -277,8 +302,17 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
   },
+  autocompleteBlur: {
+    paddingBottom: 14,
+    paddingTop: 8,
+    overflow: 'hidden',
+    borderBottomRightRadius: 12,
+    borderBottomLeftRadius: 12,
+    backgroundColor: `${colors.background}EE`,
+  },
   autocompleteItem: {
-    paddingVertical: 4,
+    height: 25,
+    justifyContent: 'center',
     paddingHorizontal: 12,
   },
   separator: {

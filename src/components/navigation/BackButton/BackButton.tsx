@@ -5,18 +5,13 @@ import React from 'react';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { styles } from './BackButton.styles';
 
-export function BackButton({
-  style,
-  onPress,
-  ...props
-}: TouchableOpacityProps) {
+export function BackButton({ style, onPress }: TouchableOpacityProps) {
   return (
     <TouchableOpacity
-      style={[styles.backButton, style]}
       onPress={onPress || router.back}
-      {...props}
+      style={[styles.button, style]}
     >
-      <ArrowLeft color={colors.gray1} size={26} />
+      <ArrowLeft size={24} color={colors.gray1} />
     </TouchableOpacity>
   );
 }

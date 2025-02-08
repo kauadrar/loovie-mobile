@@ -1,4 +1,5 @@
-import { BackButton, Button, Input } from '@/components/shared';
+import { BackButton } from '@/components/navigation';
+import { Button, Input } from '@/components/shared';
 import { LoovieLogo } from '@/components/svgs';
 import { loginRequest } from '@/requests';
 import { colors } from '@/styles';
@@ -28,7 +29,7 @@ export default function Login() {
     mutationKey: ['login'],
     mutationFn: async (params: LoginParams) => await loginRequest(params),
     onSuccess: (data) => {
-      queryClient.setQueryData(['users', 'me'], data);
+      queryClient.setQueryData(['me'], data);
 
       resetToRoute('/');
     },
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 24,
+    paddingHorizontal: 16,
     gap: 60,
   },
   formArea: {

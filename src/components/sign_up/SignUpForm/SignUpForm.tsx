@@ -1,6 +1,7 @@
 /* eslint react-hooks/exhaustive-deps: off */
 
-import { BackButton, Button, Text } from '@/components/shared';
+import { BackButton } from '@/components/navigation';
+import { Button, Text } from '@/components/shared';
 import { SignUpValues } from '@/types';
 import {
   signUpFirstStepSchema,
@@ -8,11 +9,15 @@ import {
   signUpThirdStepSchema,
 } from '@/validators';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useBackHandler } from '@react-native-community/hooks';
 import { router } from 'expo-router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm, UseFormReturn } from 'react-hook-form';
-import { useWindowDimensions, View, ViewToken } from 'react-native';
+import {
+  BackHandler,
+  useWindowDimensions,
+  View,
+  ViewToken,
+} from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import Animated, {
@@ -180,7 +185,20 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
     return true;
   };
 
-  useBackHandler(onPressBack);
+  useEffect(() => {
+    const unsubscribe = BackHandler.addEventListener(
+      'hardwareBackPress',
+      () => {
+        onPressBack();
+
+        return false;
+      },
+    );
+
+    return () => {
+      unsubscribe.remove();
+    };
+  }, [onPressBack]);
 
   const onScroll = useAnimatedScrollHandler(
     {

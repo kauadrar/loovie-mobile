@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    bottom: 20,
+    bottom: 120,
     right: 20,
     zIndex: 2,
   },

@@ -13,7 +13,7 @@ export default function SignUp() {
   const { mutateAsync: signUp } = useMutation({
     mutationFn: async (params: SignUpParams) => await signUpRequest(params),
     onSuccess: (data) => {
-      queryClient.setQueryData(['users', 'me'], data);
+      queryClient.setQueryData(['me'], data);
 
       resetToRoute('/');
     },

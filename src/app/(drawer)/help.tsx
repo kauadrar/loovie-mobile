@@ -1,6 +1,6 @@
 import { Text } from '@/components/shared';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 export default function Help() {
   return (
@@ -9,5 +9,3 @@ export default function Help() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

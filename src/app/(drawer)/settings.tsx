@@ -1,6 +1,6 @@
 import { Container } from '@/components/shared';
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { Text } from 'react-native';
 
 export default function Settings() {
   return (
@@ -9,5 +9,3 @@ export default function Settings() {
     </Container>
   );
 }
-
-const styles = StyleSheet.create({});

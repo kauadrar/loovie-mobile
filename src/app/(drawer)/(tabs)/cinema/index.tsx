@@ -1,6 +1,5 @@
 import { Container, Text } from '@/components/shared';
 import React from 'react';
-import { StyleSheet } from 'react-native';
 
 export default function Cinema() {
   return (
@@ -9,5 +8,3 @@ export default function Cinema() {
     </Container>
   );
 }
-
-const styles = StyleSheet.create({});

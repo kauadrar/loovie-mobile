@@ -1,6 +1,5 @@
 import { logoutRequest } from '@/requests';
 import { colors } from '@/styles';
-import { FontVariant } from '@/types';
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
@@ -10,8 +9,6 @@ import {
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { router } from 'expo-router';
 import { SignOut } from 'phosphor-react-native';
-
-const fontFamily: FontVariant = 'Urbanist-Regular';
 
 export function Menu({
   descriptors,
@@ -27,6 +24,8 @@ export function Menu({
     },
   });
 
+  const options = Object.values(descriptors)[0].options;
+
   return (
     <DrawerContentScrollView>
       <DrawerItemList
@@ -36,11 +35,7 @@ export function Menu({
       />
       <DrawerItem
         label="Logout"
-        labelStyle={{
-          marginHorizontal: -4,
-          fontFamily,
-          color: colors.primary,
-        }}
+        labelStyle={[options.drawerLabelStyle, { color: colors.danger }]}
         icon={({ size }) => <SignOut size={size} color={colors.danger} />}
         onPress={logoutMutation}
       />
