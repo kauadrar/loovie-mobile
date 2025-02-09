@@ -4,7 +4,7 @@ import { getTitlesAutocompleteRequest } from '@/requests/titles';
 import { colors } from '@/styles';
 import { Portal } from '@gorhom/portal';
 import { useQuery } from '@tanstack/react-query';
-import { BlurView, BlurViewProps } from 'expo-blur';
+import { BlurView } from 'expo-blur';
 import { router, usePathname } from 'expo-router';
 import { Faders, MagnifyingGlass, X } from 'phosphor-react-native';
 import React, {
@@ -14,39 +14,34 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {
-  Dimensions,
-  ListRenderItem,
-  StyleSheet,
-  TextInput,
-  View,
-} from 'react-native';
+import { Dimensions, ListRenderItem, View } from 'react-native';
 import {
   FlatList,
+  TextInput,
   TouchableOpacity,
-  TouchableWithoutFeedback,
 } from 'react-native-gesture-handler';
 import Animated, {
   interpolate,
   runOnJS,
-  useAnimatedProps,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDebounce } from 'use-debounce';
+import { BlurBackground } from '../BlurBackground/BlurBackground';
+import { BlurBackgroundRef } from '../BlurBackground/BlurBackground.types';
+import { styles } from './SearchBar.styles';
 
-const { width: WIDTH, height: HEIGHT } = Dimensions.get('window');
+const { height: HEIGHT } = Dimensions.get('window');
 const AUTOCOMPLETE_MAX_HEIGHT = HEIGHT * 0.55;
 
 function ItemSeparator() {
   return <View style={styles.separator} />;
 }
 
-const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
-
 export function SearchBar() {
+  const blurBackgroundRef = useRef<BlurBackgroundRef>(null);
   const { isExploring, setIsExploring, query, setQuery, getTitles } =
     useExplore();
   const inputRef = useRef<TextInput>(null);
@@ -58,7 +53,6 @@ export function SearchBar() {
   const [isAutocompleteVisible, setIsAutocompleteVisible] = useState(false);
   const pathname = usePathname();
   const { top: topInset } = useSafeAreaInsets();
-  const blurIntensity = useSharedValue(0);
   const autocompleteHeight = useSharedValue(0);
   const isOnExplore = pathname.includes('explore');
   const autocompleteHeightValue = useMemo(() => {
@@ -86,10 +80,12 @@ export function SearchBar() {
 
   const closeAutocomplete = useCallback(() => {
     autocompleteHeight.value = withTiming(0, { duration: 300 });
-    blurIntensity.value = withTiming(0, { duration: 600 }, () => {
-      runOnJS(setIsAutocompleteVisible)(false);
-    });
-  }, [blurIntensity, autocompleteHeight]);
+    setTimeout(() => {
+      blurBackgroundRef.current?.hide(() => {
+        runOnJS(setIsAutocompleteVisible)(false);
+      });
+    }, 0);
+  }, [autocompleteHeight]);
 
   const blur = useCallback(() => {
     inputRef.current?.blur();
@@ -146,12 +142,6 @@ export function SearchBar() {
     }
   };
 
-  const blurViewAnimatedProps = useAnimatedProps<BlurViewProps>(() => {
-    return {
-      intensity: blurIntensity.value,
-    };
-  });
-
   const autocompleteAnimatedStyles = useAnimatedStyle(() => {
     const opacity = interpolate(
       autocompleteHeight.value,
@@ -170,12 +160,13 @@ export function SearchBar() {
       autocompleteHeight.value = withTiming(autocompleteHeightValue, {
         duration: 300,
       });
-      blurIntensity.value = withTiming(15, { duration: 600 });
+      setTimeout(() => {
+        blurBackgroundRef.current?.show();
+      }, 0);
     }
   }, [
     isAutocompleteVisible,
     titlesAutocomplete,
-    blurIntensity,
     autocompleteHeight,
     autocompleteHeightValue,
   ]);
@@ -223,98 +214,33 @@ export function SearchBar() {
       </View>
       {isAutocompleteVisible && !!titlesAutocomplete?.length && (
         <Portal>
-          <AnimatedBlurView
-            animatedProps={blurViewAnimatedProps}
-            style={[styles.autocompleteContainer, { top: 50 + topInset }]}
-            experimentalBlurMethod="dimezisBlurView"
-            blurReductionFactor={10}
-            tint="dark"
+          <BlurBackground ref={blurBackgroundRef} onPress={blur} />
+          <Animated.View
+            style={[
+              styles.autocomplete,
+              { top: 50 + topInset },
+              autocompleteAnimatedStyles,
+            ]}
           >
-            <TouchableWithoutFeedback
-              onPress={blur}
-              style={{ height: HEIGHT - 42 }}
+            <BlurView
+              style={[
+                styles.autocompleteBlur,
+                { height: autocompleteHeightValue },
+              ]}
+              experimentalBlurMethod="dimezisBlurView"
+              blurReductionFactor={100}
+              tint="dark"
+              intensity={40}
             >
-              <Animated.View
-                style={[styles.autocomplete, autocompleteAnimatedStyles]}
-              >
-                <AnimatedBlurView
-                  style={[
-                    styles.autocompleteBlur,
-                    { height: autocompleteHeightValue },
-                  ]}
-                  experimentalBlurMethod="dimezisBlurView"
-                  blurReductionFactor={10}
-                  tint="dark"
-                  intensity={40}
-                >
-                  <FlatList
-                    data={titlesAutocomplete}
-                    renderItem={renderItem}
-                    ItemSeparatorComponent={ItemSeparator}
-                  />
-                </AnimatedBlurView>
-              </Animated.View>
-            </TouchableWithoutFeedback>
-          </AnimatedBlurView>
+              <FlatList
+                data={titlesAutocomplete}
+                renderItem={renderItem}
+                ItemSeparatorComponent={ItemSeparator}
+              />
+            </BlurView>
+          </Animated.View>
         </Portal>
       )}
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    gap: 6,
-    marginRight: 12,
-    paddingRight: 4,
-    width: WIDTH - 68,
-  },
-  searchBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    gap: 6,
-    marginLeft: 6,
-    height: 42,
-    flex: 1,
-  },
-  searchInput: {
-    height: 40,
-    display: 'none',
-    flex: 1,
-    color: colors.white,
-    paddingLeft: 6,
-  },
-  autocompleteContainer: {
-    height: HEIGHT,
-    position: 'absolute',
-    width: WIDTH,
-    backgroundColor: `${colors.background}44`,
-  },
-  autocomplete: {
-    borderBottomRightRadius: 12,
-    borderBottomLeftRadius: 12,
-  },
-  autocompleteBlur: {
-    paddingBottom: 14,
-    paddingTop: 8,
-    overflow: 'hidden',
-    borderBottomRightRadius: 12,
-    borderBottomLeftRadius: 12,
-    backgroundColor: `${colors.background}EE`,
-  },
-  autocompleteItem: {
-    height: 25,
-    justifyContent: 'center',
-    paddingHorizontal: 12,
-  },
-  separator: {
-    height: 1,
-    backgroundColor: colors.gray1,
-    marginHorizontal: 8,
-    marginVertical: 8,
-  },
-});

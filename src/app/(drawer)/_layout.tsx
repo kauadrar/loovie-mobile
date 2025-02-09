@@ -7,7 +7,7 @@ import { BlurView } from 'expo-blur';
 import { Redirect } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { BookmarkSimple, Gear, Question } from 'phosphor-react-native';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function DrawerLayout() {
@@ -50,12 +50,17 @@ export default function DrawerLayout() {
           headerBackground: () => (
             <BlurView
               experimentalBlurMethod="dimezisBlurView"
-              blurReductionFactor={10}
+              blurReductionFactor={40}
               tint="dark"
               intensity={30}
               style={[
                 StyleSheet.absoluteFill,
-                { backgroundColor: `${colors.background}DD` },
+                {
+                  backgroundColor: Platform.select({
+                    android: `${colors.background}F4`,
+                    ios: `${colors.background}DD`,
+                  }),
+                },
               ]}
             />
           ),

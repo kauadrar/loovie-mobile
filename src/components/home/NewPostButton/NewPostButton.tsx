@@ -8,13 +8,7 @@ import {
   Star,
 } from 'phosphor-react-native';
 import React, { ReactNode } from 'react';
-import {
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  ViewProps,
-} from 'react-native';
+import { Pressable, TouchableOpacity, View, ViewProps } from 'react-native';
 import Animated, {
   SharedValue,
   useAnimatedProps,
@@ -24,6 +18,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
+import { styles } from './NewPostButton.styles';
 
 const AnimatedTouchableOpacity =
   Animated.createAnimatedComponent(TouchableOpacity);
@@ -128,10 +123,7 @@ export function NewPostButton() {
       />
       <View style={styles.buttonContainer}>
         <Animated.View style={[{ zIndex: 1 }, buttonStyle]}>
-          <TouchableOpacity
-            onPress={handlePress}
-            style={mainButtonStyles.button}
-          >
+          <TouchableOpacity onPress={handlePress} style={styles.mainButton}>
             <Animated.View style={plusIconStyle}>
               <Plus size={16} color={colors.white} weight="bold" />
             </Animated.View>
@@ -166,64 +158,3 @@ export function NewPostButton() {
     </>
   );
 }
-
-const mainButtonStyles = StyleSheet.create({
-  button: {
-    height: 56,
-    width: '100%',
-    borderRadius: 100,
-    backgroundColor: colors.gray2,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    gap: 10,
-  },
-});
-
-const styles = StyleSheet.create({
-  backdrop: {
-    position: 'absolute',
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  },
-  container: {
-    position: 'absolute',
-    right: 0,
-  },
-  content: {
-    height: 40,
-    borderRadius: 100,
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    zIndex: -2,
-    flexDirection: 'row',
-    gap: 4,
-  },
-  button: {
-    width: 40,
-    height: 40,
-    backgroundColor: colors.gray2,
-    borderRadius: 100,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: -2,
-    flexDirection: 'row',
-  },
-  buttonContainer: {
-    position: 'absolute',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    bottom: 120,
-    right: 20,
-    zIndex: 2,
-  },
-  label: {
-    color: '#f8f9ff',
-    fontWeight: 500,
-  },
-});

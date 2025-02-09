@@ -4,7 +4,7 @@ import { colors } from '@/styles';
 import { BlurView } from 'expo-blur';
 import { Tabs } from 'expo-router/tabs';
 import { Bell, House, Popcorn, User } from 'phosphor-react-native';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function MainLayout() {
@@ -34,11 +34,14 @@ export default function MainLayout() {
             style={[
               StyleSheet.absoluteFill,
               {
-                backgroundColor: `${colors.background}DD`,
+                backgroundColor: Platform.select({
+                  android: `${colors.background}F4`,
+                  ios: `${colors.background}DD`,
+                }),
               },
             ]}
             experimentalBlurMethod="dimezisBlurView"
-            blurReductionFactor={10}
+            blurReductionFactor={40}
             tint="dark"
             intensity={30}
           />
