@@ -297,10 +297,6 @@ const styles = StyleSheet.create({
   autocomplete: {
     borderBottomRightRadius: 12,
     borderBottomLeftRadius: 12,
-    shadowColor: colors.black,
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
   },
   autocompleteBlur: {
     paddingBottom: 14,

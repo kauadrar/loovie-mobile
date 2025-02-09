@@ -1,30 +1,29 @@
-import React from 'react';
+import { BackButton } from '@/components/navigation';
+import { useFocusEffect, useNavigation } from 'expo-router';
+import React, { useCallback } from 'react';
 import { StyleSheet } from 'react-native';
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ContainerProps } from './Container.types';
 
 export function Container({
   safeArea,
   children,
-  hasBottomTabs,
-  hasHeader = true,
+  headerLeft,
+  headerRight,
 }: ContainerProps) {
-  const { top: topInset, bottom: bottomInset } = useSafeAreaInsets();
+  const rootNavigation = useNavigation('/(drawer)');
+
+  useFocusEffect(
+    useCallback(() => {
+      rootNavigation.setOptions({
+        headerLeft: headerLeft || (() => <BackButton />),
+        headerRight: headerRight || (() => null),
+      });
+    }, [rootNavigation]),
+  );
 
   return (
-    <SafeAreaView
-      edges={safeArea ? ['top'] : []}
-      style={[
-        styles.container,
-        hasBottomTabs && { paddingBottom: bottomInset + 70 },
-        hasHeader && {
-          paddingTop: topInset + 50,
-        },
-      ]}
-    >
+    <SafeAreaView edges={safeArea ? ['top'] : []} style={[styles.container]}>
       {children}
     </SafeAreaView>
   );

@@ -1,8 +1,7 @@
 import { SearchBar } from '@/components/home';
-import { Loading } from '@/components/shared';
+import { Container, Loading } from '@/components/shared';
 import { TitleCard } from '@/components/titles';
 import { useExplore } from '@/contexts';
-import { useAppRouteOptions } from '@/hooks';
 import { Title } from '@/types';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useHeaderHeight } from '@react-navigation/elements';
@@ -25,9 +24,6 @@ function ListEmpty() {
 export default function Explore() {
   const { titles, isLoadingTitles, setIsExploring, setQuery } = useExplore();
   const navigation = useNavigation();
-  useAppRouteOptions({
-    headerRight: () => <SearchBar />,
-  });
   const headerHeight = useHeaderHeight();
   const bottomTabBarHeight = useBottomTabBarHeight();
 
@@ -55,7 +51,7 @@ export default function Explore() {
   }, [navigation, resetExplore]);
 
   return (
-    <View style={styles.container}>
+    <Container style={styles.container} headerRight={() => <SearchBar />}>
       <FlatList
         data={titles || []}
         renderItem={renderItem}
@@ -69,7 +65,7 @@ export default function Explore() {
         }}
         showsVerticalScrollIndicator={false}
       />
-    </View>
+    </Container>
   );
 }
 
