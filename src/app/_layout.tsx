@@ -23,6 +23,7 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import '../../global.css';
 
 const queryClient = new QueryClient({
   defaultOptions: {
