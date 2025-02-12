@@ -8,6 +8,7 @@
     "scheme": "loovie",
     "userInterfaceStyle": "automatic",
     "backgroundColor": "#0F0C0C",
+    "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
       "config": {
@@ -53,7 +54,25 @@
           "image": "./src/assets/images/splash-icon.png",
           "imageWidth": 200
         }
-      ]
+      ],
+      [
+        "react-native-edge-to-edge",
+        {
+          "android": {
+            "parentTheme": "Light",
+            "enforceNavigationBarContrast": false
+          }
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "16.0"
+          }
+        }
+      ],
+      "./app.plugin.js"
     ],
     "experiments": {
       "typedRoutes": true

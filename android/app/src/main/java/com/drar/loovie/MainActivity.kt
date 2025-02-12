@@ -1,8 +1,6 @@
 package com.drar.loovie
 import expo.modules.splashscreen.SplashScreenManager
 
-import androidx.core.view.WindowCompat
-
 import android.os.Build
 import android.os.Bundle
 
@@ -15,7 +13,6 @@ import expo.modules.ReactActivityDelegateWrapper
 
 class MainActivity : ReactActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
-    WindowCompat.setDecorFitsSystemWindows(window, false);
     // Set the theme to AppTheme BEFORE onCreate to support
     // coloring the background, status bar, and navigation bar.
     // This is required for expo-splash-screen.
