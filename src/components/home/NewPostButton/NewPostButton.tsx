@@ -18,7 +18,6 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { styles } from './NewPostButton.styles';
 
 const AnimatedTouchableOpacity =
   Animated.createAnimatedComponent(TouchableOpacity);
@@ -66,10 +65,15 @@ const FloatingActionButton = ({
   });
 
   return (
-    <Animated.View style={[animatedStyles, styles.container]}>
-      <AnimatedTouchableOpacity style={[styles.content]} onPress={() => {}}>
-        <AnimatedText style={styles.label}>{label}</AnimatedText>
-        <Animated.View style={styles.button}>{icon}</Animated.View>
+    <Animated.View style={animatedStyles} className="absolute right-0">
+      <AnimatedTouchableOpacity
+        className="h-10 rounded-full justify-end items-center -z-10 flex-row gap-1"
+        onPress={() => {}}
+      >
+        <AnimatedText className="font-urbanist-medium">{label}</AnimatedText>
+        <Animated.View className="w-10 h-10 bg-gray-800 rounded-full justify-center items-center bottom-0 -z-10">
+          {icon}
+        </Animated.View>
       </AnimatedTouchableOpacity>
     </Animated.View>
   );
@@ -118,18 +122,25 @@ export function NewPostButton() {
     <>
       <AnimatedPressable
         animatedProps={pressableAnimatedProps}
-        style={styles.backdrop}
+        className="absolute flex-1 w-full h-full"
         onPress={handlePress}
       />
-      <View style={styles.buttonContainer}>
-        <Animated.View style={[{ zIndex: 1 }, buttonStyle]}>
-          <TouchableOpacity onPress={handlePress} style={styles.mainButton}>
-            <Animated.View style={plusIconStyle}>
-              <Plus size={16} color={colors.white} weight="bold" />
-            </Animated.View>
-            <AnimatedText style={[buttonText, styles.label]}>New</AnimatedText>
-          </TouchableOpacity>
-        </Animated.View>
+      <View className="absolute items-center bottom-safe-offset-24 right-5 z-10">
+        <AnimatedTouchableOpacity
+          onPress={handlePress}
+          className="h-16 w-14 rounded-full bg-gray-800 justify-center items-center flex-row gap-2 z-10"
+          style={buttonStyle}
+        >
+          <Animated.View style={plusIconStyle}>
+            <Plus size={16} color={colors.white} weight="bold" />
+          </Animated.View>
+          <AnimatedText
+            className="font-urbanist-medium hidden"
+            style={buttonText}
+          >
+            New
+          </AnimatedText>
+        </AnimatedTouchableOpacity>
         <FloatingActionButton
           isExpanded={isExpanded}
           index={1}

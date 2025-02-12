@@ -1,6 +1,6 @@
 import { LoovieFilmStrip, LooviePlay } from '@/components/svgs';
 import { useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -34,15 +34,7 @@ export function Loading() {
   return (
     <View>
       <AnimatedLoovieFilmStrip size={42} style={animatedStyle} />
-      <LooviePlay size={42} style={styles.play} />
+      <LooviePlay size={42} className="absolute top-0 left-0" />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  play: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-  },
-});

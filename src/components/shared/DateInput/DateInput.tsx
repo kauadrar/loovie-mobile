@@ -7,7 +7,6 @@ import { Platform, TextInput, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { InputContainer } from '../InputContainer/InputContainer';
-import { styles } from './DateInput.styles';
 import { DateInputProps } from './DateInput.types';
 
 const DATE_FORMAT = 'DD/MM/YYYY';
@@ -90,23 +89,23 @@ export const DateInput = forwardRef<TextInput, DateInputProps>(
           value={inputValue}
         >
           <TouchableOpacity onPress={showDateTimePicker}>
-            <View style={styles.inputArea}>
-              {prefix && <View style={styles.iconArea}>{prefix}</View>}
+            <View className="w-full flex-row items-center rounded-2xl border border-gray-800 p-4 gap-2 bg-background">
+              {prefix && <View className="w-6">{prefix}</View>}
               <TextInput
                 placeholder={placeholder}
                 placeholderTextColor={colors.gray1}
                 ref={ref}
                 keyboardType="numeric"
                 maxLength={10}
-                style={styles.input}
+                className="flex-1 color-white text-base font-urbanist-regular tracking-wider"
                 onChangeText={handleDateChange}
                 value={inputValue}
                 {...props}
               />
-              <View style={styles.iconArea}>
+              <View className="w-6">
                 {suffix || (
                   <TouchableOpacity
-                    style={styles.iconArea}
+                    className="w-6"
                     onPress={showDateTimePicker}
                   >
                     <SquarePen size={22} color={colors.gray1} />

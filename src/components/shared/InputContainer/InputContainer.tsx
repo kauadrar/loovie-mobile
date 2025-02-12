@@ -10,7 +10,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useDebounce } from 'use-debounce';
 import { Text } from '../Text/Text';
-import { styles } from './InputContainer.styles';
 import { InputContainerProps } from './InputContainer.types';
 
 export function InputContainer({
@@ -38,26 +37,28 @@ export function InputContainer({
 
   return (
     <Animated.View
-      style={[styles.inputContainer]}
+      className="w-full gap-1"
       layout={LinearTransition}
       collapsable={false}
     >
       {label && (
-        <AnimatedText style={[styles.label, labelAnimatedStyles]}>
+        <AnimatedText
+          style={labelAnimatedStyles}
+          className="color-gray-500 text-base h-6 ml-1"
+        >
           {label}
         </AnimatedText>
       )}
-      <View style={styles.inputArea}>{children}</View>
+      <View className="z-10">{children}</View>
       {errorMessage && (
         <Animated.View
-          style={
-            !(errorMessage || debouncedErrorMessage) &&
-            styles.occultedErrorMessage
+          className={
+            !(errorMessage || debouncedErrorMessage) ? `absolute top-0` : ''
           }
           entering={FadeInUp.duration(400)}
           exiting={FadeOutUp.duration(400)}
         >
-          <Text numberOfLines={2} style={[styles.errorMessage]}>
+          <Text numberOfLines={2} className="text-sm color-danger">
             {errorMessage || debouncedErrorMessage}
           </Text>
         </Animated.View>

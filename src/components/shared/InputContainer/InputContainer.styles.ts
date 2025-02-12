@@ -2,7 +2,7 @@ import { colors } from '@/styles';
 import { FontVariant } from '@/types';
 import { StyleSheet } from 'react-native';
 
-const fontFamily: FontVariant = 'Urbanist-Regular';
+const fontFamily: FontVariant = 'urbanist-regular';
 
 export const styles = StyleSheet.create({
   inputContainer: {

@@ -3,7 +3,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { forwardRef, useState } from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
 import { InputContainer } from '../InputContainer/InputContainer';
-import { styles } from './Input.styles';
 import { InputProps } from './Input.types';
 
 export const Input = forwardRef<TextInput, InputProps>(function Input(
@@ -30,21 +29,21 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
 
   return (
     <InputContainer label={label} errorMessage={errorMessage} value={value}>
-      <View style={styles.inputArea}>
-        {prefix && <View style={styles.iconArea}>{prefix}</View>}
+      <View className="w-full flex-row items-center rounded-2xl border border-gray-800 p-4 gap-2 bg-background">
+        {prefix && <View className="w-6">{prefix}</View>}
         <TextInput
           ref={ref}
           autoCapitalize="none"
           placeholder={placeholder}
           placeholderTextColor={colors.gray1}
-          style={styles.input}
+          className="color-white flex-1 text-base font-urbanist-regular align-middle leading-[16px]"
           value={value}
           {...props}
           multiline={type === 'area'}
           secureTextEntry={isInputPassword && !isPasswordVisible}
         />
         {(isInputPassword || suffix) && (
-          <View style={styles.iconArea}>
+          <View className="w-6">
             {isInputPassword ? (
               <TouchableOpacity onPress={togglePasswordVisibility}>
                 <MaterialCommunityIcons

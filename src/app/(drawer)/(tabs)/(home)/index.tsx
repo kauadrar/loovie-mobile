@@ -9,10 +9,11 @@ export default function Home() {
 
   return (
     <Container
+      className="pt-safe-offset-16"
       headerLeft={() => <DrawerToggleButton />}
       headerRight={() => <SearchBar />}
     >
-      <Text style={{ color: '#FFF' }}>home {user?.first_name}</Text>
+      <Text>home {user?.first_name}</Text>
       <NewPostButton />
     </Container>
   );

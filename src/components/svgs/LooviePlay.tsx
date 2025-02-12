@@ -1,6 +1,7 @@
 import { SvgProps } from '@/types';
 import * as React from 'react';
-import Svg, { Path } from 'react-native-svg';
+import { Path } from 'react-native-svg';
+import { Svg } from '../nativewind';
 
 export function LooviePlay({ size = 36, ...props }: SvgProps) {
   return (

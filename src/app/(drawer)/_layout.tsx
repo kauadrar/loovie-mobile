@@ -7,13 +7,12 @@ import { BlurView } from 'expo-blur';
 import { Redirect } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { BookmarkSimple, Gear, Question } from 'phosphor-react-native';
-import { Platform, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function DrawerLayout() {
   const { data: user } = useQuery({ queryKey: ['me'] });
-  const fontRegular: FontVariant = 'Urbanist-Regular';
-  const fontMedium: FontVariant = 'Urbanist-Medium';
+  const fontRegular: FontVariant = 'urbanist-regular';
+  const fontMedium: FontVariant = 'urbanist-medium';
   const { top: topInset } = useSafeAreaInsets();
 
   if (!user) {
@@ -53,15 +52,7 @@ export default function DrawerLayout() {
               blurReductionFactor={40}
               tint="dark"
               intensity={30}
-              style={[
-                StyleSheet.absoluteFill,
-                {
-                  backgroundColor: Platform.select({
-                    android: `${colors.background}F4`,
-                    ios: `${colors.background}DD`,
-                  }),
-                },
-              ]}
+              className="absolute top-0 left-0 right-0 bottom-0 bg-background"
             />
           ),
         };
