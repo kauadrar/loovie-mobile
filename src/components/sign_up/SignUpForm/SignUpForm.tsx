@@ -28,15 +28,15 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SignUpFirstStep } from './SignUpFirstStep';
 import { styles } from './SignUpForm.styles';
 import { SignUpFormProps } from './SignUpForm.types';
 import { SignUpSecondStep } from './SignUpSecondStep';
 import { SignUpThirdStep } from './SignUpThirdStep';
 
+const AnimatedText = Animated.createAnimatedComponent(Text);
+
 export function SignUpForm({ onSubmit }: SignUpFormProps) {
-  const { top: topInset } = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const listRef = useAnimatedRef<FlatList>();
   const [numberOfSteps, setNumberOfSteps] = useState(1);
@@ -132,7 +132,6 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
   ];
   const steps = allSteps.slice(0, numberOfSteps);
   const listPosition = useSharedValue(0);
-  const AnimatedText = Animated.createAnimatedComponent(Text);
   const username = firstStepForm.watch('username');
   const email = firstStepForm.watch('email');
 
@@ -275,10 +274,7 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
 
   return (
     <>
-      <BackButton
-        style={[styles.backButton, { top: topInset }]}
-        onPress={onPressBack}
-      />
+      <BackButton style={styles.backButton} onPress={onPressBack} />
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Animated.FlatList
           onScroll={onScroll}
@@ -300,11 +296,7 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
               Próximo
             </AnimatedText>
             <AnimatedText
-              style={[
-                styles.buttonText,
-                styles.submitText,
-                submitButtonAnimatedStyles,
-              ]}
+              style={[styles.submitText, submitButtonAnimatedStyles]}
             >
               Cadastrar
             </AnimatedText>

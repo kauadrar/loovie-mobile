@@ -1,10 +1,9 @@
-import { colors } from '@/styles';
 import { FontVariant } from '@/types';
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 const fontFamily: FontVariant = 'Urbanist-Regular';
 
-export const styles = StyleSheet.create({
+export const styles = StyleSheet.create((theme) => ({
   inputContainer: {
     width: '100%',
     gap: 2,
@@ -14,17 +13,17 @@ export const styles = StyleSheet.create({
   },
   errorMessage: {
     fontSize: 14,
-    color: colors.danger,
+    color: theme.colors.danger,
   },
   occultedErrorMessage: {
     position: 'absolute',
     top: 0,
   },
   label: {
-    color: colors.gray1,
+    color: theme.colors.gray1,
     fontSize: 16,
     fontFamily,
     height: 22,
     marginLeft: 6,
   },
-});
+}));

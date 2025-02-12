@@ -1,23 +1,22 @@
-import { colors } from '@/styles';
 import { FontVariant } from '@/types';
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 const fontFamily: FontVariant = 'Urbanist-Regular';
 
-export const styles = StyleSheet.create({
+export const styles = StyleSheet.create((theme) => ({
   inputArea: {
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 14,
     borderWidth: 1,
-    borderColor: colors.gray2,
+    borderColor: theme.colors.gray2,
     padding: 16,
     gap: 10,
-    backgroundColor: colors.background,
+    backgroundColor: theme.colors.background,
   },
   input: {
-    color: colors.white,
+    color: theme.colors.white,
     flex: 1,
     fontSize: 16,
     fontFamily,
@@ -25,4 +24,4 @@ export const styles = StyleSheet.create({
   iconArea: {
     width: 24,
   },
-});
+}));

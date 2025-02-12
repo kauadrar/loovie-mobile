@@ -6,4 +6,5 @@ export const colors = {
   gray2: '#1F1F1F',
   primary: '#9D0208',
   danger: '#A71829',
+  success: '#6CBF6C',
 };

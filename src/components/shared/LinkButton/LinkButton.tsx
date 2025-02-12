@@ -1,8 +1,9 @@
-import { ComponentProps } from 'react';
-import { Button } from '../Button/Button';
 import { Link } from 'expo-router';
+import { ComponentProps } from 'react';
+import { withUnistyles } from 'react-native-unistyles';
+import { Button } from '../Button/Button';
 
-export function LinkButton({
+export const LinkButton = withUnistyles(function LinkButton({
   children,
   style,
   ...props
@@ -12,4 +13,4 @@ export function LinkButton({
       <Button>{children}</Button>
     </Link>
   );
-}
+});

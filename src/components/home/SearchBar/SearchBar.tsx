@@ -68,7 +68,7 @@ export function SearchBar() {
 
   const handlePress = () => {
     setIsExploring(true);
-    setTimeout(() => inputRef?.current?.focus(), 0);
+    setTimeout(() => inputRef?.current?.focus(), 100);
   };
 
   const clearQuery = () => {

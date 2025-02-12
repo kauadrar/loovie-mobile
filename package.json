@@ -61,7 +61,7 @@
     "react-native-safe-area-context": "~5.1.0",
     "react-native-screens": "~4.5.0",
     "react-native-svg": "~15.11.1",
-    "react-native-unistyles": "^3.0.0-beta.6",
+    "react-native-unistyles": "^3.0.0-nightly-20250210",
     "react-native-web": "~0.19.13",
     "use-debounce": "^10.0.3",
     "yup": "^1.4.0"

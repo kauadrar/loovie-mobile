@@ -1,16 +1,13 @@
-import { colors } from '@/styles';
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
-const { width: WIDTH, height: HEIGHT } = Dimensions.get('window');
-
-export const styles = StyleSheet.create({
+export const styles = StyleSheet.create((theme, rt) => ({
   container: {
-    height: HEIGHT,
+    height: rt.screen.height,
     position: 'absolute',
-    width: WIDTH,
-    backgroundColor: `${colors.background}44`,
+    width: rt.screen.width,
+    backgroundColor: `${theme.colors.background}44`,
   },
   touchableArea: {
-    height: HEIGHT,
+    height: rt.screen.height,
   },
-});
+}));

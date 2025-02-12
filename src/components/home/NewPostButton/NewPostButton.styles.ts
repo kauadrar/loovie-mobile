@@ -1,12 +1,11 @@
-import { colors } from '@/styles';
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
-export const styles = StyleSheet.create({
+export const styles = StyleSheet.create((theme) => ({
   mainButton: {
     height: 56,
     width: '100%',
     borderRadius: 100,
-    backgroundColor: colors.gray2,
+    backgroundColor: theme.colors.gray2,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -36,7 +35,7 @@ export const styles = StyleSheet.create({
   button: {
     width: 40,
     height: 40,
-    backgroundColor: colors.gray2,
+    backgroundColor: theme.colors.gray2,
     borderRadius: 100,
     display: 'flex',
     justifyContent: 'center',
@@ -54,7 +53,7 @@ export const styles = StyleSheet.create({
     zIndex: 2,
   },
   label: {
-    color: '#f8f9ff',
+    color: theme.colors.white,
     fontWeight: 500,
   },
-});
+}));

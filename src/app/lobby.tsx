@@ -1,8 +1,8 @@
-import { StyleSheet, View } from 'react-native';
 import { Pair, Text } from '@/components/shared';
-import { LoovieLogo } from '@/components/svgs';
 import { LinkButton } from '@/components/shared/LinkButton/LinkButton';
-import { colors } from '@/styles';
+import { LoovieLogo } from '@/components/svgs';
+import { View } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 export default function Lobby() {
   return (
@@ -17,18 +17,18 @@ export default function Lobby() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: theme.colors.background,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 48,
     gap: 48,
   },
   title: {
-    color: colors.white,
+    color: theme.colors.white,
     fontSize: 24,
     textAlign: 'center',
   },
-});
+}));

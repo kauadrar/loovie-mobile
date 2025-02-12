@@ -9,11 +9,26 @@ const darkTheme = {
     gray2: '#1F1F1F',
     primary: '#9D0208',
     danger: '#A71829',
+    success: '#6CBF6C',
+  },
+};
+
+const lightTheme = {
+  colors: {
+    background: '#FCFCFC',
+    black: '#050505',
+    white: '#FFFFFF',
+    gray1: '#0f0',
+    gray2: '#1F1F1F',
+    primary: '#9D0208',
+    danger: '#A71829',
+    success: '#6CBF6C',
   },
 };
 
 const appThemes = {
   dark: darkTheme,
+  light: lightTheme,
 };
 
 type AppThemes = typeof appThemes;

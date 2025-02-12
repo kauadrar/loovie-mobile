@@ -1,12 +1,11 @@
 import { SignUpForm } from '@/components/sign_up/SignUpForm/SignUpForm';
 import { LoovieLogo } from '@/components/svgs';
 import { signUpRequest } from '@/requests';
-import { colors } from '@/styles';
 import { SignUpParams, SignUpValues } from '@/types';
 import { resetToRoute } from '@/utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { StyleSheet } from 'react-native-unistyles';
 
 export default function SignUp() {
   const queryClient = useQueryClient();
@@ -48,11 +47,11 @@ export default function SignUp() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create((theme) => ({
   container: {
     flexGrow: 1,
     width: '100%',
-    backgroundColor: colors.background,
+    backgroundColor: theme.colors.background,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -60,4 +59,4 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
   },
-});
+}));

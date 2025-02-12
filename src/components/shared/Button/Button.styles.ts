@@ -1,19 +1,19 @@
-import { colors } from '@/styles';
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
-export const styles = StyleSheet.create({
-  button: {
+export const styles = StyleSheet.create((theme) => ({
+  button: (style = {}) => ({
     width: '100%',
     borderWidth: 1,
-    backgroundColor: colors.background,
-    borderColor: colors.gray1,
+    backgroundColor: theme.colors.background,
+    borderColor: theme.colors.gray1,
     padding: 16,
     borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
-  },
+    ...style,
+  }),
   buttonText: {
-    color: colors.gray1,
+    color: theme.colors.gray1,
     fontSize: 16,
   },
-});
+}));

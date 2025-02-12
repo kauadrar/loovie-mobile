@@ -1,9 +1,7 @@
-import { colors } from '@/styles';
-import { Dimensions, Platform, StyleSheet } from 'react-native';
+import { Platform } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
-const { width: WIDTH } = Dimensions.get('window');
-
-export const styles = StyleSheet.create({
+export const styles = StyleSheet.create((theme, rt) => ({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -11,7 +9,7 @@ export const styles = StyleSheet.create({
     gap: 6,
     marginRight: 12,
     paddingRight: 4,
-    width: WIDTH - 68,
+    width: rt.screen.width - 68,
   },
   searchBar: {
     flexDirection: 'row',
@@ -26,12 +24,12 @@ export const styles = StyleSheet.create({
     height: 40,
     display: 'none',
     flex: 1,
-    color: colors.white,
+    color: theme.colors.white,
     paddingLeft: 6,
   },
   autocomplete: {
     position: 'absolute',
-    width: WIDTH,
+    width: rt.screen.width,
     borderBottomRightRadius: 12,
     borderBottomLeftRadius: 12,
   },
@@ -42,8 +40,8 @@ export const styles = StyleSheet.create({
     borderBottomRightRadius: 12,
     borderBottomLeftRadius: 12,
     backgroundColor: Platform.select({
-      android: `${colors.background}F4`,
-      ios: `${colors.background}DD`,
+      android: `${theme.colors.background}F4`,
+      ios: `${theme.colors.background}DD`,
     }),
   },
   autocompleteItem: {
@@ -53,8 +51,8 @@ export const styles = StyleSheet.create({
   },
   separator: {
     height: 1,
-    backgroundColor: colors.gray1,
+    backgroundColor: theme.colors.gray1,
     marginHorizontal: 8,
     marginVertical: 8,
   },
-});
+}));

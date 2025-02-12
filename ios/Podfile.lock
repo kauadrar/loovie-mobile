@@ -2141,7 +2141,7 @@ PODS:
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.17)
   - SocketRocket (0.7.1)
-  - Unistyles (3.0.0-beta.6):
+  - Unistyles (3.0.0-nightly-20250210):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2576,7 +2576,7 @@ SPEC CHECKSUMS:
   SDWebImageAVIFCoder: 00310d246aab3232ce77f1d8f0076f8c4b021d90
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  Unistyles: 6021cdf87eff22ae0fdcbec6287f19505f2657fc
+  Unistyles: 935e9f3f47eea2765f57536ea650bf08070aac5f
   Yoga: 78d74e245ed67bb94275a1316cdc170b9b7fe884
 
 PODFILE CHECKSUM: 3464ecee09944d41a2370b4536a968da1df35f57

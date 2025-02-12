@@ -1,8 +1,8 @@
 import { BackButton } from '@/components/navigation';
 import { useFocusEffect, useNavigation } from 'expo-router';
 import React, { useCallback } from 'react';
-import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { styles } from './Container.styles';
 import { ContainerProps } from './Container.types';
 
 export function Container({
@@ -23,14 +23,8 @@ export function Container({
   );
 
   return (
-    <SafeAreaView edges={safeArea ? ['top'] : []} style={[styles.container]}>
+    <SafeAreaView edges={safeArea ? ['top'] : []} style={styles.container}>
       {children}
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

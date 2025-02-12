@@ -1,8 +1,9 @@
 import { SvgProps } from '@/types';
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
+import { withUnistyles } from 'react-native-unistyles';
 
-export function LoovieLogo({
+export const LoovieLogo = withUnistyles(function LoovieLogo({
   color = '#9D0208',
   size = 219,
   ...props
@@ -23,4 +24,4 @@ export function LoovieLogo({
       />
     </Svg>
   );
-}
+});
