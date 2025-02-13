@@ -13,7 +13,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import * as SystemUI from 'expo-system-ui';
 import { useCallback, useEffect, useState } from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 import 'react-native-gesture-handler';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -23,6 +23,7 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import '../../global.css';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -97,7 +98,7 @@ export default function RootLayout() {
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <ExploreProvider>
-            <GestureHandlerRootView style={styles.container}>
+            <GestureHandlerRootView className="grow bg-background">
               <KeyboardProvider statusBarTranslucent navigationBarTranslucent>
                 <ThemeProvider
                   value={{
@@ -132,10 +133,3 @@ export default function RootLayout() {
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    backgroundColor: colors.background,
-  },
-});

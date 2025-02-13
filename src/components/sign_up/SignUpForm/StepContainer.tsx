@@ -1,16 +1,6 @@
-import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import React, { PropsWithChildren } from 'react';
+import { View } from 'react-native';
 
 export function StepContainer({ children }: PropsWithChildren) {
-  const { width } = useWindowDimensions();
-
-  return <View style={[styles.container, { width }]}>{children}</View>;
+  return <View className="justify-center gap-1 px-4 w-screen">{children}</View>;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    gap: 6,
-    paddingHorizontal: 16,
-  },
-});

@@ -1,4 +1,6 @@
-import { BlurView, BlurViewProps } from 'expo-blur';
+import { BlurView } from '@/components/nativewind';
+import { BlurViewProps } from 'expo-blur';
+import { cssInterop } from 'nativewind';
 import React, { forwardRef, useImperativeHandle } from 'react';
 import { Platform } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
@@ -10,18 +12,18 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { styles } from './BlurBackground.styles';
 import { BlurBackgroundProps, BlurBackgroundRef } from './BlurBackground.types';
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
+const StyledTouchableWithoutFeedback = cssInterop(TouchableWithoutFeedback, {
+  className: 'style',
+});
 
 export const BlurBackground = forwardRef<
   BlurBackgroundRef,
   BlurBackgroundProps
 >(function BlurBackground({ onPress }, ref) {
   const blurIntensity = useSharedValue(0);
-  const { top: topInset } = useSafeAreaInsets();
   const blurViewAnimatedProps = useAnimatedProps<BlurViewProps>(() => ({
     intensity: blurIntensity.value,
   }));
@@ -52,19 +54,13 @@ export const BlurBackground = forwardRef<
         ios: { animatedProps: blurViewAnimatedProps },
         android: { intensity: 15 },
       })}
-      style={[
-        styles.container,
-        { top: 50 + topInset },
-        Platform.OS === 'android' && blurViewAnimatedStyle,
-      ]}
+      className="h-screen w-screen absolute top-[calc(env(safe-area-inset-top)+50px)]"
+      style={Platform.OS === 'android' && blurViewAnimatedStyle}
       experimentalBlurMethod="dimezisBlurView"
       blurReductionFactor={10}
       tint="dark"
     >
-      <TouchableWithoutFeedback
-        onPress={onPress}
-        style={styles.touchableArea}
-      />
+      <StyledTouchableWithoutFeedback onPress={onPress} className="h-screen" />
     </AnimatedBlurView>
   );
 });

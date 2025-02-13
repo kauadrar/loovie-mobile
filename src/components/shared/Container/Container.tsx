@@ -1,7 +1,6 @@
 import { BackButton } from '@/components/navigation';
 import { useFocusEffect, useNavigation } from 'expo-router';
 import React, { useCallback } from 'react';
-import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ContainerProps } from './Container.types';
 
@@ -10,6 +9,7 @@ export function Container({
   children,
   headerLeft,
   headerRight,
+  className,
 }: ContainerProps) {
   const rootNavigation = useNavigation('/(drawer)');
 
@@ -23,14 +23,11 @@ export function Container({
   );
 
   return (
-    <SafeAreaView edges={safeArea ? ['top'] : []} style={[styles.container]}>
+    <SafeAreaView
+      edges={safeArea ? ['top'] : []}
+      className={`flex-1 bg-background ${className}`}
+    >
       {children}
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

@@ -12,14 +12,12 @@ import { AxiosError } from 'axios';
 import { Lock, Mail } from 'lucide-react-native';
 import { useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { TextInput, View } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 import { ScrollView } from 'react-native-gesture-handler';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function Login() {
-  const { top: topInset } = useSafeAreaInsets();
   const { control, handleSubmit } = useForm({
     resolver: yupResolver(loginSchema),
   });
@@ -50,14 +48,17 @@ export default function Login() {
 
   return (
     <ScrollView
-      contentContainerStyle={styles.container}
+      contentContainerClassName="grow w-full"
       keyboardShouldPersistTaps="handled"
     >
-      <View style={styles.content}>
-        <BackButton style={[styles.backButton, { top: topInset }]} />
+      <View className="flex-1 w-full bg-background justify-center items-center px-4 gap-20">
+        <BackButton className="self-start absolute top-0 mt-safe pl-4" />
         <LoovieLogo />
-        <KeyboardAvoidingView style={styles.formArea} behavior="padding">
-          <View style={styles.form}>
+        <KeyboardAvoidingView
+          className="w-full items-center"
+          behavior="padding"
+        >
+          <View className="w-full gap-2">
             <Controller
               control={control}
               render={({
@@ -99,7 +100,7 @@ export default function Login() {
               name="password"
             />
           </View>
-          <Button style={styles.submitButton} onPress={handleSubmit(onSubmit)}>
+          <Button className="mt-14" onPress={handleSubmit(onSubmit)}>
             Entrar
           </Button>
         </KeyboardAvoidingView>
@@ -107,34 +108,3 @@ export default function Login() {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    width: '100%',
-  },
-  content: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: colors.background,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    gap: 60,
-  },
-  formArea: {
-    width: '100%',
-    alignItems: 'center',
-  },
-  form: {
-    width: '100%',
-    gap: 6,
-  },
-  submitButton: {
-    marginTop: 60,
-  },
-  backButton: {
-    alignSelf: 'flex-start',
-    position: 'absolute',
-  },
-});

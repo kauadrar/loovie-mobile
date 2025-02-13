@@ -1,10 +1,10 @@
+import { BlurView } from '@/components/nativewind';
 import { LoovieLogo } from '@/components/svgs';
 import { useExplore } from '@/contexts';
 import { colors } from '@/styles';
-import { BlurView } from 'expo-blur';
 import { Tabs } from 'expo-router/tabs';
 import { Bell, House, Popcorn, User } from 'phosphor-react-native';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function MainLayout() {
@@ -31,15 +31,11 @@ export default function MainLayout() {
         },
         tabBarBackground: () => (
           <BlurView
-            style={[
-              StyleSheet.absoluteFill,
-              {
-                backgroundColor: Platform.select({
-                  android: `${colors.background}F4`,
-                  ios: `${colors.background}DD`,
-                }),
-              },
-            ]}
+            className={Platform.select({
+              ios: 'absolute top-0 left-0 right-0 bottom-0 bg-background/85',
+              android:
+                'absolute top-0 left-0 right-0 bottom-0 bg-background/95',
+            })}
             experimentalBlurMethod="dimezisBlurView"
             blurReductionFactor={40}
             tint="dark"

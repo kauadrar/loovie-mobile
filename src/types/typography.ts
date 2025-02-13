@@ -1,14 +1,14 @@
 export type FontWeight =
-  | 'Thin'
-  | 'ExtraLight'
-  | 'Light'
-  | 'Regular'
-  | 'Medium'
-  | 'SemiBold'
-  | 'Bold'
-  | 'ExtraBold'
-  | 'Black';
+  | 'thin'
+  | 'extralight'
+  | 'light'
+  | 'regular'
+  | 'medium'
+  | 'semibold'
+  | 'bold'
+  | 'extrabold'
+  | 'black';
 
-export type FontFamily = 'Urbanist';
+export type FontFamily = 'urbanist';
 
 export type FontVariant = `${FontFamily}-${FontWeight}`;

@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { StyleProp, TouchableOpacityProps, ViewStyle } from 'react-native';
+import { TouchableOpacityProps } from 'react-native';
 import { InputProps } from '../Input/Input.types';
 
 export type PairComponent = FunctionComponent<PairProps> & {
@@ -8,6 +8,6 @@ export type PairComponent = FunctionComponent<PairProps> & {
 };
 
 export type PairProps = {
-  style?: StyleProp<ViewStyle>;
+  className?: string;
   children: React.ReactNode;
 };

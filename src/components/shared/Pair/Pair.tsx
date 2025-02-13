@@ -1,15 +1,16 @@
 import React, { Children, PropsWithChildren } from 'react';
 import { View } from 'react-native';
-import { styles } from './Pair.styles';
 import { PairProps } from './Pair.types';
 
 function Item({ children }: PropsWithChildren) {
-  return <View style={styles.item}>{children}</View>;
+  return <View className="w-auto flex-1">{children}</View>;
 }
 
-export function Pair({ style, children }: PairProps) {
+export function Pair({ className, children }: PairProps) {
   return (
-    <View style={[styles.pair, style]}>
+    <View
+      className={`w-full gap-2 flex-row justify-center items-start ${className}`}
+    >
       {Children.map(children, (child) => {
         return <Item>{child}</Item>;
       })}

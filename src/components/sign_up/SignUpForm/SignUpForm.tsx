@@ -28,15 +28,12 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SignUpFirstStep } from './SignUpFirstStep';
-import { styles } from './SignUpForm.styles';
 import { SignUpFormProps } from './SignUpForm.types';
 import { SignUpSecondStep } from './SignUpSecondStep';
 import { SignUpThirdStep } from './SignUpThirdStep';
 
 export function SignUpForm({ onSubmit }: SignUpFormProps) {
-  const { top: topInset } = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const listRef = useAnimatedRef<FlatList>();
   const [numberOfSteps, setNumberOfSteps] = useState(1);
@@ -276,10 +273,13 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
   return (
     <>
       <BackButton
-        style={[styles.backButton, { top: topInset }]}
+        className="self-start absolute top-0 mt-safe pl-4"
         onPress={onPressBack}
       />
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+      <KeyboardAvoidingView
+        behavior="padding"
+        className="w-full items-center bg-background"
+      >
         <Animated.FlatList
           onScroll={onScroll}
           ref={listRef}
@@ -287,24 +287,24 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
           renderItem={({ item: { component } }) => component}
           keyboardShouldPersistTaps="handled"
           horizontal
-          style={styles.list}
-          contentContainerStyle={styles.listContainer}
+          className="grow-0"
+          contentContainerClassName="py-14 items-start"
           onViewableItemsChanged={onViewableItemsChanged}
           showsHorizontalScrollIndicator={false}
           pagingEnabled
           onContentSizeChange={onContentSizeChange}
         />
-        <View style={styles.footer}>
+        <View className="w-full px-4">
           <Button onPress={handleButtonPress}>
-            <AnimatedText style={[styles.buttonText, nextButtonAnimatedStyles]}>
+            <AnimatedText
+              className="color-gray-500 text-base"
+              style={nextButtonAnimatedStyles}
+            >
               Próximo
             </AnimatedText>
             <AnimatedText
-              style={[
-                styles.buttonText,
-                styles.submitText,
-                submitButtonAnimatedStyles,
-              ]}
+              className="color-gray-500 text-base absolute justify-center opacity-0"
+              style={submitButtonAnimatedStyles}
             >
               Cadastrar
             </AnimatedText>

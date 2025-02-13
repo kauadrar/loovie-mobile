@@ -1,11 +1,9 @@
 import { SignUpForm } from '@/components/sign_up/SignUpForm/SignUpForm';
 import { LoovieLogo } from '@/components/svgs';
 import { signUpRequest } from '@/requests';
-import { colors } from '@/styles';
 import { SignUpParams, SignUpValues } from '@/types';
 import { resetToRoute } from '@/utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 export default function SignUp() {
@@ -39,7 +37,7 @@ export default function SignUp() {
 
   return (
     <ScrollView
-      contentContainerStyle={styles.container}
+      contentContainerClassName="grow w-full bg-background justify-center items-center"
       keyboardShouldPersistTaps="handled"
     >
       <LoovieLogo />
@@ -47,17 +45,3 @@ export default function SignUp() {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    width: '100%',
-    backgroundColor: colors.background,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  content: {
-    flex: 1,
-    width: '100%',
-  },
-});
