@@ -1,4 +1,5 @@
-import { BlurView, BlurViewProps } from 'expo-blur';
+import { BlurView } from '@/components/nativewind';
+import { BlurViewProps } from 'expo-blur';
 import { cssInterop } from 'nativewind';
 import React, { forwardRef, useImperativeHandle } from 'react';
 import { Platform } from 'react-native';

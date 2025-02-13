@@ -1,12 +1,13 @@
 import { Menu } from '@/components/drawer';
+import { BlurView } from '@/components/nativewind';
 import { colors } from '@/styles';
 import { FontVariant } from '@/types';
 import { Route } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
-import { BlurView } from 'expo-blur';
 import { Redirect } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { BookmarkSimple, Gear, Question } from 'phosphor-react-native';
+import { Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function DrawerLayout() {
@@ -52,7 +53,11 @@ export default function DrawerLayout() {
               blurReductionFactor={40}
               tint="dark"
               intensity={30}
-              className="absolute top-0 left-0 right-0 bottom-0 bg-background"
+              className={Platform.select({
+                ios: 'absolute top-0 left-0 right-0 bottom-0 bg-background/85',
+                android:
+                  'absolute top-0 left-0 right-0 bottom-0 bg-background/95',
+              })}
             />
           ),
         };

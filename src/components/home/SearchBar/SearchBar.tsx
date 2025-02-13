@@ -1,10 +1,10 @@
+import { BlurView } from '@/components/nativewind';
 import { Text } from '@/components/shared';
 import { useExplore } from '@/contexts/Explore/Explore';
 import { getTitlesAutocompleteRequest } from '@/requests/titles';
 import { colors } from '@/styles';
 import { Portal } from '@gorhom/portal';
 import { useQuery } from '@tanstack/react-query';
-import { BlurView } from 'expo-blur';
 import { router, usePathname } from 'expo-router';
 import { cssInterop } from 'nativewind';
 import { Faders, MagnifyingGlass, X } from 'phosphor-react-native';
@@ -18,6 +18,7 @@ import React, {
 import {
   Dimensions,
   ListRenderItem,
+  Platform,
   useWindowDimensions,
   View,
 } from 'react-native';
@@ -66,10 +67,10 @@ export function SearchBar() {
   const autocompleteHeightValue = useMemo(() => {
     const titlesAutocompleteLength = titlesAutocomplete?.length || 0;
     const entireAutocompleteHeight =
-      titlesAutocompleteLength * 25 +
+      titlesAutocompleteLength * 23 +
       (titlesAutocompleteLength - 1) * 17 +
       8 +
-      16;
+      12;
 
     return Math.min(entireAutocompleteHeight, AUTOCOMPLETE_MAX_HEIGHT);
   }, [titlesAutocomplete]);
@@ -182,7 +183,8 @@ export function SearchBar() {
   return (
     <>
       <View
-        className={`flex-row items-center justify-end gap-1 mr-3 pr-1 w-[${WIDTH - 68}px]`}
+        className="flex-row items-center justify-end gap-1 mr-3 pr-1 w-full"
+        style={{ width: WIDTH - 68 }}
       >
         <View
           className={`flex-row items-center justify-end gap-1 ml-1 h-10 flex-1 ${isExploring ? 'border-b border-gray-500' : ''}`}
@@ -224,7 +226,12 @@ export function SearchBar() {
             style={autocompleteAnimatedStyles}
           >
             <BlurView
-              className={`pb-3 pt-2 rounded-b-xl overflow-hidden top-2 h[${autocompleteHeightValue}px]`}
+              className={Platform.select({
+                ios: 'pb-3 pt-2 rounded-b-xl overflow-hidden top-2 bg-background/85',
+                android:
+                  'pb-3 pt-2 rounded-b-xl overflow-hidden top-2 bg-background/95',
+              })}
+              style={{ height: autocompleteHeightValue }}
               experimentalBlurMethod="dimezisBlurView"
               blurReductionFactor={100}
               tint="dark"
