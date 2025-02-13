@@ -13,7 +13,7 @@ export const Button = forwardRef<View, TouchableOpacityProps>(function Button(
       {...props}
     >
       {typeof children === 'string' ? (
-        <Text className="color-gray-500 text-base">{children}</Text>
+        <Text className="text-gray-500 text-base">{children}</Text>
       ) : (
         children
       )}

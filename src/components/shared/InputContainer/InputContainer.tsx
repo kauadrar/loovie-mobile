@@ -58,7 +58,7 @@ export function InputContainer({
           entering={FadeInUp.duration(400)}
           exiting={FadeOutUp.duration(400)}
         >
-          <Text numberOfLines={2} className="text-sm color-danger">
+          <Text numberOfLines={2} className={`text-sm text-danger`}>
             {errorMessage || debouncedErrorMessage}
           </Text>
         </Animated.View>

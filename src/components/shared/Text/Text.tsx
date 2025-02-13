@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import { Text as RNText, TextProps } from 'react-native';
+import { twMerge } from 'tailwind-merge';
 
 export const Text = forwardRef<RNText, TextProps>(function Text(
   { children, className, ...props },
@@ -8,8 +9,8 @@ export const Text = forwardRef<RNText, TextProps>(function Text(
   return (
     <RNText
       ref={ref}
-      className={`color-white font-urbanist-regular ${className}`}
       {...props}
+      className={twMerge('text-white font-urbanist-regular', className)}
     >
       {children}
     </RNText>
