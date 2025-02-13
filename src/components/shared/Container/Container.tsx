@@ -19,7 +19,7 @@ export function Container({
         headerLeft: headerLeft || (() => <BackButton />),
         headerRight: headerRight || (() => null),
       });
-    }, [rootNavigation]),
+    }, [rootNavigation, headerLeft, headerRight]),
   );
 
   return (
