@@ -1,1 +1,1 @@
-export * from './SignUpForm/SignUpFirstStep';
+export * from './SignUpFirstStep';

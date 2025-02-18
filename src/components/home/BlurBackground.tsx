@@ -12,7 +12,15 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { BlurBackgroundProps, BlurBackgroundRef } from './BlurBackground.types';
+
+type BlurBackgroundProps = {
+  onPress: () => void;
+};
+
+export type BlurBackgroundRef = {
+  show: (callback?: () => void) => void;
+  hide: (callback?: () => void) => void;
+};
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 const StyledTouchableWithoutFeedback = cssInterop(TouchableWithoutFeedback, {

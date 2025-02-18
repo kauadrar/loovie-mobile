@@ -1,12 +1,12 @@
 import { colors } from '@/styles';
+import { SignUpFormStep } from '@/types';
 import { signUpSecondStepSchema } from '@/validators';
 import { Ionicons } from '@expo/vector-icons';
 import { Calendar } from 'lucide-react-native';
 import React, { memo } from 'react';
 import { Controller } from 'react-hook-form';
-import { Input, Pair } from '../../shared';
-import { DateInput } from '../../shared/DateInput/DateInput';
-import { SignUpFormStep } from './SignUpForm.types';
+import { Input, Pair } from '../shared';
+import { DateInput } from '../shared/DateInput';
 import { StepContainer } from './StepContainer';
 
 export const SignUpSecondStep = memo(function SignUpSecondStep({

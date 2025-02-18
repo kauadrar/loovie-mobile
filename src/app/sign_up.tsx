@@ -1,4 +1,4 @@
-import { SignUpForm } from '@/components/sign_up/SignUpForm/SignUpForm';
+import { SignUpForm } from '@/components/sign_up/SignUpForm';
 import { LoovieLogo } from '@/components/svgs';
 import { signUpRequest } from '@/requests';
 import { SignUpParams, SignUpValues } from '@/types';

@@ -2,7 +2,7 @@
 
 import { BackButton } from '@/components/navigation';
 import { Button, Text } from '@/components/shared';
-import { SignUpValues } from '@/types';
+import { SignUpFormProps, SignUpValues } from '@/types';
 import {
   signUpFirstStepSchema,
   signUpSecondStepSchema,
@@ -29,7 +29,6 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import { SignUpFirstStep } from './SignUpFirstStep';
-import { SignUpFormProps } from './SignUpForm.types';
 import { SignUpSecondStep } from './SignUpSecondStep';
 import { SignUpThirdStep } from './SignUpThirdStep';
 

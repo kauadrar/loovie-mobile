@@ -2,12 +2,20 @@ import { colors } from '@/styles';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { SquarePen } from 'lucide-react-native';
 import moment from 'moment';
-import { forwardRef, useState } from 'react';
-import { Platform, TextInput, View } from 'react-native';
+import { forwardRef, ReactNode, useState } from 'react';
+import { Platform, TextInput, TextInputProps, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { InputContainer } from '../InputContainer/InputContainer';
-import { DateInputProps } from './DateInput.types';
+import { InputContainer } from './InputContainer';
+
+type DateInputProps = {
+  prefix?: ReactNode;
+  suffix?: ReactNode;
+  errorMessage?: string;
+  label?: string;
+  value?: Date;
+  onChange: (date: Date | undefined) => void;
+} & Omit<TextInputProps, 'value' | 'onChange'>;
 
 const DATE_FORMAT = 'DD/MM/YYYY';
 

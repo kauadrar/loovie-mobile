@@ -4,7 +4,11 @@ import { Image } from 'expo-image';
 import { Text } from '@/components/shared';
 import { cssInterop } from 'nativewind';
 import { TouchableOpacity, View } from 'react-native';
-import { TitleCardProps } from './TitleCard.types';
+
+type TitleCardProps = {
+  name: string;
+  posterPath: string;
+};
 
 const StyledImage = cssInterop(Image, {
   className: 'style',

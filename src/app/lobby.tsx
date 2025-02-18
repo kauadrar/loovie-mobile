@@ -1,5 +1,4 @@
-import { Pair, Text } from '@/components/shared';
-import { LinkButton } from '@/components/shared/LinkButton/LinkButton';
+import { LinkButton, Pair, Text } from '@/components/shared';
 import { LoovieLogo } from '@/components/svgs';
 import { View } from 'react-native';
 

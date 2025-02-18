@@ -1,8 +1,17 @@
 import { BackButton } from '@/components/navigation';
+import { HeaderOptions } from '@react-navigation/elements';
 import { useFocusEffect, useNavigation } from 'expo-router';
 import React, { useCallback } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { ContainerProps } from './Container.types';
+import {
+  SafeAreaView,
+  SafeAreaViewProps,
+} from 'react-native-safe-area-context';
+
+type ContainerProps = {
+  safeArea?: boolean;
+  headerLeft?: HeaderOptions['headerLeft'];
+  headerRight?: HeaderOptions['headerRight'];
+} & SafeAreaViewProps;
 
 export function Container({
   safeArea,

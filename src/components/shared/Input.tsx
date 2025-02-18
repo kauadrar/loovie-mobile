@@ -1,9 +1,21 @@
 import { colors } from '@/styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { forwardRef, useState } from 'react';
-import { TextInput, TouchableOpacity, View } from 'react-native';
-import { InputContainer } from '../InputContainer/InputContainer';
-import { InputProps } from './Input.types';
+import { forwardRef, ReactNode, useState } from 'react';
+import {
+  TextInput,
+  TextInputProps,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { InputContainer } from './InputContainer';
+
+export type InputProps = {
+  prefix?: ReactNode;
+  suffix?: ReactNode;
+  type?: 'text' | 'password' | 'area';
+  errorMessage?: string;
+  label?: string;
+} & TextInputProps;
 
 export const Input = forwardRef<TextInput, InputProps>(function Input(
   {

@@ -1,12 +1,12 @@
 import { colors } from '@/styles';
+import { SignUpFormStep } from '@/types';
 import { signUpFirstStepSchema } from '@/validators';
 import { debounce } from 'lodash';
 import { CheckCircle, Mail, User, XCircle } from 'lucide-react-native';
 import { memo, useCallback } from 'react';
 import { Controller, FieldError } from 'react-hook-form';
 import { ActivityIndicator } from 'react-native';
-import { Input } from '../../shared';
-import { SignUpFormStep } from './SignUpForm.types';
+import { Input } from '../shared';
 import { StepContainer } from './StepContainer';
 
 export const SignUpFirstStep = memo(function SignUpFirstStep({

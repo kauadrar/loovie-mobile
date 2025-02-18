@@ -35,8 +35,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useDebounce } from 'use-debounce';
-import { BlurBackground } from '../BlurBackground/BlurBackground';
-import { BlurBackgroundRef } from '../BlurBackground/BlurBackground.types';
+import { BlurBackground, BlurBackgroundRef } from './BlurBackground';
 
 const { height: HEIGHT } = Dimensions.get('window');
 const AUTOCOMPLETE_MAX_HEIGHT = HEIGHT * 0.55;

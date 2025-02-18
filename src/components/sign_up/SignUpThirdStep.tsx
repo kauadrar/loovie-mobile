@@ -1,11 +1,11 @@
-import { Input } from '../../shared';
-import { Controller } from 'react-hook-form';
 import { colors } from '@/styles';
-import { Lock, LockOpen } from 'lucide-react-native';
-import { StepContainer } from './StepContainer';
+import { SignUpFormStep } from '@/types';
 import { signUpThirdStepSchema } from '@/validators';
-import { SignUpFormStep } from './SignUpForm.types';
+import { Lock, LockOpen } from 'lucide-react-native';
 import { memo } from 'react';
+import { Controller } from 'react-hook-form';
+import { Input } from '../shared';
+import { StepContainer } from './StepContainer';
 
 export const SignUpThirdStep = memo(function SignUpThirdStep({
   form,

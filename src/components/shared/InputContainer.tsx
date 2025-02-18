@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { View } from 'react-native';
 import Animated, {
   FadeInUp,
@@ -9,8 +9,15 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useDebounce } from 'use-debounce';
-import { Text } from '../Text/Text';
-import { InputContainerProps } from './InputContainer.types';
+import { Text } from './Text';
+
+export type InputContainerProps = {
+  label?: string;
+  errorMessage?: string;
+  value?: string | Date;
+  children: ReactNode;
+  disablePlaceholderAnimation?: boolean;
+};
 
 export function InputContainer({
   label,

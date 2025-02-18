@@ -1,2 +1,2 @@
-export * from './BackButton/BackButton';
-export * from './DrawerToggleButton/DrawerToggleButton';
+export * from './BackButton';
+export * from './DrawerToggleButton';

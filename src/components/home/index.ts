@@ -1,2 +1,2 @@
-export * from './NewPostButton/NewPostButton';
-export * from './SearchBar/SearchBar';
+export * from './NewPostButton';
+export * from './SearchBar';

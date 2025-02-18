@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
-import { Text } from '../Text/Text';
+import { Text } from './Text';
 
 export const Button = forwardRef<View, TouchableOpacityProps>(function Button(
   { children, style, className, ...props },
