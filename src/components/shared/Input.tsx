@@ -12,7 +12,7 @@ import { InputContainer } from './InputContainer';
 export type InputProps = {
   prefix?: ReactNode;
   suffix?: ReactNode;
-  type?: 'text' | 'password' | 'area';
+  type?: 'text' | 'password';
   errorMessage?: string;
   label?: string;
 } & TextInputProps;
@@ -51,7 +51,6 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
           className="color-white flex-1 text-base font-urbanist-regular align-middle leading-[16px]"
           value={value}
           {...props}
-          multiline={type === 'area'}
           secureTextEntry={isInputPassword && !isPasswordVisible}
         />
         {(isInputPassword || suffix) && (
