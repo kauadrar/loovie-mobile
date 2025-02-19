@@ -25,7 +25,7 @@ export function InputContainer({
   value,
   children,
 }: InputContainerProps) {
-  const labelOpacity = useSharedValue(1);
+  const labelOpacity = useSharedValue(0);
   const AnimatedText = Animated.createAnimatedComponent(Text);
   const [debouncedErrorMessage] = useDebounce(errorMessage, 500);
   const labelAnimatedStyles = useAnimatedStyle(() => {
@@ -50,8 +50,8 @@ export function InputContainer({
     >
       {label && (
         <AnimatedText
-          style={labelAnimatedStyles}
           className="color-gray-500 text-base h-6 ml-1"
+          style={labelAnimatedStyles}
         >
           {label}
         </AnimatedText>
