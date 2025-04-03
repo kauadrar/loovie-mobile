@@ -1,5 +1,6 @@
 import { Text } from '@/components/shared';
 import { colors } from '@/styles';
+import { router } from 'expo-router';
 import {
   Article,
   NewspaperClipping,
@@ -39,6 +40,7 @@ type FloatingActionButtonProps = {
   index: number;
   icon: ReactNode;
   label: string;
+  onPress?: () => void;
 };
 
 const FloatingActionButton = ({
@@ -46,6 +48,7 @@ const FloatingActionButton = ({
   index,
   icon,
   label,
+  onPress,
 }: FloatingActionButtonProps) => {
   const animatedStyles = useAnimatedStyle(() => {
     const moveValue = isExpanded.value ? OFFSET * index : 0;
@@ -68,7 +71,7 @@ const FloatingActionButton = ({
     <Animated.View style={animatedStyles} className="absolute right-0">
       <AnimatedTouchableOpacity
         className="h-10 rounded-full justify-end items-center -z-10 flex-row gap-1"
-        onPress={() => {}}
+        onPress={onPress}
       >
         <AnimatedText className="font-urbanist-medium">{label}</AnimatedText>
         <Animated.View className="w-10 h-10 bg-gray-800 rounded-full justify-center items-center bottom-0 -z-10">
@@ -146,6 +149,7 @@ export function NewPostButton() {
           index={1}
           label="Post"
           icon={<NotePencil color={colors.white} />}
+          onPress={() => router.navigate('/new_post')}
         />
         <FloatingActionButton
           isExpanded={isExpanded}
