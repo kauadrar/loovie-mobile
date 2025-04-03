@@ -7,6 +7,7 @@
     "icon": "./src/assets/images/icon.png",
     "scheme": "loovie",
     "userInterfaceStyle": "automatic",
+    "newArchitecture": true,
     "backgroundColor": "#0F0C0C",
     "ios": {
       "supportsTablet": true,
@@ -53,7 +54,8 @@
           "image": "./src/assets/images/splash-icon.png",
           "imageWidth": 200
         }
-      ]
+      ],
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
