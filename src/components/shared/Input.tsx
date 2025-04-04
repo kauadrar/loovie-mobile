@@ -42,7 +42,7 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
   return (
     <InputContainer label={label} errorMessage={errorMessage} value={value}>
       <View className="w-full flex-row items-center rounded-2xl border border-gray-800 p-4 gap-2 bg-background">
-        {prefix && <View className="w-6">{prefix}</View>}
+        {prefix && <View className="w-7">{prefix}</View>}
         <TextInput
           ref={ref}
           autoCapitalize="none"
@@ -54,7 +54,7 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
           secureTextEntry={isInputPassword && !isPasswordVisible}
         />
         {(isInputPassword || suffix) && (
-          <View className="w-6">
+          <View className="w-7">
             {isInputPassword ? (
               <TouchableOpacity onPress={togglePasswordVisibility}>
                 <MaterialCommunityIcons

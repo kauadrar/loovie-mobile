@@ -98,7 +98,7 @@ export const DateInput = forwardRef<TextInput, DateInputProps>(
         >
           <TouchableOpacity onPress={showDateTimePicker}>
             <View className="w-full flex-row items-center rounded-2xl border border-gray-800 p-4 gap-2 bg-background">
-              {prefix && <View className="w-6">{prefix}</View>}
+              {prefix && <View className="w-7">{prefix}</View>}
               <TextInput
                 placeholder={placeholder}
                 placeholderTextColor={colors.gray1}
@@ -110,7 +110,7 @@ export const DateInput = forwardRef<TextInput, DateInputProps>(
                 value={inputValue}
                 {...props}
               />
-              <View className="w-6">
+              <View className="w-7">
                 {suffix || (
                   <TouchableOpacity
                     className="w-6"
