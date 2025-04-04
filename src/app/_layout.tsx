@@ -7,13 +7,11 @@ import { DarkTheme, ThemeProvider } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import 'expo-dev-client';
 import * as Font from 'expo-font';
-import * as NavigationBar from 'expo-navigation-bar';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
 import * as SystemUI from 'expo-system-ui';
 import { useCallback, useEffect, useState } from 'react';
-import { Platform } from 'react-native';
+import { SystemBars } from 'react-native-edge-to-edge';
 import FlashMessage from 'react-native-flash-message';
 import 'react-native-gesture-handler';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -52,11 +50,6 @@ export default function RootLayout() {
   useEffect(() => {
     async function prepare() {
       try {
-        if (Platform.OS === 'android') {
-          await NavigationBar.setPositionAsync('absolute');
-          await NavigationBar.setBackgroundColorAsync('#ffffff00');
-        }
-
         await Font.loadAsync({
           'Urbanist-Thin': require('../assets/fonts/Urbanist-Thin.ttf'),
           'Urbanist-ExtraLight': require('../assets/fonts/Urbanist-ExtraLight.ttf'),
@@ -72,7 +65,7 @@ export default function RootLayout() {
         queryClient.setQueryDefaults(['me'], {
           queryFn: meRequest,
         });
-        await queryClient.fetchQuery({ queryKey: ['me'] });
+        await queryClient.fetchQuery({ queryKey: ['me'], queryFn: meRequest });
       } catch (e) {
         console.warn(e);
       } finally {
@@ -110,7 +103,7 @@ export default function RootLayout() {
                   }}
                 >
                   <PortalProvider>
-                    <StatusBar style="light" />
+                    <SystemBars style="light" />
                     <FlashMessage
                       position="top"
                       titleStyle={{ fontFamily: 'Urbanist-Medium' }}
