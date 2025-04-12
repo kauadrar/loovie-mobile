@@ -92,7 +92,7 @@ export default function RootLayout() {
         <AuthProvider>
           <ExploreProvider>
             <GestureHandlerRootView className="grow bg-background">
-              <KeyboardProvider statusBarTranslucent navigationBarTranslucent>
+              <KeyboardProvider>
                 <ThemeProvider
                   value={{
                     ...DarkTheme,

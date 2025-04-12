@@ -7,7 +7,6 @@
     "icon": "./src/assets/images/icon.png",
     "scheme": "loovie",
     "userInterfaceStyle": "automatic",
-    "newArchitecture": true,
     "backgroundColor": "#0F0C0C",
     "ios": {
       "supportsTablet": true,
@@ -55,7 +54,6 @@
           "imageWidth": 200
         }
       ],
-      "expo-web-browser",
       [
         "react-native-edge-to-edge",
         {
