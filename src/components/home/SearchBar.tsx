@@ -38,7 +38,7 @@ import { useDebounce } from 'use-debounce';
 import { BlurBackground, BlurBackgroundRef } from './BlurBackground';
 
 const { height: HEIGHT } = Dimensions.get('window');
-const AUTOCOMPLETE_MAX_HEIGHT = HEIGHT * 0.55;
+const AUTOCOMPLETE_MAX_HEIGHT = HEIGHT * 0.6;
 
 const StyledTouchableOpacity = cssInterop(TouchableOpacity, {
   className: 'style',
