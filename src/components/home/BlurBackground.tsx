@@ -1,12 +1,10 @@
 import { BlurView } from '@/components/nativewind';
 import { BlurViewProps } from 'expo-blur';
 import React, { forwardRef, useImperativeHandle } from 'react';
-import { Platform, TouchableWithoutFeedback, View } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 import Animated, {
-  interpolate,
   runOnJS,
   useAnimatedProps,
-  useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
@@ -30,9 +28,6 @@ export const BlurBackground = forwardRef<
   const blurViewAnimatedProps = useAnimatedProps<BlurViewProps>(() => ({
     intensity: blurIntensity.value,
   }));
-  const blurViewAnimatedStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(blurIntensity.value, [0, 15], [0, 1]),
-  }));
 
   const show = (callback?: () => void) => {
     blurIntensity.value = withTiming(15, { duration: 600 }, () => {
@@ -53,12 +48,9 @@ export const BlurBackground = forwardRef<
 
   return (
     <AnimatedBlurView
-      {...Platform.select({
-        ios: { animatedProps: blurViewAnimatedProps },
-        android: { intensity: 15 },
-      })}
+      animatedProps={blurViewAnimatedProps}
+      intensity={15}
       className="h-screen w-screen absolute top-[calc(env(safe-area-inset-top)+50px)]"
-      style={Platform.OS === 'android' && blurViewAnimatedStyle}
       experimentalBlurMethod="dimezisBlurView"
       blurReductionFactor={10}
       tint="dark"
