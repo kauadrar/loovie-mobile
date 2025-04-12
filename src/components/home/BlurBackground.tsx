@@ -1,9 +1,7 @@
 import { BlurView } from '@/components/nativewind';
 import { BlurViewProps } from 'expo-blur';
-import { cssInterop } from 'nativewind';
 import React, { forwardRef, useImperativeHandle } from 'react';
-import { Platform } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { Platform, TouchableWithoutFeedback, View } from 'react-native';
 import Animated, {
   interpolate,
   runOnJS,
@@ -23,9 +21,6 @@ export type BlurBackgroundRef = {
 };
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
-const StyledTouchableWithoutFeedback = cssInterop(TouchableWithoutFeedback, {
-  className: 'style',
-});
 
 export const BlurBackground = forwardRef<
   BlurBackgroundRef,
@@ -68,7 +63,9 @@ export const BlurBackground = forwardRef<
       blurReductionFactor={10}
       tint="dark"
     >
-      <StyledTouchableWithoutFeedback onPress={onPress} className="h-screen" />
+      <TouchableWithoutFeedback onPress={onPress}>
+        <View className="h-screen w-screen" />
+      </TouchableWithoutFeedback>
     </AnimatedBlurView>
   );
 });
