@@ -5,6 +5,7 @@
       "name": "loovie",
       "dependencies": {
         "@expo/vector-icons": "^14.0.2",
+        "@gorhom/bottom-sheet": "^5.1.2",
         "@gorhom/portal": "^1.0.14",
         "@hookform/resolvers": "^3.9.0",
         "@react-native-community/datetimepicker": "8.2.0",
@@ -38,7 +39,7 @@
         "react-native": "~0.77.0",
         "react-native-edge-to-edge": "^1.5.1",
         "react-native-flash-message": "^0.4.2",
-        "react-native-gesture-handler": "~2.22.0",
+        "react-native-gesture-handler": "~2.20.2",
         "react-native-keyboard-controller": "^1.13.4",
         "react-native-modal-datetime-picker": "^18.0.0",
         "react-native-reanimated": "^3.17.3",
@@ -411,6 +412,8 @@
     "@expo/ws-tunnel": ["@expo/ws-tunnel@1.0.6", "", {}, "sha512-nDRbLmSrJar7abvUjp3smDwH8HcbZcoOEa5jVPUv9/9CajgmWw20JNRwTuBRzWIWIkEJDkz20GoNA+tSwUqk0Q=="],
 
     "@expo/xcpretty": ["@expo/xcpretty@4.3.2", "", { "dependencies": { "@babel/code-frame": "7.10.4", "chalk": "^4.1.0", "find-up": "^5.0.0", "js-yaml": "^4.1.0" }, "bin": { "excpretty": "build/cli.js" } }, "sha512-ReZxZ8pdnoI3tP/dNnJdnmAk7uLT4FjsKDGW7YeDdvdOMz2XCQSmSCM9IWlrXuWtMF9zeSB6WJtEhCQ41gQOfw=="],
+
+    "@gorhom/bottom-sheet": ["@gorhom/bottom-sheet@5.1.2", "", { "dependencies": { "@gorhom/portal": "1.0.14", "invariant": "^2.2.4" }, "peerDependencies": { "@types/react": "*", "@types/react-native": "*", "react": "*", "react-native": "*", "react-native-gesture-handler": ">=2.16.1", "react-native-reanimated": ">=3.16.0" }, "optionalPeers": ["@types/react", "@types/react-native"] }, "sha512-5np8oL2krqAsVKLRE4YmtkZkyZeFiitoki72bEpVhZb8SRTNuAEeSbP3noq5srKpcRsboCr7uI+xmMyrWUd9kw=="],
 
     "@gorhom/portal": ["@gorhom/portal@1.0.14", "", { "dependencies": { "nanoid": "^3.3.1" }, "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-MXyL4xvCjmgaORr/rtryDNFy3kU4qUbKlwtQqqsygd0xX3mhKjOLn6mQK8wfu0RkoE0pBE0nAasRoHua+/QZ7A=="],
 
@@ -1998,7 +2001,7 @@
 
     "react-native-flash-message": ["react-native-flash-message@0.4.2", "", { "dependencies": { "prop-types": "^15.8.1", "react-native-iphone-screen-helper": "^2.0.2" }, "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-YvdXRW9AGMTI99S3DJZhLO0mbk/ehKv/UQf4/Df+3dtGi8DlkidRbyqCQZk1WMtZ7rN85PMTGr/xEI9CF9z0YA=="],
 
-    "react-native-gesture-handler": ["react-native-gesture-handler@2.22.1", "", { "dependencies": { "@egjs/hammerjs": "^2.0.17", "hoist-non-react-statics": "^3.3.0", "invariant": "^2.2.4" }, "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-E0C9D+Ia2UZYevoSV9rTKjhFWEVdR/3l4Z3TUoQrI/wewgzDlmJOrYvGW5aMlPUuQF2vHQOdFfAWhVEqFu4tWw=="],
+    "react-native-gesture-handler": ["react-native-gesture-handler@2.20.2", "", { "dependencies": { "@egjs/hammerjs": "^2.0.17", "hoist-non-react-statics": "^3.3.0", "invariant": "^2.2.4", "prop-types": "^15.7.2" }, "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-HqzFpFczV4qCnwKlvSAvpzEXisL+Z9fsR08YV5LfJDkzuArMhBu2sOoSPUF/K62PCoAb+ObGlTC83TKHfUd0vg=="],
 
     "react-native-helmet-async": ["react-native-helmet-async@2.0.4", "", { "dependencies": { "invariant": "^2.2.4", "react-fast-compare": "^3.2.2", "shallowequal": "^1.1.0" }, "peerDependencies": { "react": "^16.6.0 || ^17.0.0 || ^18.0.0" } }, "sha512-m3CkXWss6B1dd6mCMleLpzDCJJGGaHOLQsUzZv8kAASJmMfmVT4d2fx375iXKTRWT25ThBfae3dECuX5cq/8hg=="],
 
