@@ -2,6 +2,7 @@ import { AuthProvider } from '@/contexts';
 import { ExploreProvider } from '@/contexts/Explore/Explore';
 import { meRequest } from '@/requests';
 import { colors } from '@/styles';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { PortalProvider } from '@gorhom/portal';
 import { DarkTheme, ThemeProvider } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -92,33 +93,35 @@ export default function RootLayout() {
         <AuthProvider>
           <ExploreProvider>
             <GestureHandlerRootView className="grow bg-background">
-              <KeyboardProvider>
-                <ThemeProvider
-                  value={{
-                    ...DarkTheme,
-                    colors: {
-                      ...DarkTheme.colors,
-                      background: colors.background,
-                    },
-                  }}
-                >
-                  <PortalProvider>
-                    <SystemBars style="light" />
-                    <FlashMessage
-                      position="top"
-                      titleStyle={{ fontFamily: 'Urbanist-Medium' }}
-                      statusBarHeight={topInset}
-                    />
-                    <Stack
-                      screenOptions={{
-                        headerShown: false,
-                        navigationBarTranslucent: true,
-                        navigationBarColor: '#ffffff00',
-                      }}
-                    />
-                  </PortalProvider>
-                </ThemeProvider>
-              </KeyboardProvider>
+              <BottomSheetModalProvider>
+                <KeyboardProvider>
+                  <ThemeProvider
+                    value={{
+                      ...DarkTheme,
+                      colors: {
+                        ...DarkTheme.colors,
+                        background: colors.background,
+                      },
+                    }}
+                  >
+                    <PortalProvider>
+                      <SystemBars style="light" />
+                      <FlashMessage
+                        position="top"
+                        titleStyle={{ fontFamily: 'Urbanist-Medium' }}
+                        statusBarHeight={topInset}
+                      />
+                      <Stack
+                        screenOptions={{
+                          headerShown: false,
+                          navigationBarTranslucent: true,
+                          navigationBarColor: '#ffffff00',
+                        }}
+                      />
+                    </PortalProvider>
+                  </ThemeProvider>
+                </KeyboardProvider>
+              </BottomSheetModalProvider>
             </GestureHandlerRootView>
           </ExploreProvider>
         </AuthProvider>
