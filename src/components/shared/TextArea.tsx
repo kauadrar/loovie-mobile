@@ -23,7 +23,7 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(function Input(
           autoCapitalize="none"
           placeholder={placeholder}
           placeholderTextColor={colors.gray1}
-          className="color-white flex-1 text-base font-urbanist-regular align-middle leading-[16px] h-full"
+          className="color-white flex-1 text-base font-urbanist-regular align-top leading-[16px] h-full"
           value={value}
           {...props}
           multiline
