@@ -1,6 +1,7 @@
 import { BackButton } from '@/components/navigation';
 import { HeaderOptions } from '@react-navigation/elements';
-import { useFocusEffect, useNavigation } from 'expo-router';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { useFocusEffect } from 'expo-router';
 import React, { useCallback } from 'react';
 import {
   SafeAreaView,
@@ -20,11 +21,14 @@ export function Container({
   headerRight,
   className,
 }: ContainerProps) {
-  const rootNavigation = useNavigation('/(drawer)');
+  const rootNavigation =
+    useNavigation<NavigationProp<object, never, '/(drawer)'>>().getParent(
+      '/(drawer)',
+    );
 
   useFocusEffect(
     useCallback(() => {
-      rootNavigation.setOptions({
+      rootNavigation?.setOptions({
         headerLeft: headerLeft || (() => <BackButton />),
         headerRight: headerRight || (() => null),
       });
