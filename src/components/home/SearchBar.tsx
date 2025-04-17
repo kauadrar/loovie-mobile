@@ -17,16 +17,13 @@ import React, {
 } from 'react';
 import {
   Dimensions,
+  FlatList,
   ListRenderItem,
   Platform,
   useWindowDimensions,
   View,
 } from 'react-native';
-import {
-  FlatList,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import Animated, {
   interpolate,
   runOnJS,
