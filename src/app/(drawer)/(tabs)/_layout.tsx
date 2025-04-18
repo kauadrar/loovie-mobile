@@ -1,5 +1,5 @@
+import { LoovieLogo } from '@/components/icons';
 import { BlurView } from '@/components/nativewind';
-import { LoovieLogo } from '@/components/svgs';
 import { useExplore } from '@/contexts';
 import { colors } from '@/styles';
 import { Tabs } from 'expo-router/tabs';

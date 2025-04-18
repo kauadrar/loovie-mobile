@@ -1,4 +1,4 @@
-import { LoovieFilmStrip, LooviePlay } from '@/components/svgs';
+import { LoovieFilmStrip, LooviePlay } from '@/components/icons';
 import { useEffect } from 'react';
 import { View } from 'react-native';
 import Animated, {

@@ -1,6 +1,6 @@
+import { LoovieLogo } from '@/components/icons';
 import { BackButton } from '@/components/navigation';
 import { Button, Input } from '@/components/shared';
-import { LoovieLogo } from '@/components/svgs';
 import { loginRequest } from '@/requests';
 import { colors } from '@/styles';
 import { LoginParams } from '@/types';

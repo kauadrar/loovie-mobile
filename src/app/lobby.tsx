@@ -1,5 +1,5 @@
+import { LoovieLogo } from '@/components/icons';
 import { LinkButton, Pair, Text } from '@/components/shared';
-import { LoovieLogo } from '@/components/svgs';
 import { View } from 'react-native';
 
 export default function Lobby() {

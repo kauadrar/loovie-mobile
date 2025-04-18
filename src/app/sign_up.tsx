@@ -1,5 +1,5 @@
+import { LoovieLogo } from '@/components/icons';
 import { SignUpForm } from '@/components/sign_up/SignUpForm';
-import { LoovieLogo } from '@/components/svgs';
 import { signUpRequest } from '@/requests';
 import { SignUpParams, SignUpValues } from '@/types';
 import { resetToRoute } from '@/utils';
