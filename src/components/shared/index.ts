@@ -8,3 +8,4 @@ export * from './Loading';
 export * from './Pair';
 export * from './Text';
 export * from './TextArea';
+export * from './TooltipButton';
