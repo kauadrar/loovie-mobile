@@ -1,6 +1,6 @@
 import { Text } from '@/components/shared';
 import { colors } from '@/styles';
-import { router } from 'expo-router';
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import {
   Article,
   NewspaperClipping,
@@ -8,7 +8,7 @@ import {
   Plus,
   Star,
 } from 'phosphor-react-native';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useRef } from 'react';
 import { Pressable, TouchableOpacity, View, ViewProps } from 'react-native';
 import Animated, {
   SharedValue,
@@ -19,6 +19,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
+import { NewPostModal } from '../post/NewPostModal';
 
 const AnimatedTouchableOpacity =
   Animated.createAnimatedComponent(TouchableOpacity);
@@ -84,8 +85,9 @@ const FloatingActionButton = ({
 
 export function NewPostButton() {
   const isExpanded = useSharedValue(false);
+  const newPostModalRef = useRef<BottomSheetModal>(null);
 
-  const handlePress = () => {
+  const toggleExpansion = () => {
     isExpanded.value = !isExpanded.value;
   };
 
@@ -121,16 +123,21 @@ export function NewPostButton() {
     };
   });
 
+  const openNewPostModal = () => {
+    toggleExpansion();
+    newPostModalRef.current?.present();
+  };
+
   return (
     <>
       <AnimatedPressable
         animatedProps={pressableAnimatedProps}
         className="absolute flex-1 w-full h-full"
-        onPress={handlePress}
+        onPress={toggleExpansion}
       />
       <View className="absolute items-center bottom-safe-offset-24 right-5 z-10">
         <AnimatedTouchableOpacity
-          onPress={handlePress}
+          onPress={toggleExpansion}
           className="h-16 w-14 rounded-full bg-gray-800 justify-center items-center flex-row gap-2 z-10"
           style={buttonStyle}
         >
@@ -149,7 +156,7 @@ export function NewPostButton() {
           index={1}
           label="Post"
           icon={<NotePencil color={colors.white} />}
-          onPress={() => router.navigate('/new_post')}
+          onPress={openNewPostModal}
         />
         <FloatingActionButton
           isExpanded={isExpanded}
@@ -170,6 +177,7 @@ export function NewPostButton() {
           icon={<NewspaperClipping color={colors.white} />}
         />
       </View>
+      <NewPostModal ref={newPostModalRef} />
     </>
   );
 }
