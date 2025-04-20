@@ -19,7 +19,7 @@ const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
 function Backdrop({ animatedIndex, ...props }: BottomSheetBackdropProps) {
   const blurViewAnimatedProps = useAnimatedProps<BlurViewProps>(() => {
-    return { intensity: interpolate(animatedIndex.value, [-1, 0], [0, 20]) };
+    return { intensity: interpolate(animatedIndex.value, [-1, 0], [0, 10]) };
   });
 
   return (

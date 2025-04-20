@@ -2,7 +2,7 @@ import { colors } from '@/styles';
 import { postSchema } from '@/validators';
 import { BottomSheetView } from '@gorhom/bottom-sheet';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { CalendarClock, Camera, Images } from 'lucide-react-native';
+import { CalendarClock, Camera, Images, TicketPlus } from 'lucide-react-native';
 import React, {
   forwardRef,
   useCallback,
@@ -37,6 +37,10 @@ const options = [
   {
     Icon: CalendarClock,
     label: 'Schedule your post',
+  },
+  {
+    Icon: TicketPlus,
+    label: 'Add tag',
   },
 ];
 

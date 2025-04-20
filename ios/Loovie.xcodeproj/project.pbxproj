@@ -7,47 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D5D6DAB4F89F0322C6C5261 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720FDCDB68997F1931D3F42D /* ExpoModulesProvider.swift */; };
+		1156706AF23249A7B061FDA6 /* Urbanist-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CFB11FE9F9642F9979EEA27 /* Urbanist-Thin.ttf */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		14503E3C518544EB87679982 /* Urbanist-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7725A30101C941FB9CC56AD0 /* Urbanist-Medium.ttf */; };
+		3A2B7AC09964413EB07809E2 /* Urbanist-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1597205BAB874973B5419F35 /* Urbanist-Light.ttf */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		45801A7092C71195463EDF41 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A23B03305E869351B94DC1BC /* PrivacyInfo.xcprivacy */; };
-		4D7FCD189629474C8B9C31A1 /* Urbanist-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 777A0A2B76574D7A8088F6DB /* Urbanist-Regular.ttf */; };
-		526AE4138D7644F1BE5276C0 /* Urbanist-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B4C49DF3530445C999F7ED8 /* Urbanist-Thin.ttf */; };
-		74DFF59E3654476196F86F5B /* Urbanist-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF1398A1FE4E47DA8EEA1CE3 /* Urbanist-Light.ttf */; };
-		752244DC1E444261A319B4D9 /* Urbanist-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 277D2F33304C4854BD4A1480 /* Urbanist-SemiBold.ttf */; };
-		A37BCA5A5036486FBCC9A3D8 /* Urbanist-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E9192FF00BC46E6BF964281 /* Urbanist-ExtraBold.ttf */; };
-		A6E63EB44BD443FCBCF91B77 /* Urbanist-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E2848954FAB4C5DA0BC3494 /* Urbanist-Bold.ttf */; };
-		B05420E0138146D2A125F814 /* Urbanist-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 931CF20271654E2F8204D9C4 /* Urbanist-ExtraLight.ttf */; };
-		B4BCA7F0903849C98DE4F4F3 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B9411302A631386B3FA5F0 /* ExpoModulesProvider.swift */; };
+		734E11FD68D38C425AEAA6B6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A427CBFFA534C639FAE58CE3 /* PrivacyInfo.xcprivacy */; };
+		7665026776CC4B5E9E321534 /* Urbanist-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5000227333154A0EB969C7C1 /* Urbanist-Regular.ttf */; };
+		7994822C26C04D25816AEAAF /* Urbanist-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E3F27CD124444A587DA0A38 /* Urbanist-ExtraLight.ttf */; };
+		7E7522B6811B4C30BC652F9E /* Urbanist-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4120FDC92F24CAAAC51812C /* Urbanist-Black.ttf */; };
+		849BAD8BF30C48A9A183023E /* Urbanist-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EEBD00FA5017477B8E521283 /* Urbanist-ExtraBold.ttf */; };
+		8BFDEC0DB81F409E93DCA12A /* Urbanist-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1B541D064FB4CAEB2DBADA9 /* Urbanist-SemiBold.ttf */; };
+		995906F87C9F4E7EAB6C43DE /* Urbanist-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD6D3D6C088F4A1B9483D418 /* Urbanist-Medium.ttf */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		BF2F9549F706972829DFC1E9 /* Pods_Loovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358661F19C1779174E3AA8C6 /* Pods_Loovie.framework */; };
+		DEEA34A4B39D49C6BC10E7B6 /* Urbanist-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42B5EFC203554AEE8C25444D /* Urbanist-Bold.ttf */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
-		F4485B99AE774C04BAB1B1B4 /* Urbanist-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BAD83A020F64517BCCD3EBF /* Urbanist-Black.ttf */; };
-		FA0E18148B025F5EF23E3822 /* libPods-Loovie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1840DBE0ABFB60A5BDFE4E2C /* libPods-Loovie.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		13B07F961A680F5B00A75B9A /* Loovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Loovie/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Loovie/Info.plist; sourceTree = "<group>"; };
-		1840DBE0ABFB60A5BDFE4E2C /* libPods-Loovie.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Loovie.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		277D2F33304C4854BD4A1480 /* Urbanist-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-SemiBold.ttf"; path = "../src/assets/fonts/Urbanist-SemiBold.ttf"; sourceTree = "<group>"; };
-		5E2848954FAB4C5DA0BC3494 /* Urbanist-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-Bold.ttf"; path = "../src/assets/fonts/Urbanist-Bold.ttf"; sourceTree = "<group>"; };
-		62B9411302A631386B3FA5F0 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Loovie/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		7725A30101C941FB9CC56AD0 /* Urbanist-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-Medium.ttf"; path = "../src/assets/fonts/Urbanist-Medium.ttf"; sourceTree = "<group>"; };
-		777A0A2B76574D7A8088F6DB /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-Regular.ttf"; path = "../src/assets/fonts/Urbanist-Regular.ttf"; sourceTree = "<group>"; };
-		7B4C49DF3530445C999F7ED8 /* Urbanist-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-Thin.ttf"; path = "../src/assets/fonts/Urbanist-Thin.ttf"; sourceTree = "<group>"; };
-		7E9192FF00BC46E6BF964281 /* Urbanist-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-ExtraBold.ttf"; path = "../src/assets/fonts/Urbanist-ExtraBold.ttf"; sourceTree = "<group>"; };
-		8BAD83A020F64517BCCD3EBF /* Urbanist-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-Black.ttf"; path = "../src/assets/fonts/Urbanist-Black.ttf"; sourceTree = "<group>"; };
-		931CF20271654E2F8204D9C4 /* Urbanist-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-ExtraLight.ttf"; path = "../src/assets/fonts/Urbanist-ExtraLight.ttf"; sourceTree = "<group>"; };
-		A23B03305E869351B94DC1BC /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Loovie/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		1597205BAB874973B5419F35 /* Urbanist-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-Light.ttf"; path = "../src/assets/fonts/Urbanist-Light.ttf"; sourceTree = "<group>"; };
+		358661F19C1779174E3AA8C6 /* Pods_Loovie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Loovie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42B5EFC203554AEE8C25444D /* Urbanist-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-Bold.ttf"; path = "../src/assets/fonts/Urbanist-Bold.ttf"; sourceTree = "<group>"; };
+		5000227333154A0EB969C7C1 /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-Regular.ttf"; path = "../src/assets/fonts/Urbanist-Regular.ttf"; sourceTree = "<group>"; };
+		5E3F27CD124444A587DA0A38 /* Urbanist-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-ExtraLight.ttf"; path = "../src/assets/fonts/Urbanist-ExtraLight.ttf"; sourceTree = "<group>"; };
+		720FDCDB68997F1931D3F42D /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Loovie/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		9CFB11FE9F9642F9979EEA27 /* Urbanist-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-Thin.ttf"; path = "../src/assets/fonts/Urbanist-Thin.ttf"; sourceTree = "<group>"; };
+		A427CBFFA534C639FAE58CE3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Loovie/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = Loovie/SplashScreen.storyboard; sourceTree = "<group>"; };
-		B9808A6D2AC8BE7B85C88532 /* Pods-Loovie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loovie.release.xcconfig"; path = "Target Support Files/Pods-Loovie/Pods-Loovie.release.xcconfig"; sourceTree = "<group>"; };
+		AD6D3D6C088F4A1B9483D418 /* Urbanist-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-Medium.ttf"; path = "../src/assets/fonts/Urbanist-Medium.ttf"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		C55286BEE8CFFBC22CCAE34C /* Pods-Loovie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loovie.debug.xcconfig"; path = "Target Support Files/Pods-Loovie/Pods-Loovie.debug.xcconfig"; sourceTree = "<group>"; };
+		CA2AA4C93A04B7280F4C5716 /* Pods-Loovie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loovie.release.xcconfig"; path = "Target Support Files/Pods-Loovie/Pods-Loovie.release.xcconfig"; sourceTree = "<group>"; };
+		E1B541D064FB4CAEB2DBADA9 /* Urbanist-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-SemiBold.ttf"; path = "../src/assets/fonts/Urbanist-SemiBold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		EEBD00FA5017477B8E521283 /* Urbanist-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-ExtraBold.ttf"; path = "../src/assets/fonts/Urbanist-ExtraBold.ttf"; sourceTree = "<group>"; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Loovie/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* Loovie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Loovie-Bridging-Header.h"; path = "Loovie/Loovie-Bridging-Header.h"; sourceTree = "<group>"; };
-		FF1398A1FE4E47DA8EEA1CE3 /* Urbanist-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-Light.ttf"; path = "../src/assets/fonts/Urbanist-Light.ttf"; sourceTree = "<group>"; };
+		F4120FDC92F24CAAAC51812C /* Urbanist-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Urbanist-Black.ttf"; path = "../src/assets/fonts/Urbanist-Black.ttf"; sourceTree = "<group>"; };
+		FF85C9F31A04E5EA76C2B2E3 /* Pods-Loovie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Loovie.debug.xcconfig"; path = "Target Support Files/Pods-Loovie/Pods-Loovie.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA0E18148B025F5EF23E3822 /* libPods-Loovie.a in Frameworks */,
+				BF2F9549F706972829DFC1E9 /* Pods_Loovie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,7 +71,15 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				A23B03305E869351B94DC1BC /* PrivacyInfo.xcprivacy */,
+				A427CBFFA534C639FAE58CE3 /* PrivacyInfo.xcprivacy */,
+			);
+			name = Loovie;
+			sourceTree = "<group>";
+		};
+		21AD58F36E52014A5A8920F8 /* Loovie */ = {
+			isa = PBXGroup;
+			children = (
+				720FDCDB68997F1931D3F42D /* ExpoModulesProvider.swift */,
 			);
 			name = Loovie;
 			sourceTree = "<group>";
@@ -80,33 +88,16 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				1840DBE0ABFB60A5BDFE4E2C /* libPods-Loovie.a */,
+				358661F19C1779174E3AA8C6 /* Pods_Loovie.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5420A4FB2E3E42C0BC015A04 /* Resources */ = {
+		4203D5AC7786681139895FF9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7B4C49DF3530445C999F7ED8 /* Urbanist-Thin.ttf */,
-				931CF20271654E2F8204D9C4 /* Urbanist-ExtraLight.ttf */,
-				FF1398A1FE4E47DA8EEA1CE3 /* Urbanist-Light.ttf */,
-				777A0A2B76574D7A8088F6DB /* Urbanist-Regular.ttf */,
-				7725A30101C941FB9CC56AD0 /* Urbanist-Medium.ttf */,
-				277D2F33304C4854BD4A1480 /* Urbanist-SemiBold.ttf */,
-				5E2848954FAB4C5DA0BC3494 /* Urbanist-Bold.ttf */,
-				7E9192FF00BC46E6BF964281 /* Urbanist-ExtraBold.ttf */,
-				8BAD83A020F64517BCCD3EBF /* Urbanist-Black.ttf */,
-			);
-			name = Resources;
-			path = "";
-			sourceTree = "<group>";
-		};
-		663B7B1E840AC2F9DA186BFC /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C55286BEE8CFFBC22CCAE34C /* Pods-Loovie.debug.xcconfig */,
-				B9808A6D2AC8BE7B85C88532 /* Pods-Loovie.release.xcconfig */,
+				FF85C9F31A04E5EA76C2B2E3 /* Pods-Loovie.debug.xcconfig */,
+				CA2AA4C93A04B7280F4C5716 /* Pods-Loovie.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -126,9 +117,9 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				5420A4FB2E3E42C0BC015A04 /* Resources */,
-				663B7B1E840AC2F9DA186BFC /* Pods */,
-				E550BAB04D911393870D4E3B /* ExpoModulesProviders */,
+				FBA2BE017FA24FD3B1658E8E /* Resources */,
+				4203D5AC7786681139895FF9 /* Pods */,
+				91384F49B2C0A14F4AA7C58B /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -143,12 +134,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A18A30BCCAA268B567CAC8A2 /* Loovie */ = {
+		91384F49B2C0A14F4AA7C58B /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				62B9411302A631386B3FA5F0 /* ExpoModulesProvider.swift */,
+				21AD58F36E52014A5A8920F8 /* Loovie */,
 			);
-			name = Loovie;
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
@@ -160,12 +151,21 @@
 			path = Loovie/Supporting;
 			sourceTree = "<group>";
 		};
-		E550BAB04D911393870D4E3B /* ExpoModulesProviders */ = {
+		FBA2BE017FA24FD3B1658E8E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A18A30BCCAA268B567CAC8A2 /* Loovie */,
+				9CFB11FE9F9642F9979EEA27 /* Urbanist-Thin.ttf */,
+				5E3F27CD124444A587DA0A38 /* Urbanist-ExtraLight.ttf */,
+				1597205BAB874973B5419F35 /* Urbanist-Light.ttf */,
+				5000227333154A0EB969C7C1 /* Urbanist-Regular.ttf */,
+				AD6D3D6C088F4A1B9483D418 /* Urbanist-Medium.ttf */,
+				E1B541D064FB4CAEB2DBADA9 /* Urbanist-SemiBold.ttf */,
+				42B5EFC203554AEE8C25444D /* Urbanist-Bold.ttf */,
+				EEBD00FA5017477B8E521283 /* Urbanist-ExtraBold.ttf */,
+				F4120FDC92F24CAAAC51812C /* Urbanist-Black.ttf */,
 			);
-			name = ExpoModulesProviders;
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,13 +176,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Loovie" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				DED67027E38BA22304984C90 /* [Expo] Configure project */,
+				22C29F47A711DE717A002091 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				C45B178A06C19A099C8EED7F /* [CP] Embed Pods Frameworks */,
+				07CDD146234EAFD03D81D0AB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -232,16 +232,16 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				526AE4138D7644F1BE5276C0 /* Urbanist-Thin.ttf in Resources */,
-				B05420E0138146D2A125F814 /* Urbanist-ExtraLight.ttf in Resources */,
-				74DFF59E3654476196F86F5B /* Urbanist-Light.ttf in Resources */,
-				4D7FCD189629474C8B9C31A1 /* Urbanist-Regular.ttf in Resources */,
-				14503E3C518544EB87679982 /* Urbanist-Medium.ttf in Resources */,
-				752244DC1E444261A319B4D9 /* Urbanist-SemiBold.ttf in Resources */,
-				A6E63EB44BD443FCBCF91B77 /* Urbanist-Bold.ttf in Resources */,
-				A37BCA5A5036486FBCC9A3D8 /* Urbanist-ExtraBold.ttf in Resources */,
-				F4485B99AE774C04BAB1B1B4 /* Urbanist-Black.ttf in Resources */,
-				45801A7092C71195463EDF41 /* PrivacyInfo.xcprivacy in Resources */,
+				1156706AF23249A7B061FDA6 /* Urbanist-Thin.ttf in Resources */,
+				7994822C26C04D25816AEAAF /* Urbanist-ExtraLight.ttf in Resources */,
+				3A2B7AC09964413EB07809E2 /* Urbanist-Light.ttf in Resources */,
+				7665026776CC4B5E9E321534 /* Urbanist-Regular.ttf in Resources */,
+				995906F87C9F4E7EAB6C43DE /* Urbanist-Medium.ttf in Resources */,
+				8BFDEC0DB81F409E93DCA12A /* Urbanist-SemiBold.ttf in Resources */,
+				DEEA34A4B39D49C6BC10E7B6 /* Urbanist-Bold.ttf in Resources */,
+				849BAD8BF30C48A9A183023E /* Urbanist-ExtraBold.ttf in Resources */,
+				7E7522B6811B4C30BC652F9E /* Urbanist-Black.ttf in Resources */,
+				734E11FD68D38C425AEAA6B6 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +262,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [[ -f \"$PODS_ROOT/../.xcode.env\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env\"\nfi\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n# The project root by default is one level up from the ios directory\nexport PROJECT_ROOT=\"$PROJECT_DIR\"/..\n\nif [[ \"$CONFIGURATION\" = *Debug* ]]; then\n  export SKIP_BUNDLING=1\nfi\nif [[ -z \"$ENTRY_FILE\" ]]; then\n  # Set the entry JS file using the bundler's entry resolution.\n  export ENTRY_FILE=\"$(\"$NODE_BINARY\" -e \"require('expo/scripts/resolveAppEntry')\" \"$PROJECT_ROOT\" ios absolute | tail -n 1)\"\nfi\n\nif [[ -z \"$CLI_PATH\" ]]; then\n  # Use Expo CLI\n  export CLI_PATH=\"$(\"$NODE_BINARY\" --print \"require.resolve('@expo/cli', { paths: [require.resolve('expo/package.json')] })\")\"\nfi\nif [[ -z \"$BUNDLE_COMMAND\" ]]; then\n  # Default Expo CLI command for bundling\n  export BUNDLE_COMMAND=\"export:embed\"\nfi\n\n# Source .xcode.env.updates if it exists to allow\n# SKIP_BUNDLING to be unset if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.updates\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.updates\"\nfi\n# Source local changes to allow overrides\n# if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n`\"$NODE_BINARY\" --print \"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'\"`\n\n";
+		};
+		07CDD146234EAFD03D81D0AB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Loovie/Pods-Loovie-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Loovie/Pods-Loovie-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -284,6 +302,25 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		22C29F47A711DE717A002091 /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-Loovie/expo-configure-project.sh\"\n";
 		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -327,43 +364,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Loovie/Pods-Loovie-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C45B178A06C19A099C8EED7F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Loovie/Pods-Loovie-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Loovie/Pods-Loovie-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DED67027E38BA22304984C90 /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-Loovie/expo-configure-project.sh\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -372,7 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				B4BCA7F0903849C98DE4F4F3 /* ExpoModulesProvider.swift in Sources */,
+				0D5D6DAB4F89F0322C6C5261 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,7 +381,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C55286BEE8CFFBC22CCAE34C /* Pods-Loovie.debug.xcconfig */;
+			baseConfigurationReference = FF85C9F31A04E5EA76C2B2E3 /* Pods-Loovie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -417,7 +417,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9808A6D2AC8BE7B85C88532 /* Pods-Loovie.release.xcconfig */;
+			baseConfigurationReference = CA2AA4C93A04B7280F4C5716 /* Pods-Loovie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -492,6 +492,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
@@ -551,6 +562,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,

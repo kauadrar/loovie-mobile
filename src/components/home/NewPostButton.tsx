@@ -135,7 +135,7 @@ export function NewPostButton() {
         className="absolute flex-1 w-full h-full"
         onPress={toggleExpansion}
       />
-      <View className="absolute items-center bottom-safe-offset-24 right-5 z-10">
+      <View className="absolute items-center bottom-2 right-5 z-10">
         <AnimatedTouchableOpacity
           onPress={toggleExpansion}
           className="h-16 w-14 rounded-full bg-gray-800 justify-center items-center flex-row gap-2 z-10"

@@ -2,10 +2,10 @@ import { DrawerToggleButton } from '@/components/navigation';
 import { Container, Text } from '@/components/shared';
 import React from 'react';
 
-export default function Notifications() {
+export default function Cinema() {
   return (
-    <Container headerLeft={() => <DrawerToggleButton />}>
-      <Text>Notifications</Text>
+    <Container headerLeft={() => <DrawerToggleButton />} title="Cinema">
+      <Text>Cinema</Text>
     </Container>
   );
 }

@@ -111,13 +111,7 @@ export default function RootLayout() {
                         titleStyle={{ fontFamily: 'Urbanist-Medium' }}
                         statusBarHeight={topInset}
                       />
-                      <Stack
-                        screenOptions={{
-                          headerShown: false,
-                          navigationBarTranslucent: true,
-                          navigationBarColor: '#ffffff00',
-                        }}
-                      />
+                      <Stack screenOptions={{ headerShown: false }} />
                     </PortalProvider>
                   </ThemeProvider>
                 </KeyboardProvider>

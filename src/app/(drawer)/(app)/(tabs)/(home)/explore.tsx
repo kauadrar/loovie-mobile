@@ -1,4 +1,3 @@
-import { SearchBar } from '@/components/home';
 import { Container, Loading } from '@/components/shared';
 import { TitleCard } from '@/components/titles';
 import { useExplore } from '@/contexts';
@@ -47,7 +46,7 @@ export default function Explore() {
   }, [navigation, resetExplore]);
 
   return (
-    <Container className="flex-1 px-2" headerRight={() => <SearchBar />}>
+    <Container className="flex-1 px-2">
       <FlatList
         data={titles || []}
         renderItem={renderItem}

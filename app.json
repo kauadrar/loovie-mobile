@@ -58,8 +58,17 @@
         "react-native-edge-to-edge",
         {
           "android": {
-            "parentTheme": "Light",
+            "parentTheme": "Material3",
             "enforceNavigationBarContrast": false
+          }
+        }
+      ],
+      ["react-native-bottom-tabs", { "theme": "material3-dynamic" }],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
           }
         }
       ]

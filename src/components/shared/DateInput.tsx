@@ -97,7 +97,7 @@ export const DateInput = forwardRef<TextInput, DateInputProps>(
           value={inputValue}
         >
           <TouchableOpacity onPress={showDateTimePicker}>
-            <View className="w-full flex-row items-center rounded-2xl border border-gray-800 p-4 gap-2 bg-background">
+            <View className="w-full flex-row items-center rounded-2xl p-4 gap-2 bg-gray-900">
               {prefix && <View className="w-7">{prefix}</View>}
               <TextInput
                 placeholder={placeholder}

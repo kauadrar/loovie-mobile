@@ -1,8 +1,8 @@
-import { BackButton } from '@/components/navigation';
-import { HeaderOptions } from '@react-navigation/elements';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { useFocusEffect } from 'expo-router';
+import { NavigationProp } from '@react-navigation/native';
+import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import { useFocusEffect, useNavigation } from 'expo-router';
 import React, { useCallback } from 'react';
+import { Platform, Text } from 'react-native';
 import {
   SafeAreaView,
   SafeAreaViewProps,
@@ -10,29 +10,40 @@ import {
 
 type ContainerProps = {
   safeArea?: boolean;
-  headerLeft?: HeaderOptions['headerLeft'];
-  headerRight?: HeaderOptions['headerRight'];
+  title?: NativeStackNavigationOptions['title'];
+  headerLeft?: NativeStackNavigationOptions['headerLeft'];
+  headerRight?: NativeStackNavigationOptions['headerRight'];
+  headerSearchBarOptions?: NativeStackNavigationOptions['headerSearchBarOptions'];
 } & SafeAreaViewProps;
 
 export function Container({
   safeArea,
   children,
+  title,
+  className,
   headerLeft,
   headerRight,
-  className,
 }: ContainerProps) {
   const rootNavigation =
-    useNavigation<NavigationProp<object, never, '/(drawer)'>>().getParent(
-      '/(drawer)',
-    );
+    useNavigation<
+      NavigationProp<object, never, string, never, NativeStackNavigationOptions>
+    >();
 
   useFocusEffect(
     useCallback(() => {
       rootNavigation?.setOptions({
-        headerLeft: headerLeft || (() => <BackButton />),
-        headerRight: headerRight || (() => null),
+        headerLeft,
+        headerRight,
+        headerTitle: title
+          ? Platform.select<NativeStackNavigationOptions['headerTitle']>({
+              ios: title,
+              android: () => (
+                <Text className="text-white text-md pl-2">{title}</Text>
+              ),
+            })
+          : '',
       });
-    }, [rootNavigation, headerLeft, headerRight]),
+    }, [rootNavigation, title, headerLeft, headerRight]),
   );
 
   return (

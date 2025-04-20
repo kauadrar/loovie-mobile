@@ -1,4 +1,4 @@
-import { NewPostButton, SearchBar } from '@/components/home';
+import { NewPostButton } from '@/components/home';
 import { DrawerToggleButton } from '@/components/navigation';
 import { Container, Text } from '@/components/shared';
 import { useAuth } from '@/contexts';
@@ -8,11 +8,7 @@ export default function Home() {
   const { user } = useAuth();
 
   return (
-    <Container
-      className="pt-safe-offset-16"
-      headerLeft={() => <DrawerToggleButton />}
-      headerRight={() => <SearchBar />}
-    >
+    <Container title="Home" headerLeft={() => <DrawerToggleButton />}>
       <Text>home {user?.first_name}</Text>
       <NewPostButton />
     </Container>

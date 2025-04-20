@@ -19,7 +19,7 @@ export const BottomSheetTextArea = forwardRef<TextInput, TextAreaProps>(
   ) {
     return (
       <InputContainer label={label} errorMessage={errorMessage} value={value}>
-        <View className="w-full h-28 flex-row rounded-2xl border border-gray-800 p-4 gap-2 bg-background">
+        <View className="w-full h-48 flex-row rounded-2xl p-4 gap-2 bg-gray-900">
           {prefix && <View className="w-6">{prefix}</View>}
           <BottomSheetTextInput
             ref={ref}

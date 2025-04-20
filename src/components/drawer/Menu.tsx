@@ -4,11 +4,47 @@ import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
   DrawerItem,
-  DrawerItemList,
+  DrawerNavigationOptions,
 } from '@react-navigation/drawer';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { router } from 'expo-router';
-import { SignOut } from 'phosphor-react-native';
+import { BookmarkSimple, Gear, Question, SignOut } from 'phosphor-react-native';
+
+const drawerItens: {
+  name: string;
+  title: string;
+  icon: DrawerNavigationOptions['drawerIcon'];
+}[] = [
+  {
+    name: '(app)/saved',
+    title: 'Saved',
+    icon: ({ color, focused, size }) => (
+      <BookmarkSimple
+        size={size}
+        weight={focused ? 'fill' : 'regular'}
+        color={color}
+      />
+    ),
+  },
+  {
+    name: '(app)/help',
+    title: 'Help',
+    icon: ({ color, focused, size }) => (
+      <Question
+        size={size}
+        weight={focused ? 'fill' : 'regular'}
+        color={color}
+      />
+    ),
+  },
+  {
+    name: '(app)/settings',
+    title: 'Settings',
+    icon: ({ color, focused, size }) => (
+      <Gear size={size} weight={focused ? 'fill' : 'regular'} color={color} />
+    ),
+  },
+];
 
 export function Menu({
   descriptors,
@@ -28,11 +64,18 @@ export function Menu({
 
   return (
     <DrawerContentScrollView>
-      <DrawerItemList
-        navigation={navigation}
-        state={state}
-        descriptors={descriptors}
-      />
+      {drawerItens.map((item) => (
+        <DrawerItem
+          key={item.name}
+          label={item.title}
+          icon={item.icon}
+          onPress={() =>
+            navigation.navigate(item.name.split('/')[0], {
+              screen: item.name.split('/')[1],
+            })
+          }
+        />
+      ))}
       <DrawerItem
         label="Logout"
         labelStyle={[options.drawerLabelStyle, { color: colors.danger }]}

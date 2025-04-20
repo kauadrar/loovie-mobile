@@ -1,19 +1,19 @@
 import { colors } from '@/styles';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { PlatformPressable } from '@react-navigation/elements';
 import { DrawerActions } from '@react-navigation/native';
 import { useNavigation } from 'expo-router';
 import { MenuIcon } from 'lucide-react-native';
-import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { TouchableOpacityProps } from 'react-native';
 
 export function DrawerToggleButton({ className }: TouchableOpacityProps) {
   const navigation = useNavigation<DrawerNavigationProp<any>>();
 
   return (
-    <TouchableOpacity
+    <PlatformPressable
       onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-      className={`p-4 ${className}`}
     >
-      <MenuIcon size={24} color={colors.gray1} />
-    </TouchableOpacity>
+      <MenuIcon size={22} color={colors.gray1} />
+    </PlatformPressable>
   );
 }

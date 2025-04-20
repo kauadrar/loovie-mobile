@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function MyProfile() {
   return (
-    <Container headerLeft={() => <DrawerToggleButton />}>
+    <Container headerLeft={() => <DrawerToggleButton />} title="Profile">
       <Text>MyProfile</Text>
     </Container>
   );
