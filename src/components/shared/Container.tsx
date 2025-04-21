@@ -2,7 +2,6 @@ import { NavigationProp } from '@react-navigation/native';
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { useFocusEffect, useNavigation } from 'expo-router';
 import React, { useCallback } from 'react';
-import { Platform, Text } from 'react-native';
 import {
   SafeAreaView,
   SafeAreaViewProps,
@@ -34,14 +33,7 @@ export function Container({
       rootNavigation?.setOptions({
         headerLeft,
         headerRight,
-        headerTitle: title
-          ? Platform.select<NativeStackNavigationOptions['headerTitle']>({
-              ios: title,
-              android: () => (
-                <Text className="text-white text-md pl-2">{title}</Text>
-              ),
-            })
-          : '',
+        headerTitle: title || '',
       });
     }, [rootNavigation, title, headerLeft, headerRight]),
   );

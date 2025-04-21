@@ -81,7 +81,7 @@ export const NewPostModal = forwardRef<GorhomBottomSheetModal>(
                 render={({ field: { onChange, ...field } }) => (
                   <BottomSheetTextArea
                     label="Post"
-                    placeholder="Teste"
+                    placeholder="Write down your thoughts..."
                     onChangeText={onChange}
                     {...field}
                   />

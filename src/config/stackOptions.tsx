@@ -5,4 +5,5 @@ export const defaultStackOptions: NativeStackNavigationOptions = {
   headerStyle: {
     backgroundColor: colors.background,
   },
+  headerBackButtonDisplayMode: 'generic',
 };

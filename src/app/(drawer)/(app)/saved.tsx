@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function Saved() {
   return (
-    <Container>
+    <Container title="Saved">
       <Text>Saved</Text>
     </Container>
   );
