@@ -25,7 +25,6 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="loovie"/>
-        <data android:scheme="com.drar.loovie"/>
         <data android:scheme="exp+loovie"/>
       </intent-filter>
     </activity>
